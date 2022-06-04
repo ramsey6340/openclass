@@ -13,27 +13,24 @@ class _BodyState extends State<Body>
 {
   static int nbreSMS = 12;
   List<Widget> interactionComponentMain = [
-    //SearchBar(),
-    InteractionComponent(imageAvatarMain: 'assets/images/informatique.jpg', nbreSMSMain: nbreSMS, titleMain: 'GIT-L3-S6', subTitleMain: 'Ici on parle uniquement de l\'informatique et de la télécommunication'),
-    InteractionComponent(imageAvatarMain: 'assets/images/img_default_class.png', nbreSMSMain: 0, titleMain: 'Hyper', subTitleMain: 'Le sol doit être protégé'),
-    InteractionComponent(imageAvatarMain: 'assets/images/medecine.jpg', nbreSMSMain: 354, titleMain: 'FMOS', subTitleMain: 'La santé vaut plus que de l\'argent'),
-    InteractionComponent(imageAvatarMain: 'assets/images/geologie.jpg', nbreSMSMain: 0, titleMain: 'Géologie', subTitleMain: 'Nous somme les plus riche'),
-    InteractionComponent(imageAvatarMain: 'assets/images/img_default_class.png', nbreSMSMain: 0, titleMain: 'TSExp', subTitleMain: 'Future Medecin'),
-    InteractionComponent(imageAvatarMain: 'assets/images/informatique.jpg', nbreSMSMain: 0, titleMain: 'GME-L2-S3', subTitleMain: 'Faison du bricolage'),
-    InteractionComponent(imageAvatarMain: 'assets/images/medecine.jpg', nbreSMSMain: 1232, titleMain: 'TSE', subTitleMain: 'Vive la Mathématique'),
-    InteractionComponent(imageAvatarMain: 'assets/images/img_default_class.png', nbreSMSMain: 5, titleMain: 'TLL', subTitleMain: 'Aristote a dit ...'),
-    InteractionComponent(imageAvatarMain: 'assets/images/img_default_class.png', nbreSMSMain: 2214, titleMain: '9eme Année', subTitleMain: ''),
-    InteractionComponent(imageAvatarMain: 'assets/images/informatique.jpg', nbreSMSMain: 0, titleMain: 'GIT-M1-S1', subTitleMain: 'Le savoir c\'est tout'),
-    InteractionComponent(imageAvatarMain: 'assets/images/img_default_class.png', nbreSMSMain: 1, titleMain: 'Artostate', subTitleMain: 'Blablabla...'),
-    InteractionComponent(imageAvatarMain: 'assets/images/hackaTeam.png', nbreSMSMain: 0, titleMain: 'HackaTeam', subTitleMain: 'Faisons du Hacking'),
-    InteractionComponent(imageAvatarMain: 'assets/images/geekacademie.png', nbreSMSMain: 0, titleMain: 'GeeK Academie', subTitleMain: 'Oui je suis un Geek'),
+    InteractionComponent(imageAvatar: 'assets/images/informatique.jpg', nbreSMS: nbreSMS, title: 'GIT-L3-S6', subTitle: 'Ici on parle uniquement de l\'informatique et de la télécommunication'),
+    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 0, title: 'Hyper', subTitle: 'Le sol doit être protégé'),
+    InteractionComponent(imageAvatar: 'assets/images/medecine.jpg', nbreSMS: 354, title: 'FMOS', subTitle: 'La santé vaut plus que de l\'argent'),
+    InteractionComponent(imageAvatar: 'assets/images/geologie.jpg', nbreSMS: 0, title: 'Géologie', subTitle: 'Nous somme les plus riche'),
+    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 0, title: 'TSExp', subTitle: 'Future Medecin'),
+    InteractionComponent(imageAvatar: 'assets/images/informatique.jpg', nbreSMS: 0, title: 'GME-L2-S3', subTitle: 'Faison du bricolage'),
+    InteractionComponent(imageAvatar: 'assets/images/medecine.jpg', nbreSMS: 1232, title: 'TSE', subTitle: 'Vive la Mathématique'),
+    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 5, title: 'TLL', subTitle: 'Aristote a dit ...'),
+    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 2214, title: '9eme Année', subTitle: ''),
+    InteractionComponent(imageAvatar: 'assets/images/informatique.jpg', nbreSMS: 0, title: 'GIT-M1-S1', subTitle: 'Le savoir c\'est tout'),
+    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 1, title: 'Artostate', subTitle: 'Blablabla...'),
+    InteractionComponent(imageAvatar: 'assets/images/hackaTeam.png', nbreSMS: 0, title: 'HackaTeam', subTitle: 'Faisons du Hacking'),
+    InteractionComponent(imageAvatar: 'assets/images/geekacademie.png', nbreSMS: 0, title: 'GeeK Academie', subTitle: 'Oui je suis un Geek'),
   ];
-
 
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       color: kColorComposant,
       child: SafeArea(

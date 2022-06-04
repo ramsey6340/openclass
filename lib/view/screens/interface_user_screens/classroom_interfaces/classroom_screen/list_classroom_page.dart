@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
-import '../../../../composants/bottom_navigation_bar_tools.dart';
 import '../../../../composants/drawer_component.dart';
 import 'composants/body.dart';
 
@@ -11,13 +10,9 @@ class ListClassroomPage extends StatelessWidget
   final _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
       key: _key,
-      endDrawerEnableOpenDragGesture: false,
-      appBar: ToolsBar.appBar('Modifier','Mes classe', Icon(Icons.add_circle_outline_rounded),(){},(){} ),
-      endDrawer: DrawerComponent(),
-      body: Body(),
-      bottomNavigationBar: BottomNavigationBarTools(),
+      child: Body(),
     );
   }
 }

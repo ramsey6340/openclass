@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import '../../../../../constante.dart';
 
-
-class InteractionComponent extends StatelessWidget
+class InteractionComponent extends StatefulWidget
 {
-  InteractionComponent({required this.imageAvatar,required this.nbreSMS, required this.title, required this.subTitle});
+  InteractionComponent({Key? key,required this.imageAvatarMain,required this.nbreSMSMain, required this.titleMain, required this.subTitleMain}):super(key: key);
+  final String imageAvatarMain;
+  final int nbreSMSMain;
+  final String titleMain;
+  final String subTitleMain;
+
+  @override
+  State<InteractionComponent> createState() => _InteractionComponentState(imageAvatar: imageAvatarMain,nbreSMS: nbreSMSMain,title: titleMain,subTitle: subTitleMain);
+}
+
+class _InteractionComponentState extends State<InteractionComponent>
+{
+  _InteractionComponentState({required this.imageAvatar,required this.nbreSMS, required this.title, required this.subTitle});
   final String imageAvatar;
   final int nbreSMS;
   final String title;
@@ -16,6 +27,7 @@ class InteractionComponent extends StatelessWidget
     TextStyle styleNbreSMS = TextStyle(fontSize: 10,fontWeight: FontWeight.bold);
 
     return ListTile(
+      selectedTileColor: kColorAppBar,
       dense: true,
       textColor: Colors.white,
       leading: CircleAvatar(
@@ -35,9 +47,7 @@ class InteractionComponent extends StatelessWidget
       ),
       title: Text(title,style: styleTitle),
       subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
-      onTap: (){
-        Scaffold.of(context).openEndDrawer();
-      },
+      onTap: (){},
     );
   }
 }

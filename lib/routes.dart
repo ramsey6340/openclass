@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/chat_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/classroom_screen/list_classroom_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/login_screens/authentication/authentication_page.dart';
 import 'package:openclass/view/screens/login_screens/confirmation/confirmation_page.dart';
 import 'package:openclass/view/screens/login_screens/forgot_password/forgot_password_page.dart';
@@ -19,4 +21,6 @@ final Map<String,WidgetBuilder> routes = {
   AuthenticationPage.routename: (context) => AuthenticationPage(),
   ConfirmationPage.routename: (context) => ConfirmationPage(),
   ListClassroomPage.routeName: (context) => ListClassroomPage(),
+  ChatPage.routeName: (context) => ChatPage(),
+  MainScreen.routeName: (context) => MainScreen(),
 };
