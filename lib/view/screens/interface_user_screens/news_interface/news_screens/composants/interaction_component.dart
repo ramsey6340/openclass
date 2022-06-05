@@ -13,31 +13,29 @@ class InteractionComponent extends StatelessWidget
   @override
   Widget build(BuildContext context) {
 
-    TextStyle styleTitle = TextStyle(fontSize: 20,fontWeight: FontWeight.bold);
+    TextStyle styleTitle = TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.bold);
+    TextStyle styleSubTitle = TextStyle(color: kColorPrimary, fontSize: 20);
+    TextStyle styleContent = TextStyle(color: Colors.white, fontSize: 16);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          radius: 25,
+          backgroundImage: AssetImage(imageAvatar),
+        ),
+        title: Text(title,style: styleTitle,),
+
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage(imageAvatar),
-                  radius: 25,
-                ),
-            SizedBox(width: 10,),
-            Container(
-              width: MediaQuery.of(context).size.width*0.75,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-                  Text(subTitle, style: TextStyle(fontSize: 20, color: kColorPrimary),),
-                  Text(content, style: TextStyle(fontSize: 18),),
-                ],
-              ),
-            ),
+            Text(subTitle, style: styleSubTitle, maxLines: 1,overflow: TextOverflow.ellipsis,),
+            SizedBox(height: 10,),
+            Text(content, style: styleContent, maxLines: 10,),
           ],
         ),
+      ),
     );
   }
 }
