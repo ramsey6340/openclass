@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/user_profile_page.dart';
 
 import '../../composants/drawer_component.dart';
 import '../../composants/tools_bar.dart';
 import '../../constante.dart';
 import 'chat_interface_friends/chat_screens/chat_page.dart';
+import 'classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
 import 'classroom_interfaces/classroom_screen/list_classroom_page.dart';
 import 'news_interface/news_screens/new_page.dart';
 
@@ -22,7 +24,7 @@ class _MainScreenState extends State<MainScreen>
   late Widget _pageClass;
   late Widget _pageChat;
   late Widget _pageInfo;
-  //late Widget _pageProfile;
+  late Widget _pageProfile;
 
   @override
   initState()
@@ -32,8 +34,8 @@ class _MainScreenState extends State<MainScreen>
     _pageClass = ListClassroomPage();
     _pageChat = ChatPage();
     _pageInfo = NewPage();
-    //_pageProfile = ;
-    _pageList = [_pageClass, _pageChat, _pageInfo];
+    _pageProfile = UserProfilePage();
+    _pageList = [_pageClass, _pageChat, _pageInfo,_pageProfile];
     _currentPage = _pageClass;
   }
 
@@ -49,7 +51,7 @@ class _MainScreenState extends State<MainScreen>
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
       endDrawer: DrawerComponent(),
-      appBar: (_currentIndex==0)?appBarClass():(_currentIndex==1)?appBarChat():appBarNew(),
+      appBar: (_currentIndex==0)?appBarClass():(_currentIndex==1)?appBarChat():(_currentIndex==2)?appBarNew():null,
       body: _currentPage,
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -85,7 +87,7 @@ class _MainScreenState extends State<MainScreen>
           //traitement pour le boutton 'Modifier'
         },
         (){
-          //traitement pour l'icon ajout de classe
+          Navigator.pushNamed(context, ChooseCreateClassroomPage.routeName);
         }
     );
   }

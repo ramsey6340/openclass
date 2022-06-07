@@ -27,17 +27,14 @@ class _BodyState extends State<Body>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: kColorComposant,
-      child: SafeArea(
-        child: ListView.separated(
-          separatorBuilder: (context,index) => Divider(color: Colors.white,height: 10,thickness: 0.3,),
-          itemCount: interactionComponentMain.length,
-          itemBuilder: (context,index){
-            final item = interactionComponentMain[index];
-            return item;
-          },
-        ),
+    return SafeArea(
+      child: ListView.separated(
+        separatorBuilder: (context,index) => Divider(color: Colors.white,height: 10,thickness: 0.3,),
+        itemCount: interactionComponentMain.length,
+        itemBuilder: (context,index){
+          final item = interactionComponentMain[index];
+          return item;
+        },
       ),
     );
   }

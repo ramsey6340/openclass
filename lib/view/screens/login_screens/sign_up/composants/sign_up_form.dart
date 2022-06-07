@@ -53,14 +53,14 @@ class _SignUpFormState extends State<SignUpForm>
                     });
                   }
               ),
-              Text("J'ai lu et j'accepte la politique",style: TextStyle(fontSize: 20),),
+              Text("J'ai lu et j'accepte la politique",style: TextStyle(fontSize: 16),),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ExternalLink(color: kColorPrimarySecond, text: 'd\'utilisation', destination: ''),
-              Text(" et de ",style: TextStyle(fontSize: 20),),
+              Text(" et de ",style: TextStyle(fontSize: 16),),
               ExternalLink(color: kColorPrimarySecond, text: 'confidentialité', destination: ''),
             ],
           ),

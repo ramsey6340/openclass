@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:openclass/view/composants/tools_bar.dart';
-import '../../../../composants/drawer_component.dart';
+import '../../../../constante.dart';
 import 'composants/body.dart';
 
 class ListClassroomPage extends StatelessWidget
@@ -12,6 +11,7 @@ class ListClassroomPage extends StatelessWidget
   Widget build(BuildContext context) {
     return Container(
       key: _key,
+      color: kColorComposant,
       child: Body(),
     );
   }

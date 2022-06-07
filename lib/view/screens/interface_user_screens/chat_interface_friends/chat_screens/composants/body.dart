@@ -31,42 +31,39 @@ class _BodyState extends State<Body>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: kColorComposant,
-      child: SafeArea(
-        child: ListView.separated(
-          separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
-          itemCount: interactionComponentMain.length,
-          itemBuilder: (context,index){
-            final item = interactionComponentMain[index];
-            return Dismissible(
-              key: ValueKey<Widget>(interactionComponentMain[index]),
-              secondaryBackground: backgroundDelete,
-              background: backgroundReaded,
-              confirmDismiss: (direction) async{
-                if(direction == DismissDirection.endToStart){
-                  bool isDelete = await deleteDialog();
-                  return isDelete;
-                }
-                else{}
-              },
-              onDismissed: (direction){
-                if(direction == DismissDirection.endToStart){
-                  setState((){
-                    interactionComponentMain.removeAt(index);
-                  });
-                }
-                else if(direction == DismissDirection.startToEnd){
-                  //ici on reinitialisera le nombre de message non lu à zéro
-                  setState((){
-                    nbreSMS = 0;
-                  });
-                }
-              },
-              child: item,
-            );
-          },
-        ),
+    return SafeArea(
+      child: ListView.separated(
+        separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
+        itemCount: interactionComponentMain.length,
+        itemBuilder: (context,index){
+          final item = interactionComponentMain[index];
+          return Dismissible(
+            key: ValueKey<Widget>(interactionComponentMain[index]),
+            secondaryBackground: backgroundDelete,
+            background: backgroundReaded,
+            confirmDismiss: (direction) async{
+              if(direction == DismissDirection.endToStart){
+                bool isDelete = await deleteDialog();
+                return isDelete;
+              }
+              else{}
+            },
+            onDismissed: (direction){
+              if(direction == DismissDirection.endToStart){
+                setState((){
+                  interactionComponentMain.removeAt(index);
+                });
+              }
+              else if(direction == DismissDirection.startToEnd){
+                //ici on reinitialisera le nombre de message non lu à zéro
+                setState((){
+                  nbreSMS = 0;
+                });
+              }
+            },
+            child: item,
+          );
+        },
       ),
     );
   }

@@ -14,7 +14,7 @@ class NextButton extends StatelessWidget
   Widget build(BuildContext context) {
     return SizedBox(
         height: 50,
-        width: 290,
+        width: MediaQuery.of(context).size.width*0.7,//290,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: color,

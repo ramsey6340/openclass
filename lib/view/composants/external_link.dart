@@ -11,7 +11,7 @@ class ExternalLink extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Text(text, style: TextStyle(color: color,fontSize: 20,decoration: TextDecoration.underline)),
+      child: Text(text, style: TextStyle(color: color,fontSize: 16,decoration: TextDecoration.underline)),
       onTap: () => Navigator.pushNamed(context, destination),
     );
   }
