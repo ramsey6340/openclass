@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../composants/search_bar.dart';
 import 'interaction_component.dart';
-import '../../../../../constante.dart';
+import 'package:openclass/model/data.dart';
+import 'package:openclass/model/classroom.dart';
 
 class Body extends StatefulWidget
 {
@@ -11,34 +11,17 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
-  static int nbreSMS = 12;
-  List<Widget> interactionComponentMain = [
-    InteractionComponent(imageAvatar: 'assets/images/informatique.jpg', nbreSMS: nbreSMS, title: 'GIT-L3-S6', subTitle: 'Ici on parle uniquement de l\'informatique et de la télécommunication'),
-    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 0, title: 'Hyper', subTitle: 'Le sol doit être protégé'),
-    InteractionComponent(imageAvatar: 'assets/images/medecine.jpg', nbreSMS: 354, title: 'FMOS', subTitle: 'La santé vaut plus que de l\'argent'),
-    InteractionComponent(imageAvatar: 'assets/images/geologie.jpg', nbreSMS: 0, title: 'Géologie', subTitle: 'Nous somme les plus riche'),
-    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 0, title: 'TSExp', subTitle: 'Future Medecin'),
-    InteractionComponent(imageAvatar: 'assets/images/informatique.jpg', nbreSMS: 0, title: 'GME-L2-S3', subTitle: 'Faison du bricolage'),
-    InteractionComponent(imageAvatar: 'assets/images/medecine.jpg', nbreSMS: 1232, title: 'TSE', subTitle: 'Vive la Mathématique'),
-    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 5, title: 'TLL', subTitle: 'Aristote a dit ...'),
-    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 2214, title: '9eme Année', subTitle: ''),
-    InteractionComponent(imageAvatar: 'assets/images/informatique.jpg', nbreSMS: 0, title: 'GIT-M1-S1', subTitle: 'Le savoir c\'est tout'),
-    InteractionComponent(imageAvatar: 'assets/images/img_default_class.png', nbreSMS: 1, title: 'Artostate', subTitle: 'Blablabla...'),
-    InteractionComponent(imageAvatar: 'assets/images/hackaTeam.png', nbreSMS: 0, title: 'HackaTeam', subTitle: 'Faisons du Hacking'),
-    InteractionComponent(imageAvatar: 'assets/images/geekacademie.png', nbreSMS: 0, title: 'GeeK Academie', subTitle: 'Oui je suis un Geek'),
-  ];
-
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView.separated(
         separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
-        itemCount: interactionComponentMain.length,
+        itemCount: classrooms.length,
         itemBuilder: (context,index){
-          final item = interactionComponentMain[index];
+          final item = classrooms[index];
           return Dismissible(
-            key: ValueKey<Widget>(interactionComponentMain[index]),
+            key: ValueKey<Classroom>(classrooms[index]),
             secondaryBackground: backgroundDelete,
             background: backgroundReaded,
             confirmDismiss: (direction) async{
@@ -51,17 +34,14 @@ class _BodyState extends State<Body>
             onDismissed: (direction){
               if(direction == DismissDirection.endToStart){
                 setState((){
-                  interactionComponentMain.removeAt(index);
+                  classrooms.removeAt(index);
                 });
               }
               else if(direction == DismissDirection.startToEnd){
                 //ici on reinitialisera le nombre de message non lu à zéro
-                setState((){
-                  nbreSMS = 0;
-                });
               }
             },
-            child: item,
+            child: InteractionComponent(classroom: item, nbreSMS: 0, subTitle: 'd'),
           );
         },
       ),

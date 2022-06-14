@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/user_profile_page.dart';
-
-import '../../composants/drawer_component.dart';
-import '../../composants/tools_bar.dart';
-import '../../constante.dart';
-import 'chat_interface_friends/chat_screens/chat_page.dart';
+import 'package:openclass/view/composants/drawer_component.dart';
+import 'package:openclass/view/composants/tools_bar.dart';
+import 'package:openclass/view/constante.dart';
+import 'chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
 import 'classroom_interfaces/classroom_screen/list_classroom_page.dart';
 import 'news_interface/news_screens/new_page.dart';
@@ -32,7 +31,7 @@ class _MainScreenState extends State<MainScreen>
     super.initState();
     _currentIndex = 0;
     _pageClass = ListClassroomPage();
-    _pageChat = ChatPage();
+    _pageChat = ListFriendPage();
     _pageInfo = NewPage();
     _pageProfile = UserProfilePage();
     _pageList = [_pageClass, _pageChat, _pageInfo,_pageProfile];
@@ -47,32 +46,32 @@ class _MainScreenState extends State<MainScreen>
   }
 
   @override
-  build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
       endDrawer: DrawerComponent(),
       appBar: (_currentIndex==0)?appBarClass():(_currentIndex==1)?appBarChat():(_currentIndex==2)?appBarNew():null,
       body: _currentPage,
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.school),label: '',),
-          BottomNavigationBarItem(icon: Icon(Icons.chat),label: '',),
-          BottomNavigationBarItem(icon: Icon(Icons.info),label: '',),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle_sharp),label: '',),
-        ],
-        backgroundColor: kColorAppBar,
-        selectedItemColor: kColorPrimary,
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        iconSize: 30.0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        unselectedItemColor: Colors.grey,
-        selectedFontSize: 0.0,
-        unselectedFontSize: 0.0,
-        elevation: 0.0,
-        type: BottomNavigationBarType.fixed,
-      ),
+      items: <BottomNavigationBarItem>[
+       BottomNavigationBarItem(icon: Icon(Icons.school),label: '',),
+      BottomNavigationBarItem(icon: Icon(Icons.chat),label: '',),
+      BottomNavigationBarItem(icon: Icon(Icons.info),label: '',),
+      BottomNavigationBarItem(icon: Icon(Icons.account_circle_sharp),label: '',),
+      ],
+      backgroundColor: kColorAppBar,
+      selectedItemColor: kColorPrimary,
+      currentIndex: _currentIndex,
+      onTap: _onItemTapped,
+      iconSize: 30.0,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedItemColor: Colors.grey,
+      selectedFontSize: 0.0,
+      unselectedFontSize: 0.0,
+      elevation: 0.0,
+      type: BottomNavigationBarType.fixed,
+       ),
     );
   }
 
@@ -80,13 +79,13 @@ class _MainScreenState extends State<MainScreen>
   AppBar appBarClass()
   {
     return ToolsBar.appBar(
-        'Modifier',
+        Text('Modifier',style: TextStyle(fontSize: 20,color: kColorPrimary)),
         'Mes classe',
         Icon(Icons.add_circle_outline_rounded),
-        (){
+            (){
           //traitement pour le boutton 'Modifier'
         },
-        (){
+            (){
           Navigator.pushNamed(context, ChooseCreateClassroomPage.routeName);
         }
     );
@@ -96,13 +95,13 @@ class _MainScreenState extends State<MainScreen>
   AppBar appBarChat()
   {
     return ToolsBar.appBar(
-        'Modifier',
+        Text('Modifier',style: TextStyle(fontSize: 20,color: kColorPrimary)),
         'Discussion',
         Icon(Icons.edit),
-        (){
+            (){
           //traitement pour le boutton 'Modifier'
         },
-        (){
+            (){
           //traitement pour l'icon créer une discussion
         }
     );
@@ -112,7 +111,7 @@ class _MainScreenState extends State<MainScreen>
   AppBar appBarNew()
   {
     return ToolsBar.appBar(
-        'Modifier',
+        Text('Modifier',style: TextStyle(fontSize: 20,color: kColorPrimary)),
         'Informations',
         Icon(Icons.tune),
             (){

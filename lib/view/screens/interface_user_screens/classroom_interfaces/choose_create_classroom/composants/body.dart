@@ -14,11 +14,11 @@ class Body extends StatelessWidget
         SizedBox(height: 20,),
         Text("Ta classe est l'endroid où tu retrouve tes camarades.\nCrée le tien et commence ton cour.", textAlign: TextAlign.center,),
         SizedBox(height: 20,),
-        InteractionComponent(title: "Crée une classe", routeName: CreateClassroomPage.routeName),
+        InteractionComponent(title: "Crée une classe", press: (){Navigator.pushNamed(context, CreateClassroomPage.routeName);}),
         SizedBox(height: 70,),
         Text("Tu as déjà une invitation ?", style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),textAlign: TextAlign.center,),
         SizedBox(height: 20,),
-        InteractionComponent(title: "Rejoindre une classe", routeName: JoinClassroomPage.routeName),
+        InteractionComponent(title: "Rejoindre une classe", press: (){Navigator.pushNamed(context, JoinClassroomPage.routeName);}),
       ],
     );
   }

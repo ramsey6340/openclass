@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import '../../../../../constante.dart';
+import '../../../chat_interface/chat_page.dart';
+import 'package:openclass/model/user.dart';
+import 'package:openclass/model/message.dart';
 
 class InteractionComponent extends StatefulWidget
 {
-  InteractionComponent({Key? key,required this.imageAvatarMain,required this.nbreSMSMain, required this.titleMain, required this.subTitleMain}):super(key: key);
-  final String imageAvatarMain;
+  InteractionComponent({Key? key,required this.receiver,required this.message,required this.nbreSMSMain}):super(key: key);
   final int nbreSMSMain;
-  final String titleMain;
-  final String subTitleMain;
+  final User receiver;
+  final Message message;
 
+  int get nbreSMS => nbreSMSMain;
   @override
-  State<InteractionComponent> createState() => _InteractionComponentState(imageAvatar: imageAvatarMain,nbreSMS: nbreSMSMain,title: titleMain,subTitle: subTitleMain);
+  State<InteractionComponent> createState() => _InteractionComponentState();
 }
 
 class _InteractionComponentState extends State<InteractionComponent>
 {
-  _InteractionComponentState({required this.imageAvatar,required this.nbreSMS, required this.title, required this.subTitle});
-  final String imageAvatar;
-  final int nbreSMS;
-  final String title;
-  final String subTitle;
   @override
   Widget build(BuildContext context) {
 
@@ -27,27 +24,29 @@ class _InteractionComponentState extends State<InteractionComponent>
     TextStyle styleNbreSMS = TextStyle(fontSize: 10,fontWeight: FontWeight.bold);
 
     return ListTile(
-      selectedTileColor: kColorAppBar,
+      selectedTileColor: Colors.grey,
       dense: true,
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(imageAvatar),
+        backgroundImage: AssetImage(widget.receiver.img_profile),
         radius: 25,
       ),
       trailing: Container(
         decoration: BoxDecoration(
-          color: (nbreSMS==0)?Colors.transparent:Colors.red,
+          color: (widget.nbreSMS==0)?Colors.transparent:Colors.red,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
           padding: EdgeInsets.all(5),
-          child: (nbreSMS<=0)?Text(''):((nbreSMS<1000)?Text('${nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
+          child: (widget.nbreSMS<=0)?Text(''):((widget.nbreSMS<1000)?Text('${widget.nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(title,style: styleTitle),
-      subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
-      onTap: (){},
+      title: Text(widget.receiver.first_name,style: styleTitle),
+      subtitle: Text(widget.message.text,overflow: TextOverflow.ellipsis,),
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChatPageUser(user: widget.receiver,)));
+      },
     );
   }
 }

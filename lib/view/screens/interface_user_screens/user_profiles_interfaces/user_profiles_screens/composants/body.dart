@@ -15,12 +15,12 @@ class _BodyState extends State<Body>
   late File _imageFile;
   late dynamic _pickImageError;
   List<Widget> listSettingUser = [
-    InteractionComponent(title: "Compte", routeName: ''),
-    InteractionComponent(title: "Profile d'utilisateur", routeName: ''),
+    InteractionComponent(title: "Compte", press: (){}),
+    InteractionComponent(title: "Profile d'utilisateur", press: (){}),
   ];
   List<Widget> listSettingAppli = [
-    InteractionComponent(title: 'Langue', routeName: ''),
-    InteractionComponent(title: 'Notification', routeName: ''),
+    InteractionComponent(title: 'Langue', press: (){}),
+    InteractionComponent(title: 'Notification', press: (){}),
   ];
 
   @override
@@ -34,14 +34,14 @@ class _BodyState extends State<Body>
               PhotoProfile(imgProfile: 'assets/images/informatique.jpg', nameUser: 'Drissa Sidiki Traore', dateBirth: '13/09/2020'),
               SizedBox(height: 50,),
               Text("PARAMETRE DE L'UTILISATEUR"),
-              InteractionComponent(title: "Compte", routeName: ''),
+              InteractionComponent(title: "Compte", press: (){}),
               Divider(color: Colors.white,height: 0,thickness:0.5),
-              InteractionComponent(title: "Profile d'utilisateur", routeName: ''),
+              InteractionComponent(title: "Profile d'utilisateur", press: (){}),
               SizedBox(height: 30,),
               Text("PARAMETRE DE L'APPLI"),
-              InteractionComponent(title: "Langue", routeName: ''),
+              InteractionComponent(title: "Langue", press: (){}),
               Divider(color: Colors.white,height: 0,thickness:0.5),
-              InteractionComponent(title: "Notification", routeName: ''),
+              InteractionComponent(title: "Notification", press: (){}),
             ],
           ),
         ),

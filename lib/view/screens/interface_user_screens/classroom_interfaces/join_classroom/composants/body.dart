@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:openclass/view/composants/next_button.dart';
 import 'package:openclass/view/constante.dart';
 
+import '../../../../../composants/entry_field.dart';
+
 class Body extends StatefulWidget
 {
   @override
@@ -13,7 +15,6 @@ class _BodyState extends State<Body>
   @override
   build(BuildContext context)
   {
-    Icon? suffixIconCross;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: ListView(
@@ -23,15 +24,7 @@ class _BodyState extends State<Body>
           Text("Entrer un lien d'invitation ci-dessous pour rejoindre une classe existante.", textAlign: TextAlign.center,),
           SizedBox(height: 30),
           Text("Lien d'invitation", style: TextStyle(fontSize: 18),),
-          TextField(
-            keyboardType: TextInputType.text,
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: kColorSearch,
-              suffixIcon: suffixIconCross,
-            ),
-          ),
+          EntryField.buildTextFiel(),
           SizedBox(height: 20,),
           Text("Exemple:", style: TextStyle(fontSize: 18),),
           Text("Les liens d’invitation devraient ressembler à …"),

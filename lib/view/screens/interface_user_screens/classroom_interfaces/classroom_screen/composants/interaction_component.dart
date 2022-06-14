@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../../../../constante.dart';
+import 'package:openclass/model/classroom.dart';
 
-
-class InteractionComponent extends StatelessWidget
+class InteractionComponent extends StatefulWidget
 {
-  InteractionComponent({required this.imageAvatar,required this.nbreSMS, required this.title, required this.subTitle});
-  final String imageAvatar;
+  InteractionComponent({required this.classroom, required this.nbreSMS, required this.subTitle});
   final int nbreSMS;
-  final String title;
   final String subTitle;
+  final Classroom classroom;
+  @override
+  State<InteractionComponent> createState() => _InteractionComponentState();
+}
+class _InteractionComponentState extends State<InteractionComponent>
+{
+
   @override
   Widget build(BuildContext context) {
 
@@ -20,21 +24,21 @@ class InteractionComponent extends StatelessWidget
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(imageAvatar),
+        backgroundImage: AssetImage(widget.classroom.image),
         radius: 25,
       ),
       trailing: Container(
         decoration: BoxDecoration(
-          color: (nbreSMS==0)?Colors.transparent:Colors.red,
+          color: (widget.nbreSMS==0)?Colors.transparent:Colors.red,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
           padding: EdgeInsets.all(5),
-          child: (nbreSMS<=0)?Text(''):((nbreSMS<1000)?Text('${nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
+          child: (widget.nbreSMS<=0)?Text(''):((widget.nbreSMS<1000)?Text('${widget.nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(title,style: styleTitle),
-      subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
+      title: Text(widget.classroom.name,style: styleTitle),
+      subtitle: Text(widget.subTitle,overflow: TextOverflow.ellipsis,),
       onTap: (){
         Scaffold.of(context).openEndDrawer();
       },

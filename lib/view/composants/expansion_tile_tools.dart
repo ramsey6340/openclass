@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/view/composants/list_salles.dart';
+import 'package:openclass/model/data.dart';
+import '../../model/salle.dart';
 
-class ExpansionTileTool extends StatelessWidget
+class ExpansionTileTool extends StatefulWidget
 {
-  ExpansionTileTool({Key? key, required this.addNavigator, required this.nameCategory, required this.classrooms}):super(key: key);
+  ExpansionTileTool({Key? key, required this.addNavigator, required this.nameCategory, required this.salles}):super(key: key);
   final Function addNavigator;
   final String nameCategory;
-  List<Widget> classrooms = [];
+  final List<Salle> salles;
+  @override
+  State<ExpansionTileTool> createState() => _ExpansionTileToolState();
+}
+class _ExpansionTileToolState extends State<ExpansionTileTool>
+{
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -17,13 +26,13 @@ class ExpansionTileTool extends StatelessWidget
       childrenPadding: EdgeInsets.only(left: 50),
       trailing: GestureDetector(
         child: Icon(Icons.add),
-        onTap: addNavigator as void Function(),
+        onTap: widget.addNavigator as void Function(),
       ),
-      title: Text(nameCategory,style: TextStyle(fontSize: 16),),
-      children: classrooms,
+      title: Text(widget.nameCategory,style: TextStyle(fontSize: 16),),
+      children: [ListSalle(salles: widget.salles)],
     );
   }
-
+/*
   static ListTile listTileMethode(String nameSalle, IconData nameIcon)
   {
     return ListTile(
@@ -31,4 +40,7 @@ class ExpansionTileTool extends StatelessWidget
       leading: Icon(nameIcon,color: Colors.white,),
     );
   }
+
+ */
 }
+

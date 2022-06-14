@@ -123,4 +123,17 @@ class EntryField
        ),
      );
    }
+
+   // champs de saisi de text
+    static Widget buildTextFiel()
+    {
+      return TextField(
+        keyboardType: TextInputType.text,
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: kColorSearch,
+        ),
+      );
+    }
 }

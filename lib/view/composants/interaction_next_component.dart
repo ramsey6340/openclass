@@ -3,9 +3,9 @@ import 'package:openclass/view/constante.dart';
 
 class InteractionComponent extends StatelessWidget
 {
-  InteractionComponent({Key? key, required this.title, required this.routeName}):super(key: key);
+  InteractionComponent({Key? key, required this.title, required this.press}):super(key: key);
   final String title;
-  final String routeName;
+  Function press;
   @override
   build(BuildContext context)
   {
@@ -15,9 +15,7 @@ class InteractionComponent extends StatelessWidget
         title: Text(title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
         trailing: IconButton(
           icon: Icon(Icons.navigate_next),
-          onPressed: (){
-            Navigator.pushNamed(context, routeName);
-          },
+          onPressed: press as void Function()?,
         ),
         textColor: Colors.white,
         iconColor: Colors.white,

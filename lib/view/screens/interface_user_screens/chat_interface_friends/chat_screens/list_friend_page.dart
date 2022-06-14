@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../../constante.dart';
 import 'composants/body.dart';
 
-class ChatPage extends StatelessWidget
+class ListFriendPage extends StatelessWidget
 {
-  static String routeName = '/chat_page';
+  static String routeName = '/list_friend_page';
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: kColorComposant,
+      color: kColorComposant,
       child: Body(),
     );
   }

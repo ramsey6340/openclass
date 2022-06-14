@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/view/composants/search_bar.dart';
 
 import '../constante.dart';
 
 class ToolsBar
 {
-
+  //static PreferredSize? test = PreferredSize(
+    //child: Container(
+      //color: Colors.blue,
+      //width: 300,
+      //height: 50,
+    //),
+    //preferredSize: Size(50,50),
+  //);
   // le AppBar
-  static AppBar appBar(String action, String title, Icon icon,Function pressAction,Function pressIcon)
+  static AppBar appBar(Widget action, String title, Widget icon,Function pressAction,Function pressIcon)
   {
     return AppBar(
       backgroundColor: kColorAppBar,
       centerTitle: true,
       leadingWidth: 100,
-      leading: IconButton(icon: Text(action,style: TextStyle(fontSize: 20,color: kColorPrimary),),onPressed: pressAction as void Function(),),
+      leading: IconButton(icon: action,onPressed: pressAction as void Function(),),
       title: Text(title,style: TextStyle(fontWeight: FontWeight.bold),),
       actions: [
-        IconButton(onPressed: pressIcon as void Function(), icon: icon,color: kColorPrimary,iconSize: 30,),
+        Container(
+          width: 100,
+          child: IconButton(onPressed: pressIcon as void Function(), icon: icon,color: kColorPrimary,iconSize: 30,),
+        ),
       ],
+      //bottom: test,
     );
   }
 }
