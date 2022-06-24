@@ -12,14 +12,15 @@ class SalleChatMainPage extends StatelessWidget
   {
     return Scaffold(
       appBar: ToolsBar.appBar(
-          Icon(Icons.navigate_before,color: Colors.white,),
+          Icon(Icons.navigate_before,color: Colors.white, size: 30,),
           salle.name,
-          Icon(Icons.more_horiz),
+          Icon(Icons.more_horiz, color: Colors.white,),
           (){
             Navigator.pop(context);
           },
           (){}
       ),
+      body: Container(),
     );
   }
 

@@ -41,7 +41,7 @@ class _BodyState extends State<Body>
                 //ici on reinitialisera le nombre de message non lu à zéro
               }
             },
-            child: InteractionComponent(classroom: item, nbreSMS: 0, subTitle: 'd'),
+            child: InteractionComponent(classroom: item, nbreSMS: 12, subTitle: 'd'),
           );
         },
       ),

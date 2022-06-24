@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/view/composants/list_salles.dart';
-import 'package:openclass/model/data.dart';
+import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
 import '../../model/salle.dart';
 
-class ExpansionTileTool extends StatefulWidget
-{
-  ExpansionTileTool({Key? key, required this.addNavigator, required this.nameCategory, required this.salles}):super(key: key);
+class ExpansionTileTool extends StatefulWidget {
+  ExpansionTileTool({Key? key, required this.addNavigator, required this.nameCategory, required this.sallesInit}):super(key: key);
   final Function addNavigator;
   final String nameCategory;
-  final List<Salle> salles;
+  final List<Salle> sallesInit;
   @override
   State<ExpansionTileTool> createState() => _ExpansionTileToolState();
-}
-class _ExpansionTileToolState extends State<ExpansionTileTool>
-{
 
+}
+class _ExpansionTileToolState extends State<ExpansionTileTool>{
+  List<Widget> list_salles = [];
+  @override
+  initState(){
+    super.initState();
+    listTileMethode();
+  }
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -28,19 +31,36 @@ class _ExpansionTileToolState extends State<ExpansionTileTool>
         child: Icon(Icons.add),
         onTap: widget.addNavigator as void Function(),
       ),
-      title: Text(widget.nameCategory,style: TextStyle(fontSize: 16),),
-      children: [ListSalle(salles: widget.salles)],
+      title: Text('SALLES '+widget.nameCategory.toString().split('.').last.toUpperCase(),style: TextStyle(fontSize: 16),),
+      children: list_salles,
     );
   }
-/*
-  static ListTile listTileMethode(String nameSalle, IconData nameIcon)
+  // creation de la liste de salle
+  void listTileMethode()
   {
-    return ListTile(
-      title: Text(nameSalle,style: TextStyle(fontSize: 15),),
-      leading: Icon(nameIcon,color: Colors.white,),
-    );
+    final iconInfo = Icon(Icons.info_outlined,);
+    final iconBiblio = Icon(Icons.import_contacts);
+    final iconDiscussion = Icon(Icons.screenshot_monitor);
+    final iconOtherHall = Icon(Icons.alternate_email);
+    for(int i=0; i<widget.sallesInit.length; i++){
+      final temp = ListTile(
+          iconColor: Colors.white,
+          textColor: Colors.white,
+          horizontalTitleGap: 0,
+          title: Text(widget.sallesInit[i].name,style: TextStyle(fontSize: 16,),),
+        //leading: ()?iconInfo:()?iconBiblio:()?iconDiscussion:iconOtherHall,
+        onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SalleChatMainPage(salle: widget.sallesInit[i]),
+              )
+          );
+        },
+      );
+      list_salles.add(temp);
+    }
   }
 
- */
 }
 

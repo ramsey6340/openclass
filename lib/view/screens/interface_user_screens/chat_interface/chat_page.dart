@@ -20,7 +20,7 @@ class _ChatPageUserState extends State<ChatPageUser>
     return Scaffold(
       appBar: ToolsBar.appBar(
           Icon(Icons.navigate_before),
-          widget.user.first_name,
+          widget.user.firstName,
           Icon(Icons.more_horiz, color: Colors.white,),
           (){
             Navigator.pop(context);

@@ -20,12 +20,12 @@ class ChatPageSetting extends StatelessWidget
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: AssetImage(user.img_profile),
+                  backgroundImage: AssetImage(user.imgProfile),
                   radius: 35,
                 ),
                 SizedBox(height: 10,),
-                Text("${user.first_name} ${user.last_name}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
-                Text(user.tel_number, textAlign: TextAlign.center,),
+                Text("${user.firstName} ${user.lastName}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                Text(user.telNumber, textAlign: TextAlign.center,),
               ],
             ),
             SizedBox(height: 20,),

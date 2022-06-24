@@ -11,9 +11,9 @@ class ListClassroomPage extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return Container(
-          key: _key,
-          color: kColorComposant,
-          child: Body(),
+      key: _key,
+      color: kColorComposant,
+      child: Body(),
     );
   }
 }

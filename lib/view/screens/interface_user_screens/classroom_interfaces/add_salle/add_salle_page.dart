@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_salle/composants/body_biblio.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_salle/composants/body_discussion.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_salle/composants/body_info.dart';
-
+import '../../../../../model/enum_type.dart';
 import '../../../../composants/tools_bar.dart';
-import '../../main_screen.dart';
 import '../add_friends/add_friends_page.dart';
 import 'composants/body_info.dart';
 import 'composants/body_biblio.dart';
 import 'composants/body_discussion.dart';
-import 'package:openclass/model/enum_category_salle.dart';
 
 class AddSallePage extends StatelessWidget
 {

@@ -29,7 +29,7 @@ class _InteractionComponentState extends State<InteractionComponent>
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(widget.receiver.img_profile),
+        backgroundImage: AssetImage(widget.receiver.imgProfile),
         radius: 25,
       ),
       trailing: Container(
@@ -42,7 +42,7 @@ class _InteractionComponentState extends State<InteractionComponent>
           child: (widget.nbreSMS<=0)?Text(''):((widget.nbreSMS<1000)?Text('${widget.nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(widget.receiver.first_name,style: styleTitle),
+      title: Text(widget.receiver.firstName,style: styleTitle),
       subtitle: Text(widget.message.text,overflow: TextOverflow.ellipsis,),
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChatPageUser(user: widget.receiver,)));
