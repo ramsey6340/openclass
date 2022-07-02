@@ -3,7 +3,7 @@ import 'data_responsible.dart';
 
 List<Classroom> data_list_classrooms =
 [
-  Classroom.empty(),
+  Classroom(1, 'GIT-L3-S6', 'assets/images/informatique.jpg','02/11/2022', 'Une classe informatique', false, data_list_responsible[0]),
   Classroom(2, 'Hyper', 'assets/images/img_default_class.png','03/11/2022', 'Une classe d\'agronomie', false, data_list_responsible[1]),
   Classroom(3, 'FMOS', 'assets/images/medecine.jpg','03/11/2022', 'Une classe de médecine', false, data_list_responsible[0]),
   Classroom(4, 'Géologie', 'assets/images/geologie.jpg','03/11/2022', 'une classe de géologie', true, data_list_responsible[4]),

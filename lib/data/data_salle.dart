@@ -67,5 +67,6 @@ List<Salle> data_list_salles =
   Salle(46, 'géneral', '25/06/2022', false, data_List_categories_salle[37]),
   Salle(47, 'géneral', '25/06/2022', false, data_List_categories_salle[38]),
   Salle(48, 'géneral', '25/06/2022', false, data_List_categories_salle[39]),
+
 ];
 /* ========================== FIN ========================== */

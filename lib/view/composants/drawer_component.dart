@@ -5,11 +5,11 @@ import 'package:openclass/view/composants/drawer_header_tools.dart';
 import 'package:openclass/view/composants/expansion_tile_tools.dart';
 import 'package:openclass/view/constante.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_salle/add_salle_page.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/classroom_screen/list_classroom_page.dart';
 import '../../controller/classroom_ctrl.dart';
 import '../../model/category_salle.dart';
 import '../../model/salle.dart';
-import '../screens/interface_user_screens/main_screen.dart';
+import '../../data/data_category_salle.dart';
+import '../../data/data_salle.dart';
 
 class DrawerComponent extends StatefulWidget
 {
@@ -18,16 +18,17 @@ class DrawerComponent extends StatefulWidget
 }
 class _DrawerComponentState extends State<DrawerComponent>
 {
-  final ClassroomCtrl classroomTest = ClassroomCtrl();
+  final ClassroomCtrl classroom = ClassroomCtrl();
+
   @override
   Widget build(BuildContext context) {
-    final classroom = ModalRoute.of(context)!.settings.arguments as Classroom;
-    classroomTest.modifClassroom(classroom);
-    //final list_categories = chooseCategorySalle(classroom.id, List_complet_categories_salle);
+    final classroomValue = ModalRoute.of(context)!.settings.arguments as Classroom;
+    classroom.modifClassroom(classroomValue);
+    final list_categories = chooseCategorySalle(classroomValue.id, data_List_categories_salle);
     return Drawer(
       backgroundColor: kColorDrawer,
       child: StreamBuilder<Classroom>(
-        stream: classroomTest.stream,
+        stream: classroom.stream,
         initialData: Classroom.empty(),
         builder: (context, snapshot){
           return Column(
@@ -35,17 +36,11 @@ class _DrawerComponentState extends State<DrawerComponent>
               DrawerHeaderTools(nameClasse: snapshot.data!.name),
               Divider(color: Colors.white,height: 20,),
               Expanded(
-                child: Column(
-                  children: [
-                    Text('${snapshot.data!.name}'),
-                    TextButton(
-                        onPressed: (){
-                          classroomTest.modifName("GEEA");
-                          //Navigator.pushNamed(context, MainScreen.routeName);
-                        },
-                        child: Text("Modifier")
-                    )
-                  ],
+                child: ListView.builder(
+                  itemCount: list_categories.length,
+                  itemBuilder: (context, index){
+                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddSallePage(typeSalle: list_categories[index].type)));}, nameCategory: list_categories[index].name, sallesInit: chooseSalle(list_categories[index].id, data_list_salles));
+                  },
                 ),
               ),
             ],
@@ -56,7 +51,7 @@ class _DrawerComponentState extends State<DrawerComponent>
   }
   @override
   void dispose(){
-    classroomTest.dispose();
+    classroom.dispose();
     super.dispose();
   }
 
@@ -73,7 +68,6 @@ class _DrawerComponentState extends State<DrawerComponent>
   }
 
   //methode pour choisir les categories correspondant à chaque classe
-  /*
   static List<CategorySalle> chooseCategorySalle(int id_classroom, List<CategorySalle> list_categories)
   {
     List<CategorySalle> categories = [];
@@ -85,5 +79,4 @@ class _DrawerComponentState extends State<DrawerComponent>
     return categories;
   }
 
-   */
 }
