@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/model/enum_type.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
 import '../../model/salle.dart';
 
@@ -31,7 +32,7 @@ class _ExpansionTileToolState extends State<ExpansionTileTool>{
         child: Icon(Icons.add),
         onTap: widget.addNavigator as void Function(),
       ),
-      title: Text('SALLES '+widget.nameCategory.toString().split('.').last.toUpperCase(),style: TextStyle(fontSize: 16),),
+      title: Text(widget.nameCategory.toString().split('.').last.toUpperCase(),style: TextStyle(fontSize: 16),),
       children: list_salles,
     );
   }
@@ -41,14 +42,13 @@ class _ExpansionTileToolState extends State<ExpansionTileTool>{
     final iconInfo = Icon(Icons.info_outlined,);
     final iconBiblio = Icon(Icons.import_contacts);
     final iconDiscussion = Icon(Icons.screenshot_monitor);
-    final iconOtherHall = Icon(Icons.alternate_email);
     for(int i=0; i<widget.sallesInit.length; i++){
       final temp = ListTile(
           iconColor: Colors.white,
           textColor: Colors.white,
           horizontalTitleGap: 0,
           title: Text(widget.sallesInit[i].name,style: TextStyle(fontSize: 16,),),
-        //leading: ()?iconInfo:()?iconBiblio:()?iconDiscussion:iconOtherHall,
+        leading: (widget.sallesInit[i].categorySalle.type == EnumCategorySalle.information)?iconInfo:(widget.sallesInit[i].categorySalle.type == EnumCategorySalle.bibliotheque)?iconBiblio:iconDiscussion,
         onTap: (){
           Navigator.push(
               context,

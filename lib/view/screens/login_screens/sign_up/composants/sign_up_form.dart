@@ -16,6 +16,7 @@ class SignUpForm extends StatefulWidget
 class _SignUpFormState extends State<SignUpForm>
 {
   final _formKey = GlobalKey<FormState>();
+  final entryField = EntryField();
   bool accepteCondition = false;
   @override
   Widget build(BuildContext context) {
@@ -23,17 +24,17 @@ class _SignUpFormState extends State<SignUpForm>
       key: _formKey,
       child: Column(
         children: [
-          EntryField.buildPrenomFiel(),
+          entryField.buildPrenomFiel(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildNomFiel(),
+          entryField.buildNomFiel(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildEmailField(),
+          entryField.buildEmailField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildNumberFiel(),
+          entryField.buildNumberFiel(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildPasswordField(),
+          entryField.buildPasswordField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildConfirmPasswordField(),
+          entryField.buildConfirmPasswordField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
           Row(
             children: [

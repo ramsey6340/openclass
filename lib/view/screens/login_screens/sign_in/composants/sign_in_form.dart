@@ -16,15 +16,16 @@ class SignInForm extends StatefulWidget
 class _SignInFormState extends State<SignInForm>
 {
   final _formKey = GlobalKey<FormState>();
+  final entryField = EntryField();
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          EntryField.buildEmailField(),
+          entryField.buildEmailField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildPasswordField(),
+          entryField.buildPasswordField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.05,),
           ExternalLink(color: kColorForgotPassword, text: 'j\'ai oublié mon mot de passe', destination: ForgotPasswordPage.routeName),
           SizedBox(height: MediaQuery.of(context).size.height*0.05,),
@@ -32,12 +33,28 @@ class _SignInFormState extends State<SignInForm>
               color: kColorPrimary,
               text: 'connexion',
               press: (){
+                /*
                 if(_formKey.currentState!.validate()){
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Traitement des données ...',style: TextStyle(color: Colors.white),)),
                   );
                 }
-                Navigator.pushNamed(context, MainScreen.routeName);
+                 */
+                //Navigator.pushNamed(context, MainScreen.routeName);
+                /*
+                return showDialog(
+                    context: context,
+                    builder: (context){
+                      return AlertDialog(
+                        title: Text("Alert Message"),
+                        content: Text(entryField.emailController.text+"\n"+entryField.passwordController.text),
+                        actions: [
+                          TextButton(onPressed: (){Navigator.of(context).pop(context);}, child: Text("OK"))
+                        ],
+                      );
+                    }
+                );
+                 */
               }
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.05,),

@@ -1,52 +1,57 @@
-import 'package:flutter/material.dart';
-import 'category_salle.dart';
-import 'user.dart';
+import 'responsible.dart';
 
-class Classroom with ChangeNotifier
+class Classroom
 {
-  int _id;
-  String _name;
-  String _image;
-  String _create_date;
-  String _description;
-  //List<CategorySalle> _categories;
-  User _user;
+  late int _id;
+  late String _name;
+  late String _image;
+  late String _creation_date;
+  late String _description;
+  late bool _is_private;
+  late Responsible _responsible;
 
-  Classroom(this._id, this._name, this._image, this._create_date, this._description, /*this._categories,*/ this._user);
+  Classroom(this._id, this._name, this._image, this._creation_date, this._description, this._is_private, this._responsible);
+  Classroom.empty()
+  {
+    this._id = 0;
+    this._name = "";
+    this._image = "";
+    this._creation_date = "";
+    this._description = "";
+    this._is_private = false;
+    this._responsible = Responsible.empty();
+  }
 
   //les accesseurs
   int get id => _id;
   String get name => _name;
   String get image => _image;
-  String get dateCreate => _create_date;
+  String get dateCreate => _creation_date;
   String get description => _description;
-  //List<CategorySalle> get categories => _categories;
-  User get user => _user;
+  bool get isPrivate => _is_private;
+  Responsible get user => _responsible;
 
   // les mutateurs
   set id(int value){
     _id = value;
-    notifyListeners();
   }
   set name(String value){
     _name = value;
-    notifyListeners();
   }
   set image(String value){
     _image = value;
-    notifyListeners();
+  }
+  set creationDate(String value){
+    _creation_date = value;
   }
   set description(String value){
     _description = value;
-    notifyListeners();
   }
-  /*
-  set categories(List<CategorySalle> value){
-    _categories = value;
-    notifyListeners();
-  }*/
-  set user(User value){
-    _user = value;
-    notifyListeners();
+  set isPrivate(bool value){
+    _is_private = value;
   }
+  set responsible(Responsible value){
+    _responsible = value;
+  }
+
 }

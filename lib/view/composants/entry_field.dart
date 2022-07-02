@@ -4,10 +4,19 @@ import '../constante.dart';
 
 class EntryField
 {
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+  TextEditingController textController = TextEditingController();
+  TextEditingController multiTextController = TextEditingController();
   // champ de saisie pour le mot de passe
-   static Widget buildPasswordField()
+   Widget buildPasswordField()
    {
      return TextFormField(
+       controller: passwordController,
        obscureText: true,
        validator: (value){
          if(value!.isEmpty || value==null){
@@ -25,9 +34,10 @@ class EntryField
      );
    }
    // champ de saisie pour la confirmation de mot de passe
-   static Widget buildConfirmPasswordField()
+   Widget buildConfirmPasswordField()
    {
      return TextFormField(
+       controller: confirmPasswordController,
        obscureText: true,
        validator: (value){
          if(value!.isEmpty || value==null){
@@ -45,9 +55,10 @@ class EntryField
      );
    }
  // champ de saisie pour l'email
-  static Widget buildEmailField()
+  Widget buildEmailField()
   {
     return TextFormField(
+      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       validator: (value){
         if(value!.isEmpty || value ==null){
@@ -67,9 +78,10 @@ class EntryField
     );
   }
   // champs de saisie de prenom
-  static Widget buildPrenomFiel()
+  Widget buildPrenomFiel()
   {
     return TextFormField(
+      controller: firstNameController,
       keyboardType: TextInputType.text,
       validator: (value){
         if(value!.isEmpty || value == null){
@@ -86,9 +98,10 @@ class EntryField
     );
   }
    // champs de saisie de nom
-   static Widget buildNomFiel()
+   Widget buildNomFiel()
    {
      return TextFormField(
+       controller: lastNameController,
        keyboardType: TextInputType.text,
        validator: (value){
          if(value!.isEmpty || value == null){
@@ -105,9 +118,10 @@ class EntryField
      );
    }
    // champs de saisie de numero
-   static Widget buildNumberFiel()
+   Widget buildNumberFiel()
    {
      return TextFormField(
+       controller: numberController,
        keyboardType: TextInputType.phone,
        validator: (value){
          if(value!.isEmpty || value == null){
@@ -125,9 +139,10 @@ class EntryField
    }
 
    // champs de saisi de text
-    static Widget buildTextFiel()
+    Widget buildTextFiel()
     {
       return TextField(
+        controller: textController,
         keyboardType: TextInputType.text,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
@@ -136,4 +151,19 @@ class EntryField
         ),
       );
     }
+
+ // champs de saisi multiligne
+  Widget buildMultiTextFiel()
+  {
+    return TextField(
+      controller: multiTextController,
+      keyboardType: TextInputType.text,
+      maxLines: 4,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: kColorSearch,
+      ),
+    );
+  }
 }

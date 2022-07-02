@@ -1,2 +1,2 @@
 enum EnumCategorySalle {information, bibliotheque, discussion}
-enum EnumTypeAdhesion {invitatio, ajout}
+enum EnumTypeAdhesion {par_invitation, par_ajout}

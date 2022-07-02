@@ -3,7 +3,7 @@ import 'package:openclass/model/user.dart';
 import 'package:openclass/view/constante.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface/composants/chat_page_setting.dart';
 import '../../../composants/tools_bar.dart';
-import '../../../../model/data.dart';
+import '../../../../data/data_message.dart';
 
 class ChatPageUser extends StatefulWidget
 {
@@ -36,9 +36,9 @@ class _ChatPageUserState extends State<ChatPageUser>
               color: kColorSecondary,
               child: ListView.builder(
                 reverse: true,
-                  itemCount: messages.length,
+                  itemCount: data_list_messages.length,
                   itemBuilder: (context, index){
-                    final item = messages[index];
+                    final item = data_list_messages[index];
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

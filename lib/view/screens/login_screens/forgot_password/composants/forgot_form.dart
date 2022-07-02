@@ -14,13 +14,14 @@ class ForgotForm extends StatefulWidget
 class _ForgotFormState extends State<ForgotForm>
 {
   final _formKey = GlobalKey<FormState>();
+  final entryField = EntryField();
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          EntryField.buildEmailField(),
+          entryField.buildEmailField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.07,),
           NextButton(
               color: kColorPrimary,

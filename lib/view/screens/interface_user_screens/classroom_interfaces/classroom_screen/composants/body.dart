@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'interaction_component.dart';
-import 'package:openclass/model/data.dart';
+import 'package:openclass/data/data_classroom.dart';
 import 'package:openclass/model/classroom.dart';
 
 class Body extends StatefulWidget
@@ -17,11 +17,11 @@ class _BodyState extends State<Body>
     return SafeArea(
       child: ListView.separated(
         separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
-        itemCount: classrooms.length,
+        itemCount: data_list_classrooms.length,
         itemBuilder: (context,index){
-          final item = classrooms[index];
+          final item = data_list_classrooms[index];
           return Dismissible(
-            key: ValueKey<Classroom>(classrooms[index]),
+            key: ValueKey<Classroom>(data_list_classrooms[index]),
             secondaryBackground: backgroundDelete,
             background: backgroundReaded,
             confirmDismiss: (direction) async{
@@ -34,7 +34,7 @@ class _BodyState extends State<Body>
             onDismissed: (direction){
               if(direction == DismissDirection.endToStart){
                 setState((){
-                  classrooms.removeAt(index);
+                  data_list_classrooms.removeAt(index);
                 });
               }
               else if(direction == DismissDirection.startToEnd){
@@ -46,6 +46,18 @@ class _BodyState extends State<Body>
         },
       ),
     );
+  }
+
+  //methode pour choisir les classes créer par l'utilisateur courent
+  static List<Classroom> chooseMyClassroom(int id_current_user, List<Classroom> list_classrooms)
+  {
+    List<Classroom> classrooms = [];
+    for(int i=0; i<list_classrooms.length; i++){
+      if(list_classrooms[i].user.id == id_current_user){
+        classrooms.add(list_classrooms[i]);
+      }
+    }
+    return classrooms;
   }
 
   final backgroundDelete = Container(

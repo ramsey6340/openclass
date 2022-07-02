@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:openclass/view/composants/external_link.dart';
 import 'package:openclass/view/composants/next_button.dart';
 import 'package:openclass/view/constante.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_classroom/composants/choose_picture_class.dart';
-import '../../../../../composants/entry_field.dart';
 import 'choose_picture_class.dart';
+import '../../../../../composants/entry_field.dart';
 
 class Body extends StatefulWidget
 {
@@ -14,6 +13,7 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
+  final entryField = EntryField();
   bool _privateClassroom = false;
   @override
   build(BuildContext context)
@@ -28,7 +28,7 @@ class _BodyState extends State<Body>
           ChoosePictureClass(imgClass: null),
           SizedBox(height: 50,),
           Text("Nom de la classe", style: TextStyle(fontSize: 18),),
-          EntryField.buildTextFiel(),
+          entryField.buildTextFiel(),
           SizedBox(height: 20,),
           Container(
             color: kColorSearch,

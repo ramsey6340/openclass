@@ -1,38 +1,44 @@
-import 'package:flutter/material.dart';
 import 'category_salle.dart';
-import 'my_action.dart';
 
-class Salle with ChangeNotifier
+class Salle
 {
-  int _id;
-  String _name;
-  String _creation_date;
-  CategorySalle _category_salle;
-  MyAction _my_action;
+  late int _id;
+  late String _name;
+  late String _creation_date;
+  late bool _is_private;
+  late CategorySalle _category_salle;
 
-  Salle(this._id, this._name, this._creation_date, this._category_salle, this._my_action);
+  Salle(this._id, this._name, this._creation_date, this._is_private, this._category_salle);
+  Salle.empty()
+  {
+    _id = 0;
+    _name = "";
+    _creation_date = "";
+    _is_private = false;
+    _category_salle = CategorySalle.empty();
+  }
 
   // Les accesseurs
   int get id => _id;
   String get name => _name;
   String get creationDate => _creation_date;
+  bool get isPrivate => _is_private;
   CategorySalle get categorySalle => _category_salle;
-  MyAction get myAction => _my_action;
   // Les mutateurs
   set id(int value){
     _id = value;
-    notifyListeners();
   }
   set name(String value){
     _name = value;
-    notifyListeners();
   }
   set creationDate(String value){
     _creation_date = value;
-    notifyListeners();
   }
-  set myAction(MyAction value){
-    _my_action = value;
-    notifyListeners();
+  set isPrivate(bool value){
+    _is_private = value;
   }
+  set categorySalle(CategorySalle value){
+    _category_salle = value;
+  }
+
 }

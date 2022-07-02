@@ -11,6 +11,7 @@ class BodyDiscussion extends StatefulWidget
 
 class _BodyDiscussion extends State<BodyDiscussion>
 {
+  final entryField = EntryField();
   bool privateSalle = false;
   @override
   Widget build(BuildContext context)
@@ -25,7 +26,7 @@ class _BodyDiscussion extends State<BodyDiscussion>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Nom de la salle", style: TextStyle(fontSize: 18),),
-                EntryField.buildTextFiel(),
+                entryField.buildTextFiel(),
               ],
             ),
             SizedBox(height: 40,),

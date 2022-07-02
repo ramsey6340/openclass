@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/join_classroom/composants/body.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/join_classroom/composants/choose_classe_categorie.dart';
-
 import '../../../../../composants/entry_field.dart';
 import '../../../../../constante.dart';
 
@@ -10,10 +7,9 @@ class Body extends StatefulWidget
   @override
   State<Body> createState() => _BodyState();
 }
-enum _choixCategorieSalle {discussion, bibliotheque, information}
 class _BodyState extends State<Body>
 {
-  _choixCategorieSalle? _categorieSalle = _choixCategorieSalle.discussion;
+  final entryField = EntryField();
   bool _privateSalle = false;
   @override
   build(BuildContext context)
@@ -28,7 +24,7 @@ class _BodyState extends State<Body>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Nom de la salle", style: TextStyle(fontSize: 18),),
-                EntryField.buildTextFiel(),
+                entryField.buildTextFiel(),
               ],
             ),
             SizedBox(height: 40,),

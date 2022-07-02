@@ -14,15 +14,16 @@ class ResetPasswordForm extends StatefulWidget
 class _ResetPasswordFormState extends State<ResetPasswordForm>
 {
   final _formKey = GlobalKey<FormState>();
+  final entryField = EntryField();
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         children: <Widget>[
-          EntryField.buildPasswordField(),
+          entryField.buildPasswordField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          EntryField.buildConfirmPasswordField(),
+          entryField.buildConfirmPasswordField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.07,),
           NextButton(
               color: kColorPrimary,

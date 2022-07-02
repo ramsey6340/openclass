@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'interaction_component.dart';
 import 'package:openclass/model/message.dart';
-import '../../../../../../model/data.dart';
+import '../../../../../../data/data_message.dart';
 
 class Body extends StatefulWidget
 {
@@ -17,11 +17,11 @@ class _BodyState extends State<Body>
     return SafeArea(
       child: ListView.separated(
         separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
-        itemCount: messages.length,
+        itemCount: data_list_messages.length,
         itemBuilder: (context,index){
-          final item = messages[index];
+          final item = data_list_messages[index];
           return Dismissible(
-            key: ValueKey<Message>(messages[index]),
+            key: ValueKey<Message>(data_list_messages[index]),
             secondaryBackground: backgroundDelete,
             background: backgroundReaded,
             confirmDismiss: (direction) async{
@@ -34,7 +34,7 @@ class _BodyState extends State<Body>
             onDismissed: (direction){
               if(direction == DismissDirection.endToStart){
                 setState((){
-                  messages.removeAt(index);
+                  data_list_messages.removeAt(index);
                 });
               }
               else if(direction == DismissDirection.startToEnd){

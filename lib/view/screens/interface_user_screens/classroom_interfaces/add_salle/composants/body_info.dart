@@ -11,6 +11,7 @@ class BodyInfo extends StatefulWidget
 
 class _BodyInfoState extends State<BodyInfo>
 {
+  final entryField = EntryField();
   bool privateSalle = false;
   @override
   Widget build(BuildContext context)
@@ -25,7 +26,7 @@ class _BodyInfoState extends State<BodyInfo>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Nom de la salle", style: TextStyle(fontSize: 18),),
-                EntryField.buildTextFiel(),
+                entryField.buildTextFiel(),
               ],
             ),
             SizedBox(height: 40,),
