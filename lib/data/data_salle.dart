@@ -19,7 +19,7 @@ List<Salle> data_list_salles =
   Salle(10, 'coranique géneral', '02/02/2022', false, data_List_categories_salle[3]),
   Salle(11, 'coranique informatique', '02/02/2022', false, data_List_categories_salle[3]),
   Salle(12, 'coranique télécom', '02/02/2022', false, data_List_categories_salle[3]),
-
+/*
   Salle(13, 'géneral', '25/06/2022', false, data_List_categories_salle[4]),
   Salle(14, 'géneral', '25/06/2022', false, data_List_categories_salle[5]),
   Salle(15, 'géneral', '25/06/2022', false, data_List_categories_salle[6]),
@@ -67,6 +67,8 @@ List<Salle> data_list_salles =
   Salle(46, 'géneral', '25/06/2022', false, data_List_categories_salle[37]),
   Salle(47, 'géneral', '25/06/2022', false, data_List_categories_salle[38]),
   Salle(48, 'géneral', '25/06/2022', false, data_List_categories_salle[39]),
+
+ */
 
 ];
 /* ========================== FIN ========================== */

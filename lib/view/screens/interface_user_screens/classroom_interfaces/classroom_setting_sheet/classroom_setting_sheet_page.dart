@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_category/create_category_page.dart';
 
+import '../../../../../model/classroom.dart';
 import '../../../../composants/interaction_next_component.dart';
 import '../create_salle/create_salle_page.dart';
 
 class ClassroomSettingSheetPage extends StatelessWidget
 {
+  ClassroomSettingSheetPage({Key ? key, required this.classroom}):super(key: key);
+  final Classroom classroom;
   @override
   build(BuildContext context)
   {
@@ -20,11 +23,12 @@ class ClassroomSettingSheetPage extends StatelessWidget
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/medecine.jpg'),
+                  backgroundImage: AssetImage(classroom.image),
+                  backgroundColor: Colors.transparent,
                   radius: 35,
                 ),
                 SizedBox(height: 10,),
-                Text("TSExp",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                Text(classroom.name,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
               ],
             ),
             SizedBox(height: 20,),
@@ -84,14 +88,6 @@ class ClassroomSettingSheetPage extends StatelessWidget
             SizedBox(height: 50,),
             Column(
               children: [
-                InteractionComponent(
-                    title: "Créer une salle",
-                    press: (){
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, CreateSallePage.routeName);
-                    }
-                ),
-                Divider(color: Colors.white,height: 0,thickness:0.3),
                 InteractionComponent(
                     title: "Créer une catégorie",
                     press: (){

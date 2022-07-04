@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/constante.dart';
 
-import '../../create_salle/composants/category_item.dart';
+import '../../../../../../model/enum_type.dart';
+import '../../../../../composants/category_item.dart';
 
 class ChooseClasseCategorie extends StatefulWidget
 {
   @override
   State<ChooseClasseCategorie> createState() => _ChooseClasseCategorieState();
 }
-enum _choixCategorieSalle {discussion, bibliotheque, information}
 
 class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
 {
-  _choixCategorieSalle? _categorieSalle = _choixCategorieSalle.discussion;
+  EnumCategorySalle _categorieSalle = EnumCategorySalle.discussion;
   @override
   build(BuildContext context)
   {
@@ -28,7 +28,7 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
                // activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 groupValue: _categorieSalle,
-                value: _choixCategorieSalle.discussion,
+                value: EnumCategorySalle.discussion,
                 onChanged: (value){
                   setState((){
                     _categorieSalle = value;
@@ -45,7 +45,7 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
                 activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 groupValue: _categorieSalle,
-                value: _choixCategorieSalle.bibliotheque,
+                value: EnumCategorySalle.bibliotheque,
                 onChanged: (value){
                   setState((){
                     _categorieSalle = value;
@@ -62,7 +62,7 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 activeColor: Color(0xFF3979d4),
                 groupValue: _categorieSalle,
-                value: _choixCategorieSalle.information,
+                value: EnumCategorySalle.information,
                 onChanged: (value){
                   setState((){
                     _categorieSalle = value;

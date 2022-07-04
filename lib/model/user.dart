@@ -59,4 +59,6 @@ class User
     _date_birth = value;
   }
 
+  // les autres methodes
+
 }

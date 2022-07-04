@@ -32,7 +32,7 @@ class InteractionComponent extends StatelessWidget
           child: (nbreSMS<=0)?Text(''):((nbreSMS<1000)?Text('${nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(classroom.name,style: styleTitle),
+      title: Text(classroom.name,style: styleTitle, overflow: TextOverflow.ellipsis,),
       subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
       onTap: (){
 

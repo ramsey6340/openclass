@@ -9,7 +9,7 @@ List<CategorySalle> data_List_categories_salle =
   CategorySalle(2, 'SALLES BIBLIOTHEQUE', '12/02/2022','Salle de catégorie document', EnumCategorySalle.bibliotheque, data_list_classrooms[0]),
   CategorySalle(3, 'SALLES DISCUSSION', '12/02/2022','Salle de catégorie discussion', EnumCategorySalle.discussion, data_list_classrooms[0]),
   CategorySalle(4, 'SALLES CORANIQUE', '12/02/2022','Salle de catégorie lecture de coran', EnumCategorySalle.discussion, data_list_classrooms[0]),
-
+/*
   CategorySalle(5, 'SALLES INFORMATION', '12/02/2022','Salle de catégorie information', EnumCategorySalle.information, data_list_classrooms[1]),
   CategorySalle(6, 'SALLES BIBLIOTHEQUE', '12/02/2022','Salle de catégorie document', EnumCategorySalle.bibliotheque, data_list_classrooms[1]),
   CategorySalle(7, 'SALLES DISCUSSION', '12/02/2022','Salle de catégorie discussion', EnumCategorySalle.discussion, data_list_classrooms[1]),
@@ -57,5 +57,7 @@ List<CategorySalle> data_List_categories_salle =
   CategorySalle(37, 'SALLES INFORMATION', '12/02/2022','Salle de catégorie information', EnumCategorySalle.information, data_list_classrooms[12]),
   CategorySalle(38, 'SALLES BIBLIOTHEQUE', '12/02/2022','Salle de catégorie document', EnumCategorySalle.bibliotheque, data_list_classrooms[12]),
   CategorySalle(39, 'SALLES DISCUSSION', '12/02/2022','Salle de catégorie discussion', EnumCategorySalle.discussion, data_list_classrooms[12]),
+
+ */
 ];
 /* ========================== FIN ========================== */

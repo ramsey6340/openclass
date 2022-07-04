@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_friends/add_friends_page.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_salle/add_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/classroom_screen/list_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_category/create_category_page.dart';
@@ -9,7 +8,6 @@ import 'package:openclass/view/screens/interface_user_screens/classroom_interfac
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_salle/create_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/join_classroom/join_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
-import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
 import 'package:openclass/view/screens/login_screens/authentication/authentication_page.dart';
 import 'package:openclass/view/screens/login_screens/confirmation/confirmation_page.dart';
 import 'package:openclass/view/screens/login_screens/forgot_password/forgot_password_page.dart';

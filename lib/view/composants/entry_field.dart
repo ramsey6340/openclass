@@ -78,7 +78,7 @@ class EntryField
     );
   }
   // champs de saisie de prenom
-  Widget buildPrenomFiel()
+  Widget buildPrenomField()
   {
     return TextFormField(
       controller: firstNameController,
@@ -98,7 +98,7 @@ class EntryField
     );
   }
    // champs de saisie de nom
-   Widget buildNomFiel()
+   Widget buildNomField()
    {
      return TextFormField(
        controller: lastNameController,
@@ -118,7 +118,7 @@ class EntryField
      );
    }
    // champs de saisie de numero
-   Widget buildNumberFiel()
+   Widget buildNumberField()
    {
      return TextFormField(
        controller: numberController,
@@ -139,7 +139,7 @@ class EntryField
    }
 
    // champs de saisi de text
-    Widget buildTextFiel()
+    Widget buildTextField()
     {
       return TextField(
         controller: textController,
@@ -153,7 +153,7 @@ class EntryField
     }
 
  // champs de saisi multiligne
-  Widget buildMultiTextFiel()
+  Widget buildMultiTextField()
   {
     return TextField(
       controller: multiTextController,

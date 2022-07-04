@@ -29,7 +29,7 @@ class Classroom
   String get dateCreate => _creation_date;
   String get description => _description;
   bool get isPrivate => _is_private;
-  Responsible get user => _responsible;
+  Responsible get responsible => _responsible;
 
   // les mutateurs
   set id(int value){

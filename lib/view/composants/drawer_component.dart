@@ -4,12 +4,12 @@ import 'package:openclass/model/classroom.dart';
 import 'package:openclass/view/composants/drawer_header_tools.dart';
 import 'package:openclass/view/composants/expansion_tile_tools.dart';
 import 'package:openclass/view/constante.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_salle/add_salle_page.dart';
 import '../../controller/classroom_ctrl.dart';
 import '../../model/category_salle.dart';
 import '../../model/salle.dart';
 import '../../data/data_category_salle.dart';
 import '../../data/data_salle.dart';
+import '../screens/interface_user_screens/classroom_interfaces/create_salle/create_salle_page.dart';
 
 class DrawerComponent extends StatefulWidget
 {
@@ -33,13 +33,13 @@ class _DrawerComponentState extends State<DrawerComponent>
         builder: (context, snapshot){
           return Column(
             children: <Widget>[
-              DrawerHeaderTools(nameClasse: snapshot.data!.name),
+              DrawerHeaderTools(nameClasse: snapshot.data!.name, classroom: classroomValue,),
               Divider(color: Colors.white,height: 20,),
               Expanded(
                 child: ListView.builder(
                   itemCount: list_categories.length,
                   itemBuilder: (context, index){
-                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddSallePage(typeSalle: list_categories[index].type)));}, nameCategory: list_categories[index].name, sallesInit: chooseSalle(list_categories[index].id, data_list_salles));
+                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: list_categories[index])));}, nameCategory: list_categories[index].name, sallesInit: chooseSalle(list_categories[index].id, data_list_salles));
                   },
                 ),
               ),

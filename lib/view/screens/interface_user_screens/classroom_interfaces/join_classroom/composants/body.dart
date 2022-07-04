@@ -25,7 +25,7 @@ class _BodyState extends State<Body>
           Text("Entrer un lien d'invitation ci-dessous pour rejoindre une classe existante.", textAlign: TextAlign.center,),
           SizedBox(height: 30),
           Text("Lien d'invitation", style: TextStyle(fontSize: 18),),
-          entryField.buildTextFiel(),
+          entryField.buildTextField(),
           SizedBox(height: 20,),
           Text("Exemple:", style: TextStyle(fontSize: 18),),
           Text("Les liens d’invitation devraient ressembler à …"),

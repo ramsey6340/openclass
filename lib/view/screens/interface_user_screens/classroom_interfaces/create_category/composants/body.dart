@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../join_classroom/composants/choose_classe_categorie.dart';
+
 import '../../../../../composants/entry_field.dart';
 import '../../../../../constante.dart';
 
@@ -23,8 +25,17 @@ class _BodyState extends State<Body>
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Nom de la salle", style: TextStyle(fontSize: 18),),
-                entryField.buildTextFiel(),
+                Text("Nom de la categorie", style: TextStyle(fontSize: 18),),
+                entryField.buildTextField(),
+              ],
+            ),
+            SizedBox(height: 40,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("Type de la categorie", style: TextStyle(fontSize: 18),),
+                SizedBox(height: 5,),
+                ChooseClasseCategorie(),
               ],
             ),
             SizedBox(height: 40,),
@@ -47,7 +58,7 @@ class _BodyState extends State<Body>
                   ),
                 ),
                 SizedBox(height: 5,),
-                Text("En définissant une catégorie comme « privé », seules les personnes sélectionnées pourront la voir."),
+                Text("En définissant une salle comme « privé », seuls les membres sélectionnés peuvent le voir"),
               ],
             ),
           ],

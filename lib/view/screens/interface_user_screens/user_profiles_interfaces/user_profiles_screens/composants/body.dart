@@ -1,8 +1,7 @@
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_user.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/composants/photo_profile.dart';
-import '../../../../../constante.dart';
 import 'package:openclass/view/composants/interaction_next_component.dart';
 class Body extends StatefulWidget
 {
@@ -12,8 +11,6 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
-  late File _imageFile;
-  late dynamic _pickImageError;
   List<Widget> listSettingUser = [
     InteractionComponent(title: "Compte", press: (){}),
     InteractionComponent(title: "Profile d'utilisateur", press: (){}),
@@ -31,7 +28,7 @@ class _BodyState extends State<Body>
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: ListView(
             children: [
-              PhotoProfile(imgProfile: 'assets/images/informatique.jpg', nameUser: 'Drissa Sidiki Traore', dateBirth: '13/09/2020'),
+              PhotoProfile(imgProfile: currentUser.imgProfile, nameUser: currentUser.firstName+' '+currentUser.lastName, dateBirth: currentUser.dateBirth),
               SizedBox(height: 50,),
               Text("PARAMETRE DE L'UTILISATEUR"),
               InteractionComponent(title: "Compte", press: (){}),

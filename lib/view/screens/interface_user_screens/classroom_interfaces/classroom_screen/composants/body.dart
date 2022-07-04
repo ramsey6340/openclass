@@ -19,6 +19,7 @@ class _BodyState extends State<Body>
         separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
         itemCount: data_list_classrooms.length,
         itemBuilder: (context,index){
+          index = (data_list_classrooms.length-1)-index;
           final item = data_list_classrooms[index];
           return Dismissible(
             key: ValueKey<Classroom>(data_list_classrooms[index]),
@@ -53,7 +54,7 @@ class _BodyState extends State<Body>
   {
     List<Classroom> classrooms = [];
     for(int i=0; i<list_classrooms.length; i++){
-      if(list_classrooms[i].user.id == id_current_user){
+      if(list_classrooms[i].responsible.id == id_current_user){
         classrooms.add(list_classrooms[i]);
       }
     }

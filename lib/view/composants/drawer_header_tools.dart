@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import '../../model/classroom.dart';
 import '../constante.dart';
 import '../screens/interface_user_screens/classroom_interfaces/classroom_setting_sheet/classroom_setting_sheet_page.dart';
 import 'invite_button.dart';
 
 class DrawerHeaderTools extends StatelessWidget
 {
-  DrawerHeaderTools({Key? key, required this.nameClasse}):super(key: key);
+  DrawerHeaderTools({Key? key, required this.nameClasse, required this.classroom}):super(key: key);
   final String nameClasse;
+  final Classroom classroom;
   @override
   Widget build(BuildContext context) {
     return DrawerHeader(
@@ -19,7 +21,7 @@ class DrawerHeaderTools extends StatelessWidget
               GestureDetector(
                 child: Icon(Icons.more_horiz,color: Colors.white,),
                 onTap: (){
-                  _showClassroomSettingSheet(context);
+                  _showClassroomSettingSheet(context, classroom);
                 },
               ),
             ],
@@ -31,7 +33,7 @@ class DrawerHeaderTools extends StatelessWidget
     );
   }
 
-  void _showClassroomSettingSheet(BuildContext context)
+  void _showClassroomSettingSheet(BuildContext context, Classroom classroom)
   {
     Navigator.pop(context);
     showModalBottomSheet(
@@ -44,7 +46,7 @@ class DrawerHeaderTools extends StatelessWidget
         isScrollControlled: true,
         context: context,
         builder: (context){
-          return ClassroomSettingSheetPage();
+          return ClassroomSettingSheetPage(classroom: classroom);
         }
     );
   }

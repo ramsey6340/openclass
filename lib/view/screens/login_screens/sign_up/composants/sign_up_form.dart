@@ -24,13 +24,13 @@ class _SignUpFormState extends State<SignUpForm>
       key: _formKey,
       child: Column(
         children: [
-          entryField.buildPrenomFiel(),
+          entryField.buildPrenomField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          entryField.buildNomFiel(),
+          entryField.buildNomField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
           entryField.buildEmailField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          entryField.buildNumberFiel(),
+          entryField.buildNumberField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
           entryField.buildPasswordField(),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
