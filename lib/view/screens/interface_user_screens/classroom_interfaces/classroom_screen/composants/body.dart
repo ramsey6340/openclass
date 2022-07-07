@@ -22,7 +22,7 @@ class _BodyState extends State<Body>
           index = (data_list_classrooms.length-1)-index;
           final item = data_list_classrooms[index];
           return Dismissible(
-            key: ValueKey<Classroom>(data_list_classrooms[index]),
+            key: ValueKey<Classroom>(item),
             secondaryBackground: backgroundDelete,
             background: backgroundReaded,
             confirmDismiss: (direction) async{

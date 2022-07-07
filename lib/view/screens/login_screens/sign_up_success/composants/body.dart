@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../composants/next_button.dart';
 import '../../../../constante.dart';
+import '../../../interface_user_screens/main_screen.dart';
 
 class Body extends StatelessWidget
 {
@@ -21,7 +22,7 @@ class Body extends StatelessWidget
             SizedBox(height: MediaQuery.of(context).size.height*0.05,),
             Image.asset('assets/images/success.png'),
             SizedBox(height: MediaQuery.of(context).size.height*0.10,),
-            NextButton(color: kColorPrimary, text: 'continuer', press: (){}),
+            NextButton(color: kColorPrimary, text: 'continuer', press: (){Navigator.pushNamed(context, MainScreen.routeName);}),
           ],
         ),
       ),

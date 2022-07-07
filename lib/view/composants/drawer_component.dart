@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_classroom.dart';
+import 'package:openclass/increment.dart';
 import 'package:openclass/model/classroom.dart';
 import 'package:openclass/view/composants/drawer_header_tools.dart';
 import 'package:openclass/view/composants/expansion_tile_tools.dart';
@@ -22,11 +24,13 @@ class _DrawerComponentState extends State<DrawerComponent>
 
   @override
   Widget build(BuildContext context) {
-    final classroomValue = ModalRoute.of(context)!.settings.arguments as Classroom;
+    //final classroomValue = ModalRoute.of(context)!.settings.arguments as Classroom;
+    final classroomValue = data_list_classrooms[Increment.id_current_classroom-1];
     classroom.modifClassroom(classroomValue);
     final list_categories = chooseCategorySalle(classroomValue.id, data_List_categories_salle);
     return Drawer(
       backgroundColor: kColorDrawer,
+      width: MediaQuery.of(context).size.width * 0.82,
       child: StreamBuilder<Classroom>(
         stream: classroom.stream,
         initialData: Classroom.empty(),

@@ -7,16 +7,18 @@ class CategorySalle
   late String _name;
   late String _creation_date;
   late String _description;
+  late bool _is_private;
   late EnumCategorySalle _type;
   late Classroom _classroom;
 
-  CategorySalle(this._id, this._name, this._creation_date, this._description, this._type,this._classroom);
+  CategorySalle(this._id, this._name, this._creation_date, this._description, this._is_private, this._type,this._classroom);
   CategorySalle.empty()
   {
     this._id = 0;
     this._name = "";
     this._creation_date = "";
     this._description = "";
+    this._is_private = false;
     this._type = EnumCategorySalle.discussion;
     this._classroom = Classroom.empty();
   }
@@ -26,8 +28,8 @@ class CategorySalle
   String get name => _name;
   String get creationDate => _creation_date;
   String get description => _description;
+  bool get isPrivate => _is_private;
   EnumCategorySalle get type => _type;
-  //List<Salle> get salles => _salles;
   Classroom get classroom => _classroom;
   //les setters
   set id(int value){
@@ -41,6 +43,9 @@ class CategorySalle
   }
   set description(String value){
     _description = value;
+  }
+  set isPrivate(bool value){
+    _is_private = value;
   }
   set type(EnumCategorySalle value){
     _type = value;

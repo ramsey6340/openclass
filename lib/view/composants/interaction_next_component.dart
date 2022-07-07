@@ -11,15 +11,18 @@ class InteractionComponent extends StatelessWidget
   {
     return Container(
       color: kColorSearch,
-      child: ListTile(
-        title: Text(title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-        trailing: IconButton(
-          icon: Icon(Icons.navigate_next),
-          onPressed: press as void Function()?,
+      child: GestureDetector(
+        child: ListTile(
+          title: Text(title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+          trailing: IconButton(
+            icon: Icon(Icons.navigate_next),
+            onPressed: press as void Function()?,
+          ),
+          textColor: Colors.white,
+          iconColor: Colors.white,
         ),
-        textColor: Colors.white,
-        iconColor: Colors.white,
-      ),
+        onTap: press as void Function()?
+      )
     );
   }
 }

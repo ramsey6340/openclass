@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/increment.dart';
 import 'package:openclass/model/classroom.dart';
-import 'package:openclass/view/composants/drawer_component.dart';
 
 class InteractionComponent extends StatelessWidget
 {
@@ -35,7 +35,7 @@ class InteractionComponent extends StatelessWidget
       title: Text(classroom.name,style: styleTitle, overflow: TextOverflow.ellipsis,),
       subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
       onTap: (){
-
+        /*
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -45,10 +45,10 @@ class InteractionComponent extends StatelessWidget
               )
             )
         );
+         */
         //Navigator.pop(context);
-
-
-        //Scaffold.of(context).openEndDrawer();
+        Increment.idCurrentClassroom = classroom.id;
+        Scaffold.of(context).openEndDrawer();
       },
     );
   }

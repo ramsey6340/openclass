@@ -40,7 +40,7 @@ class _SignInFormState extends State<SignInForm>
                   );
                 }
                  */
-                //Navigator.pushNamed(context, MainScreen.routeName);
+                Navigator.pushNamed(context, MainScreen.routeName);
                 /*
                 return showDialog(
                     context: context,

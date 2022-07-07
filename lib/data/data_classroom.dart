@@ -1,6 +1,7 @@
 import '../model/classroom.dart';
 import 'data_responsible.dart';
 
+/* ========================== List des classes ========================== */
 List<Classroom> data_list_classrooms =
 [
   Classroom(1, 'GIT-L3-S6', 'assets/images/informatique.jpg','02/11/2022', 'Une classe informatique', false, data_list_responsible[0]),
@@ -19,4 +20,10 @@ List<Classroom> data_list_classrooms =
   Classroom(13, 'Geek Academie', 'assets/images/geekacademie.png', '03/11/2022', 'Une classe de surdoué', false, data_list_responsible[0]),
    */
 ];
+/* ========================== FIN ========================== */
+
+/* ========================== Map des classes ========================== */
+Map<int, Classroom> data_map_classrooms = {
+  1:   Classroom(1, 'GIT-L3-S6', 'assets/images/informatique.jpg','02/11/2022', 'Une classe informatique', false, data_list_responsible[0]),
+};
 /* ========================== FIN ========================== */

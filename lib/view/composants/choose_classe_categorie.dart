@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/constante.dart';
 
-import '../../../../../../model/enum_type.dart';
-import '../../../../../composants/category_item.dart';
+import '../../model/enum_type.dart';
+import 'category_item.dart';
 
 class ChooseClasseCategorie extends StatefulWidget
 {
   @override
   State<ChooseClasseCategorie> createState() => _ChooseClasseCategorieState();
+  EnumCategorySalle _categorySalle = EnumCategorySalle.discussion;
+
+  // methode pour retourner le type de categorie choisie
+  EnumCategorySalle get categoryChoose => _categorySalle;
+
 }
 
 class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
 {
-  EnumCategorySalle _categorieSalle = EnumCategorySalle.discussion;
   @override
   build(BuildContext context)
   {
@@ -27,11 +31,11 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
               radio: Radio(
                // activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
-                groupValue: _categorieSalle,
+                groupValue: widget._categorySalle,
                 value: EnumCategorySalle.discussion,
                 onChanged: (value){
                   setState((){
-                    _categorieSalle = value;
+                    widget._categorySalle = value;
                   });
                 },
               )
@@ -44,11 +48,11 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
               radio: Radio(
                 activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
-                groupValue: _categorieSalle,
+                groupValue: widget._categorySalle,
                 value: EnumCategorySalle.bibliotheque,
                 onChanged: (value){
                   setState((){
-                    _categorieSalle = value;
+                    widget._categorySalle = value;
                   });
                 },
               )
@@ -61,11 +65,11 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
               radio: Radio(
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 activeColor: Color(0xFF3979d4),
-                groupValue: _categorieSalle,
+                groupValue: widget._categorySalle,
                 value: EnumCategorySalle.information,
                 onChanged: (value){
                   setState((){
-                    _categorieSalle = value;
+                    widget._categorySalle = value;
                   });
                 },
               )
@@ -74,4 +78,6 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
       ),
     );
   }
+
+
 }

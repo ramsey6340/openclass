@@ -5,7 +5,6 @@ import 'composants/body.dart';
 class CreateSallePage extends StatelessWidget
 {
   static String routeName = '/create_salle_page';
-  static bool privateSalle = false;
   @override
   build(BuildContext context)
   {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/routes.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
+import 'package:openclass/view/screens/login_screens/welcome/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());

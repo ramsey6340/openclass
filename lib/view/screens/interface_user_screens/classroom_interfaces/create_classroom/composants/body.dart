@@ -13,6 +13,7 @@ import '../../../../../../increment.dart';
 import '../../../../../../model/classroom.dart';
 import '../../../../../../model/enum_type.dart';
 import '../../../../../../model/salle.dart';
+import '../../add_friends/add_friends_page.dart';
 import 'choose_picture_class.dart';
 import '../../../../../composants/entry_field.dart';
 
@@ -93,7 +94,7 @@ class _BodyState extends State<Body>
                   creationOfBaseSalle(list_category);
 
                   // redirection vers la liste des classes
-                  Navigator.pushNamed(context, MainScreen.routeName);
+                  (_privateClassroom == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
                   /*
                   return showDialog(
                       context: context,
@@ -144,7 +145,7 @@ class _BodyState extends State<Body>
     List<EnumCategorySalle> type_category = [EnumCategorySalle.information, EnumCategorySalle.bibliotheque, EnumCategorySalle.discussion];
 
     for(int i=0; i<3; i++){
-      categorySalle = CategorySalle(Increment.idCategory, name_category[i], '02/02/2022', description_category[i], type_category[i], classroom);
+      categorySalle = CategorySalle(Increment.idCategory, name_category[i], '02/02/2022', description_category[i], false, type_category[i], classroom);
       data_List_categories_salle.add(categorySalle);
       list_category.add(categorySalle);
     }

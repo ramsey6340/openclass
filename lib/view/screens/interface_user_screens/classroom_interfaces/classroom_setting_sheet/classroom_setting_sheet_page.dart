@@ -92,7 +92,7 @@ class ClassroomSettingSheetPage extends StatelessWidget
                     title: "Créer une catégorie",
                     press: (){
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, CreateCategoryPage.routeName);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateCategoryPage(), settings: RouteSettings(arguments: classroom)));
                     }
                 ),
               ],
