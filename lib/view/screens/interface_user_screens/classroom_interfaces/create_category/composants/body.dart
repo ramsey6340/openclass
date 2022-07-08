@@ -40,7 +40,7 @@ class _BodyState extends State<Body>
                 'Créer une categorie',
                 (_privateCategory == false)?Text('Créer',style: TextStyle(fontSize: 18,)):Text('Suivant',style: TextStyle(fontSize: 18,)),
                 (){
-                  Navigator.pushNamed(context, MainScreen.routeName);
+                  Navigator.of(context).pop();
                 },
                 (){
                   createClassroom(entryField.textController.text, entryField.multiTextController.text, _privateCategory, chooseClasseCategorie.categoryChoose, widget.classroom);

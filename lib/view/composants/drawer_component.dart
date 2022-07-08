@@ -43,7 +43,7 @@ class _DrawerComponentState extends State<DrawerComponent>
                 child: ListView.builder(
                   itemCount: list_categories.length,
                   itemBuilder: (context, index){
-                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: list_categories[index])));}, nameCategory: list_categories[index].name, sallesInit: chooseSalle(list_categories[index].id, data_list_salles));
+                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: list_categories[index])));}, nameCategory: list_categories[index].name, sallesInit: chooseSalle(list_categories[index].id, data_list_salles), index: index,);
                   },
                 ),
               ),

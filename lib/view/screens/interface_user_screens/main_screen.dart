@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_classroom/create_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/user_profile_page.dart';
 import 'package:openclass/view/composants/drawer_component.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/constante.dart';
+import '../../composants/interaction_next_component.dart';
 import 'chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
 import 'classroom_interfaces/classroom_screen/list_classroom_page.dart';
@@ -73,13 +75,13 @@ class _MainScreenState extends State<MainScreen>
       type: BottomNavigationBarType.fixed,
        ),
 
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: (_currentIndex == 0)?FloatingActionButton(
         onPressed: (){
           Scaffold.of(context).openEndDrawer();
         },
         backgroundColor: kColorPrimary,
         child: Icon(Icons.navigate_next, color: Colors.white,),
-      ),
+      ):null,
     );
   }
 

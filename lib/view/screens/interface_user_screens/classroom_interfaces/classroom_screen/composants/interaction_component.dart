@@ -10,7 +10,6 @@ class InteractionComponent extends StatelessWidget
   final Classroom classroom;
   @override
   Widget build(BuildContext context) {
-
     TextStyle styleTitle = TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white);
     TextStyle styleNbreSMS = TextStyle(fontSize: 10,fontWeight: FontWeight.bold, color: Colors.white);
 
@@ -52,4 +51,5 @@ class InteractionComponent extends StatelessWidget
       },
     );
   }
+
 }
