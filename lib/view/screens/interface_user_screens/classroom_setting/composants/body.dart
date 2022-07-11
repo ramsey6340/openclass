@@ -7,6 +7,9 @@ import 'package:openclass/view/screens/interface_user_screens/classroom_interfac
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/composants/photo_profile.dart';
 import 'package:openclass/view/composants/interaction_next_component.dart';
+
+import '../../../../../data/data_current_classroom.dart';
+import '../../classroom_interfaces/list_members/list_members_page.dart';
 class Body extends StatefulWidget
 {
   @override
@@ -37,7 +40,7 @@ class _BodyState extends State<Body>
             Expanded(
                 child: ListView(
                   children: [
-                    PhotoProfile(imgProfile: currentUser.imgProfile, nameUser: currentUser.firstName+' '+currentUser.lastName, dateBirth: currentUser.dateBirth),
+                    PhotoProfile(imgProfile: data_current_classroom.image, nameUser: data_current_classroom.name, dateBirth: data_current_classroom.creationDate),
                     SizedBox(height: 50,),
                     Text("PARAMETRES"),
                     InteractionComponent(
@@ -47,9 +50,7 @@ class _BodyState extends State<Body>
                         }
                         ),
                     Divider(color: Colors.white,height: 0,thickness:0.5),
-                    InteractionComponent(title: "Membres", press: (){}),
-                    Divider(color: Colors.white,height: 0,thickness:0.5),
-                    InteractionComponent(title: "Invitation", press: (){}),
+                    InteractionComponent(title: "Membres", press: (){Navigator.pushNamed(context, ListMembersPage.routeName);}),
                     Divider(color: Colors.white,height: 0,thickness:0.5),
                   ],
                 ),

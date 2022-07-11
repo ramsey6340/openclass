@@ -5,13 +5,13 @@ class CategoryItem extends StatelessWidget
   CategoryItem({Key? key, required this.title, required this.description, required this.leading, required this.radio}):super(key: key);
   final String title;
   final String description;
-  final IconData leading;
+  final Widget? leading;
   final Radio radio;
   @override
   build(BuildContext context)
   {
     return ListTile(
-      leading: Icon(leading, color: Colors.white,),
+      leading: leading,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

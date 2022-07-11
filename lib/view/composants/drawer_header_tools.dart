@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_adhesion.dart';
+import '../../data/data_current_classroom.dart';
+import '../../model/adhesion.dart';
 import '../../model/classroom.dart';
 import '../constante.dart';
 import '../screens/interface_user_screens/classroom_interfaces/classroom_setting_sheet/classroom_setting_sheet_page.dart';
@@ -21,6 +24,7 @@ class DrawerHeaderTools extends StatelessWidget
               GestureDetector(
                 child: Icon(Icons.more_horiz,color: Colors.white,),
                 onTap: (){
+                  data_current_number_of_member = nbOfMembers(data_list_adhesion_classes);
                   _showClassroomSettingSheet(context, classroom);
                 },
               ),
@@ -49,5 +53,17 @@ class DrawerHeaderTools extends StatelessWidget
           return ClassroomSettingSheetPage(classroom: classroom);
         }
     );
+  }
+
+  // methode pour determiner le nombre de membre de la classe
+  int nbOfMembers(List<Adhesion> list_adhesion)
+  {
+    int nbre = 0;
+    for(int i=0; i<list_adhesion.length; i++){
+      if(data_current_classroom.id == list_adhesion[i].classroom.id){
+        nbre++;
+      }
+    }
+    return nbre;
   }
 }

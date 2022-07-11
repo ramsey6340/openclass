@@ -4,7 +4,7 @@ import 'data_responsible.dart';
 /* ========================== List des classes ========================== */
 List<Classroom> data_list_classrooms =
 [
-  Classroom(1, 'GIT-L3-S6', 'assets/images/informatique.jpg','02/11/2022', 'Une classe informatique', false, data_list_responsible[0]),
+  Classroom(1, 'OpenClass', 'assets/images/openclass_profile.png','10/07/2022', 'Une classe de base pour tous les utilisateurs de l\'app', false, data_list_responsible[0]),
   /*
   Classroom(2, 'Hyper', 'assets/images/img_default_class.png','03/11/2022', 'Une classe d\'agronomie', false, data_list_responsible[1]),
   Classroom(3, 'FMOS', 'assets/images/medecine.jpg','03/11/2022', 'Une classe de médecine', false, data_list_responsible[0]),

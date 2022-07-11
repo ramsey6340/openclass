@@ -7,6 +7,7 @@ import 'package:openclass/view/composants/drawer_header_tools.dart';
 import 'package:openclass/view/composants/expansion_tile_tools.dart';
 import 'package:openclass/view/constante.dart';
 import '../../controller/classroom_ctrl.dart';
+import '../../data/data_current_classroom.dart';
 import '../../model/category_salle.dart';
 import '../../model/salle.dart';
 import '../../data/data_category_salle.dart';
@@ -25,9 +26,14 @@ class _DrawerComponentState extends State<DrawerComponent>
   @override
   Widget build(BuildContext context) {
     //final classroomValue = ModalRoute.of(context)!.settings.arguments as Classroom;
-    final classroomValue = data_list_classrooms[Increment.id_current_classroom-1];
-    classroom.modifClassroom(classroomValue);
-    final list_categories = chooseCategorySalle(classroomValue.id, data_List_categories_salle);
+    //final classroomValue = data_list_classrooms[Increment.id_current_classroom-1];
+    data_current_classroom = data_list_classrooms[Increment.id_current_classroom-1];
+    //classroom.modifClassroom(classroomValue);
+    classroom.modifClassroom(data_current_classroom);
+    //final list_categories = chooseCategorySalle(classroomValue.id, data_List_categories_salle);
+    data_current_list_categories_salle = chooseCategoriesSalle(data_current_classroom.id, data_List_categories_salle);
+    data_current_list_salle = chooseCurrentSalles(data_current_list_categories_salle, data_list_salles);
+
     return Drawer(
       backgroundColor: kColorDrawer,
       width: MediaQuery.of(context).size.width * 0.82,
@@ -37,13 +43,13 @@ class _DrawerComponentState extends State<DrawerComponent>
         builder: (context, snapshot){
           return Column(
             children: <Widget>[
-              DrawerHeaderTools(nameClasse: snapshot.data!.name, classroom: classroomValue,),
+              DrawerHeaderTools(nameClasse: snapshot.data!.name, classroom: data_current_classroom,),
               Divider(color: Colors.white,height: 20,),
               Expanded(
                 child: ListView.builder(
-                  itemCount: list_categories.length,
+                  itemCount: data_current_list_categories_salle.length,
                   itemBuilder: (context, index){
-                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: list_categories[index])));}, nameCategory: list_categories[index].name, sallesInit: chooseSalle(list_categories[index].id, data_list_salles), index: index,);
+                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: data_current_list_categories_salle[index])));}, nameCategory: data_current_list_categories_salle[index].name, sallesInit: chooseSalles(data_current_list_categories_salle[index].id, data_current_list_salle), index: index,);
                   },
                 ),
               ),
@@ -60,7 +66,7 @@ class _DrawerComponentState extends State<DrawerComponent>
   }
 
   //methode pour choisir les salles correspondant à chaque categorie
-  static List<Salle> chooseSalle(int id_category, List<Salle> list_salles)
+  static List<Salle> chooseSalles(int id_category, List<Salle> list_salles)
   {
     List<Salle> salles =[];
     for(int i=0; i<list_salles.length; i++){
@@ -71,8 +77,25 @@ class _DrawerComponentState extends State<DrawerComponent>
     return salles;
   }
 
+
+  //methode pour choisir les salles correspondant à chaque categorie
+  static List<Salle> chooseCurrentSalles(List<CategorySalle> list_categories, List<Salle> list_salles)
+  {
+    List<Salle> salles =[];
+    for(int i=0; i<list_categories.length; i++){
+      for(int j=0; j<list_salles.length; j++){
+        if(list_salles[j].categorySalle.id == list_categories[i].id){
+          salles.add(list_salles[j]);
+        }
+      }
+    }
+    return salles;
+  }
+
+
+
   //methode pour choisir les categories correspondant à chaque classe
-  static List<CategorySalle> chooseCategorySalle(int id_classroom, List<CategorySalle> list_categories)
+  static List<CategorySalle> chooseCategoriesSalle(int id_classroom, List<CategorySalle> list_categories)
   {
     List<CategorySalle> categories = [];
     for(int i=0; i<list_categories.length; i++){

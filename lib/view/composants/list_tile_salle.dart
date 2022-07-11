@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
-import 'package:provider/provider.dart';
 import '../../model/salle.dart';
 
 class ListTileSalle extends StatelessWidget
@@ -23,6 +23,8 @@ class ListTileSalle extends StatelessWidget
       color: Colors.white,
       ),
       onTap: (){
+        data_current_salle = salleInit;
+        data_current_category = data_current_salle.categorySalle;
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SalleChatMainPage(salle: salleInit)));
       },
     );

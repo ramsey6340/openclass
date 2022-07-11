@@ -39,7 +39,15 @@ class _BodyState extends State<Body>
                 },
                 (){
                   createSalle(entryField.textController.text, _privateSalle, widget.categorySalle);
-                  (_privateSalle == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
+                  if(_privateSalle == false){
+                    Navigator.pushNamed(context, MainScreen.routeName);
+                    // le drawer ne souvre pas, cherche une solution
+                    Scaffold.of(context).openEndDrawer();
+                  }
+                  else{
+                    Navigator.pushNamed(context, AddFriendsPage.routeName);
+                  }
+                  //(_privateSalle == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
                 }
             ),
             Expanded(

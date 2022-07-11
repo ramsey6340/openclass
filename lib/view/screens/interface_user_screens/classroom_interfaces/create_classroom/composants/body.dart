@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/data/data_user.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/external_link.dart';
@@ -86,9 +87,11 @@ class _BodyState extends State<Body>
 
                   // ajout du nouvelle classe
                   data_list_classrooms.add(classroom_create);
+                  data_current_classroom = classroom_create;
 
                   // creation des trois categories de base
                   List<CategorySalle> list_category = creationOfTheeBaseCategories(classroom_create);
+                  data_current_list_categories_salle = list_category;
 
                   // creation de la salle de base pour chaque catégorie
                   creationOfBaseSalle(list_category);

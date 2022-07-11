@@ -27,9 +27,8 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
           CategoryItem(
               title: "Discussion",
               description: "Discuter de vos cours, partager des images, etc",
-              leading: Icons.picture_in_picture,
+              leading: Icon(Icons.picture_in_picture, color: Colors.white,),
               radio: Radio(
-               // activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 groupValue: widget._categorySalle,
                 value: EnumCategorySalle.discussion,
@@ -44,7 +43,7 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
           CategoryItem(
               title: "Bibliothèque",
               description: "Partager les documents pdf, docx etc.",
-              leading: Icons.menu_book_rounded,
+              leading: Icon(Icons.menu_book_rounded, color: Colors.white,),
               radio: Radio(
                 activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
@@ -61,7 +60,7 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
           CategoryItem(
               title: "Information",
               description: "Parteger les dernière nouvelle avec vos camarades",
-              leading: Icons.info_outline_rounded,
+              leading: Icon(Icons.info_outline_rounded, color: Colors.white,),
               radio: Radio(
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 activeColor: Color(0xFF3979d4),

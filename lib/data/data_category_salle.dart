@@ -8,7 +8,6 @@ List<CategorySalle> data_List_categories_salle =
   CategorySalle(1, 'SALLES INFORMATION', '12/02/2022','Salle de catégorie information', false, EnumCategorySalle.information, data_list_classrooms[0]),
   CategorySalle(2, 'SALLES BIBLIOTHEQUE', '12/02/2022','Salle de catégorie document', false, EnumCategorySalle.bibliotheque, data_list_classrooms[0]),
   CategorySalle(3, 'SALLES DISCUSSION', '12/02/2022','Salle de catégorie discussion', false, EnumCategorySalle.discussion, data_list_classrooms[0]),
-  CategorySalle(4, 'SALLES CORANIQUE', '12/02/2022','Salle de catégorie lecture de coran', false, EnumCategorySalle.discussion, data_list_classrooms[0]),
 /*
   CategorySalle(5, 'SALLES INFORMATION', '12/02/2022','Salle de catégorie information', false, EnumCategorySalle.information, data_list_classrooms[1]),
   CategorySalle(6, 'SALLES BIBLIOTHEQUE', '12/02/2022','Salle de catégorie document', false, EnumCategorySalle.bibliotheque, data_list_classrooms[1]),

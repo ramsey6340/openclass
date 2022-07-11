@@ -32,6 +32,10 @@ class AdhesionCtrl
     _adhesion.type = value;
     sink.add(_adhesion);
   }
+  modifReceiveNotification(bool value){
+    _adhesion.receiveNotification = value;
+    sink.add(_adhesion);
+  }
   modifClassroom(Classroom value){
     _adhesion.classroom = value;
     sink.add(_adhesion);

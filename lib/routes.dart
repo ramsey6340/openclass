@@ -8,6 +8,7 @@ import 'package:openclass/view/screens/interface_user_screens/classroom_interfac
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_classroom/create_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_salle/create_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/join_classroom/join_classroom_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_members/list_members_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_setting/setting_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
@@ -45,4 +46,5 @@ final Map<String,WidgetBuilder> routes = {
   ListSallePage.routeName: (context) => ListSallePage(),
   SalleSettingPage.routeName: (context) => SalleSettingPage(),
   ChangeCategory.routeName: (context) => ChangeCategory(),
+  ListMembersPage.routeName: (context) => ListMembersPage(),
 };

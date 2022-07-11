@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/model/enum_type.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/salle_setting_page.dart';
@@ -32,9 +33,9 @@ class _ExpansionTileSalleState extends State<ExpansionTileSalle>{
       controlAffinity: ListTileControlAffinity.leading,
       childrenPadding: EdgeInsets.only(left: 50),
       leading: null,
-      trailing: GestureDetector(
+      trailing: TextButton(
         child: Text("Modifier"),
-        onTap: widget.addNavigator as void Function(),
+        onPressed: widget.addNavigator as void Function(),
       ),
       title: Text(widget.nameCategory.toString().split('.').last.toUpperCase(),style: TextStyle(fontSize: 16),),
       initiallyExpanded: true,
@@ -55,6 +56,7 @@ class _ExpansionTileSalleState extends State<ExpansionTileSalle>{
         title: Text(widget.sallesInit[i].name,style: TextStyle(fontSize: 16,),),
         leading: (widget.sallesInit[i].categorySalle.type == EnumCategorySalle.information)?iconInfo:(widget.sallesInit[i].categorySalle.type == EnumCategorySalle.bibliotheque)?iconBiblio:iconDiscussion,
         onTap: (){
+          data_current_salle = widget.sallesInit[i];
           Navigator.push(
               context,
               MaterialPageRoute(

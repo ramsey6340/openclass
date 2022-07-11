@@ -16,6 +16,7 @@ class PhotoProfile extends StatelessWidget
               GestureDetector(
                 child: CircleAvatar(
                   radius: 50,
+                  backgroundColor: Colors.transparent,
                   backgroundImage: AssetImage(imgProfile),
                 ),
                 onTap: (){},

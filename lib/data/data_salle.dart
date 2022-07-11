@@ -4,22 +4,15 @@ import 'data_category_salle.dart';
 /* ========================== Instances de la classe  Salle ========================== */
 List<Salle> data_list_salles =
 [
-  Salle(1, 'géneral', '02/02/2022', false, data_List_categories_salle[0]),
-  Salle(2, 'information informatique', '02/02/2022', false, data_List_categories_salle[0]),
-  Salle(3, 'information télécom', '02/02/2022', false, data_List_categories_salle[0]),
+  Salle(1, 'géneral', '10/07/2022', false, data_List_categories_salle[0]),
+  Salle(2, 'géneral', '10/07/2022', false, data_List_categories_salle[1]),
+  Salle(3, 'géneral', '10/07/2022', false, data_List_categories_salle[2]),
 
-  Salle(4, 'géneral', '02/02/2022', false, data_List_categories_salle[1]),
-  Salle(5, 'documents informatique', '02/02/2022', false, data_List_categories_salle[1]),
-  Salle(6, 'documents télécom', '02/02/2022', false, data_List_categories_salle[1]),
-
-  Salle(7, 'géneral', '02/02/2022', false, data_List_categories_salle[2]),
-  Salle(8, 'discussion informatique', '02/02/2022', false, data_List_categories_salle[2]),
-  Salle(9, 'discussion télécom', '02/02/2022', false, data_List_categories_salle[2]),
-
+/*
   Salle(10, 'coranique géneral', '02/02/2022', false, data_List_categories_salle[3]),
   Salle(11, 'coranique informatique', '02/02/2022', false, data_List_categories_salle[3]),
   Salle(12, 'coranique télécom', '02/02/2022', false, data_List_categories_salle[3]),
-/*
+
   Salle(13, 'géneral', '25/06/2022', false, data_List_categories_salle[4]),
   Salle(14, 'géneral', '25/06/2022', false, data_List_categories_salle[5]),
   Salle(15, 'géneral', '25/06/2022', false, data_List_categories_salle[6]),

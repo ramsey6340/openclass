@@ -75,13 +75,13 @@ class _MainScreenState extends State<MainScreen>
       type: BottomNavigationBarType.fixed,
        ),
 
-      floatingActionButton: (_currentIndex == 0)?FloatingActionButton(
+   /*   floatingActionButton: (_currentIndex == 0)?FloatingActionButton(
         onPressed: (){
           Scaffold.of(context).openEndDrawer();
         },
         backgroundColor: kColorPrimary,
         child: Icon(Icons.navigate_next, color: Colors.white,),
-      ):null,
+      ):null,*/
     );
   }
 

@@ -26,7 +26,7 @@ class Classroom
   int get id => _id;
   String get name => _name;
   String get image => _image;
-  String get dateCreate => _creation_date;
+  String get creationDate => _creation_date;
   String get description => _description;
   bool get isPrivate => _is_private;
   Responsible get responsible => _responsible;
