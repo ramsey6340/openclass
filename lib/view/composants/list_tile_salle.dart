@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current_classroom.dart';
-import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
 import '../../model/salle.dart';
+import '../screens/interface_user_screens/chat_interface/chat_salle/chat_page_salle.dart';
 
 class ListTileSalle extends StatelessWidget
 {
-  ListTileSalle({Key? key, required this.salleInit}):super(key: key);
+  ListTileSalle({Key? key, required this.salleInit, required this.leading}):super(key: key);
   final Salle salleInit;
+  final Widget leading;
   @override
   Widget build(BuildContext context)
   {
-    /*final Salle salle = Provider.of<Salle>(context);
-    salle.name = salleInit.name;
-    salle.id = salleInit.id;
-
-     */
     return ListTile(
-      title: Text(salleInit.name,style: TextStyle(fontSize: 15),),
-      leading: Icon(
-        Icons.info_outlined,
-        //(salle.category.name_category == EnumCategorySalle.information)?Icons.info_outlined:(salle.category.name_category == EnumCategorySalle.bibliotheque)?Icons.menu_book_rounded:Icons.picture_in_picture,
-      color: Colors.white,
-      ),
+      iconColor: Colors.white,
+      textColor: Colors.white,
+      horizontalTitleGap: 0,
+      title: Text(salleInit.name,style: TextStyle(fontSize: 16,),),
+      leading: leading,
       onTap: (){
         data_current_salle = salleInit;
         data_current_category = data_current_salle.categorySalle;
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SalleChatMainPage(salle: salleInit)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatPageSalle(),
+            )
+        );
       },
     );
   }

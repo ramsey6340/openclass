@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/constante.dart';
-import '../../../../../model/user.dart';
 
 class ChatPageSetting extends StatelessWidget
 {
-  ChatPageSetting({Key? key, required this.user}):super(key: key);
-  final User user;
   @override
   Widget build(BuildContext context)
   {
@@ -20,12 +18,12 @@ class ChatPageSetting extends StatelessWidget
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: AssetImage(user.imgProfile),
+                  backgroundImage: AssetImage(data_current_friend.imgProfile),
                   radius: 35,
                 ),
                 SizedBox(height: 10,),
-                Text("${user.firstName} ${user.lastName}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
-                Text(user.telNumber, textAlign: TextAlign.center,),
+                Text("${data_current_friend.firstName} ${data_current_friend.lastName}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                Text(data_current_friend.telNumber, textAlign: TextAlign.center,),
               ],
             ),
             SizedBox(height: 20,),

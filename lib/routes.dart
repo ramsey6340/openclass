@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/category_setting/category_setting_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/chat_interface/chat_friend/chat_page_user.dart';
+import 'package:openclass/view/screens/interface_user_screens/chat_interface/chat_salle/chat_page_salle.dart';
+import 'package:openclass/view/screens/interface_user_screens/chat_interface/send_document/send_document_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/chat_interface/share_information/share_information_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_friends/add_friends_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
@@ -47,4 +51,8 @@ final Map<String,WidgetBuilder> routes = {
   SalleSettingPage.routeName: (context) => SalleSettingPage(),
   ChangeCategory.routeName: (context) => ChangeCategory(),
   ListMembersPage.routeName: (context) => ListMembersPage(),
+  ChatPageSalle.routeName: (context) => ChatPageSalle(),
+  ChatPageUser.routeName: (context) => ChatPageUser(),
+  SendDocumentPage.routeName: (context) => SendDocumentPage(),
+  ShareInformationPage.routeName: (context) => ShareInformationPage(),
 };

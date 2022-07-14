@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/category_setting/category_setting_page.dart';
-
-import '../../../../../../data/data_category_salle.dart';
-import '../../../../../../data/data_classroom.dart';
-import '../../../../../../data/data_salle.dart';
-import '../../../../../../increment.dart';
-import '../../../../../../model/category_salle.dart';
 import '../../../../../../model/salle.dart';
 import '../../../../../constante.dart';
 import 'expansion_tile_salle.dart';

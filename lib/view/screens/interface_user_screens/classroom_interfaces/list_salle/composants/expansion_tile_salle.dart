@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/model/enum_type.dart';
-import 'package:openclass/view/screens/interface_user_screens/salle_chat_interface/salle_chat_main_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/salle_setting_page.dart';
 
 import '../../../../../../model/salle.dart';

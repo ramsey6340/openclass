@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../chat_interface/chat_page.dart';
+import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/model/user.dart';
 import 'package:openclass/model/message.dart';
+
+import '../../../chat_interface/chat_friend/chat_page_user.dart';
 
 class InteractionComponent extends StatefulWidget
 {
@@ -45,7 +47,8 @@ class _InteractionComponentState extends State<InteractionComponent>
       title: Text(widget.receiver.firstName,style: styleTitle),
       subtitle: Text(widget.message.text,overflow: TextOverflow.ellipsis,),
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChatPageUser(user: widget.receiver,)));
+        data_current_friend = widget.receiver;
+        Navigator.pushNamed(context, ChatPageUser.routeName);
       },
     );
   }

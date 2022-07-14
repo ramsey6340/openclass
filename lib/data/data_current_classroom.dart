@@ -3,6 +3,7 @@
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/model/classroom.dart';
 import '../model/salle.dart';
+import '../model/user.dart';
 import 'data_classroom.dart';
 
 Classroom data_current_classroom =   data_list_classrooms[0];
@@ -16,3 +17,5 @@ Salle data_current_salle = Salle.empty();
 List<CategorySalle> data_current_list_categories_salle = [];
 
 List<Salle> data_current_list_salle = [];
+
+User data_current_friend = User.empty();
