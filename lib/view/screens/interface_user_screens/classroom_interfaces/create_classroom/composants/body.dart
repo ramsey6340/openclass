@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current_classroom.dart';
-import 'package:openclass/data/data_user.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/external_link.dart';
 import 'package:openclass/view/composants/next_button.dart';

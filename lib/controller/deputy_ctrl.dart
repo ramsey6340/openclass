@@ -18,7 +18,7 @@ class DeputyCtrl
     _deputy = value;
     sink.add(_deputy);
   }
-  modifId(int value){
+  modifId(String value){
     _deputy.id = value;
     sink.add(_deputy);
   }

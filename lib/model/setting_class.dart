@@ -7,7 +7,7 @@ class SettingClass
   late int _id;
   late bool _is_notify;
   late Classroom _classroom;
-  late User _user;
+  late UserModel _user;
 
   // les constructeurs
   SettingClass(this._id, this._is_notify, this._classroom, this._user);
@@ -16,13 +16,13 @@ class SettingClass
     this._id = 0;
     this._is_notify = false;
     this._classroom = Classroom.empty();
-    this._user = User.empty();
+    this._user = UserModel();
   }
 
   // getters
   int get id => _id;
   Classroom get classroom => _classroom;
-  User get user => _user;
+  UserModel get user => _user;
   bool get isNotify => _is_notify;
 
   // setters
@@ -32,7 +32,7 @@ class SettingClass
   set classroom(Classroom value){
     _classroom = value;
   }
-  set user(User value){
+  set user(UserModel value){
     _user = value;
   }
   set isNotify(bool value){

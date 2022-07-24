@@ -35,7 +35,7 @@ class DiscussionCtrl
     _discussion.salle = value;
     sink.add(_discussion);
   }
-  modifUser(User value){
+  modifUser(UserModel value){
     _discussion.user = value;
     sink.add(_discussion);
   }

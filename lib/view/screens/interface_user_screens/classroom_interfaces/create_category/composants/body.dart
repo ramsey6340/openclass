@@ -8,7 +8,6 @@ import 'package:openclass/view/composants/tools_bar.dart';
 import '../../../main_screen.dart';
 import '../../add_friends/add_friends_page.dart';
 import '../../../../../composants/choose_classe_categorie.dart';
-
 import '../../../../../composants/entry_field.dart';
 import '../../../../../constante.dart';
 

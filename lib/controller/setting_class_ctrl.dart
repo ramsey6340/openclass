@@ -31,7 +31,7 @@ class SettingClassCtrl
     _settingClass.classroom = value;
     sink.add(_settingClass);
   }
-  modifUser(User value){
+  modifUser(UserModel value){
     _settingClass.user = value;
     sink.add(_settingClass);
   }

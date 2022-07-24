@@ -4,6 +4,7 @@ import 'package:openclass/view/screens/interface_user_screens/chat_interface/cha
 import 'package:openclass/view/screens/interface_user_screens/chat_interface/chat_salle/chat_page_salle.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface/send_document/send_document_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface/share_information/share_information_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/composants/list_contact_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_friends/add_friends_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
@@ -18,6 +19,14 @@ import 'package:openclass/view/screens/interface_user_screens/classroom_setting/
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/composants/change_category.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/salle_setting_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/body_account.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_email_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_first_name_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_last_name_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_password_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_phone_number_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/profile/profile.dart';
+import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/setting_app/language.dart';
 import 'package:openclass/view/screens/login_screens/authentication/authentication_page.dart';
 import 'package:openclass/view/screens/login_screens/confirmation/confirmation_page.dart';
 import 'package:openclass/view/screens/login_screens/forgot_password/forgot_password_page.dart';
@@ -55,4 +64,13 @@ final Map<String,WidgetBuilder> routes = {
   ChatPageUser.routeName: (context) => ChatPageUser(),
   SendDocumentPage.routeName: (context) => SendDocumentPage(),
   ShareInformationPage.routeName: (context) => ShareInformationPage(),
+  BodyAccount.routeName: (context) => BodyAccount(),
+  EditUserFirstNamePage.routeName: (context) => EditUserFirstNamePage(),
+  EditUserLastNamePage.routeName: (context) => EditUserLastNamePage(),
+  EditUserEmailNamePage.routeName: (context) => EditUserEmailNamePage(),
+  EditUserPhoneNumberPage.routeName: (context) => EditUserPhoneNumberPage(),
+  EditUserPasswordPage.routeName: (context) => EditUserPasswordPage(),
+  Language.routeName: (context) => Language(),
+  Profile.routeName: (context) => Profile(),
+  ListContactPage.routeName: (context) => ListContactPage(),
 };

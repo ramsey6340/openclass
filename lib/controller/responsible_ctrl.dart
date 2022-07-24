@@ -17,7 +17,7 @@ class ResponsibleCtrl
     _responsible = value;
     sink.add(_responsible);
   }
-  modifId(int value){
+  modifId(String value){
     _responsible.id = value;
     sink.add(_responsible);
   }

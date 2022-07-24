@@ -1,64 +1,95 @@
-class User
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class UserModel
 {
   // les attribues
-  late int _id;
-  late String _first_name;
-  late String _last_name;
-  late String _email;
-  late String _tel_number;
-  late String _img_profile;
-  late String _password;
-  late String _date_birth;
+  String? id;
+  String? first_name;
+  String? last_name;
+  String? email;
+  String? tel_number;
+  String? img_profile;
+  String? password;
+  String? date_birth;
 
   // les constructeurs
-  User(this._id,this._first_name, this._last_name, this._email, this._tel_number, this._img_profile, this._password, this._date_birth);
-  User.empty()
-  {
-    this._id = 1;
-    this._first_name = "";
-    this._last_name = "";
-    this._email = "";
-    this._tel_number = "";
-    this._img_profile = "";
-    this._password = "";
-    this._date_birth = "";
-  }
+  UserModel(
+      {this.id,
+      this.first_name,
+      this.last_name,
+      this.email,
+      this.tel_number,
+      this.img_profile,
+      this.password,
+      this.date_birth});
   // les accesseurs
-  int get id => _id;
-  String get firstName => _first_name;
-  String get lastName => _last_name;
-  String get email => _email;
-  String get telNumber => _tel_number;
-  String get imgProfile => _img_profile;
-  String get password => _password;
-  String get dateBirth => _date_birth;
+  String? get idU => id;
+  String? get firstName => first_name;
+  String? get lastName => last_name;
+  String? get emailU => email;
+  String? get telNumber => tel_number;
+  String? get imgProfile => img_profile;
+  String? get passwordU => password;
+  String? get dateBirth => date_birth;
 
   // les mutateurs
-  set id(int value){
-    _id = value;
+  set idU(String? value){
+    id = value;
   }
-  set firstName(String value){
-    _first_name = value;
+  set firstName(String? value){
+    first_name = value;
   }
-  set lastName(String value){
-    _last_name = value;
+  set lastName(String? value){
+    last_name = value;
   }
-  set email(String value){
-    _email = value;
+  set emailU(String? value){
+    email = value;
   }
-  set telNumber(String value){
-    _tel_number = value;
+  set telNumber(String? value){
+    tel_number = value;
   }
-  set imgProfile(String value){
-    _img_profile = value;
+  set imgProfile(String? value){
+    img_profile = value;
   }
-  set password(String value){
-    _password = value;
+  set passwordU(String? value){
+    password = value;
   }
-  set dateBirth(String value){
-    _date_birth = value;
+  set dateBirth(String? value){
+    date_birth = value;
   }
 
   // les autres methodes
+
+  // convertir la map en classe UserModel
+  factory UserModel.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      SnapshotOptions? options,
+      ) {
+    final data = snapshot.data();
+    return UserModel(
+      id: data?['id'],
+      first_name: data?['first_name'],
+      last_name: data?['last_name'],
+      email: data?['email'],
+      tel_number: data?['tel_number'],
+      img_profile: data?['img_profile'],
+      password: data?['password'],
+      date_birth: data?['date_birth'],
+    );
+  }
+
+  // convertir la classe UserModel en map
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (id != null) "id": id,
+      if (first_name != null) "first_name": first_name,
+      if (last_name != null) "last_name": last_name,
+      if (email != null) "email": email,
+      if (tel_number != null) "tel_number": tel_number,
+      if (img_profile != null) "img_profile": img_profile,
+      if (password != null) "password": password,
+      if (date_birth != null) "date_birth": date_birth,
+    };
+  }
 
 }

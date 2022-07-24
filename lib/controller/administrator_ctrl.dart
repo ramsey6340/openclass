@@ -20,7 +20,7 @@ class AdministratorCtrl
     _administrator = value;
     sink.add(_administrator);
   }
-  modifId(int value){
+  modifId(String value){
     _administrator.id = value;
     sink.add(_administrator);
   }

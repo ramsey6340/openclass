@@ -7,7 +7,7 @@ abstract class MyAction
   late String _content;
   late String _publication_date;
   late Salle _salle;
-  late User _user;
+  late UserModel _user;
 
   MyAction(this._id, this._content, this._publication_date, this._salle, this._user);
   MyAction.empty()
@@ -15,14 +15,14 @@ abstract class MyAction
     this._id = 0;
     this._content = "";
     this._publication_date = "";
-    this._user = User.empty();
+    this._user = UserModel();
   }
   // getters
   int get id => _id;
   String get content => _content;
   String get publicationDate => _publication_date;
   Salle get salle => _salle;
-  User get user => _user;
+  UserModel get user => _user;
 
   // setters
   set id(int value){
@@ -37,7 +37,7 @@ abstract class MyAction
   set salle(Salle value){
     _salle = value;
   }
-  set user(User value){
+  set user(UserModel value){
     _user = value;
   }
 

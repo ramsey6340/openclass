@@ -35,7 +35,7 @@ class DocumentCtrl
     _document.salle = value;
     sink.add(_document);
   }
-  modifUser(User value){
+  modifUser(UserModel value){
     _document.user = value;
     sink.add(_document);
   }

@@ -5,7 +5,7 @@ import 'user.dart';
 class Information extends MyAction
 {
   // les constructeurs
-  Information(int id, String content, String publication_date, Salle salle, User user):super(id, content, publication_date, salle, user);
+  Information(int id, String content, String publication_date, Salle salle, UserModel user):super(id, content, publication_date, salle, user);
   Information.empty():super.empty();
 
   // les getters
@@ -13,7 +13,7 @@ class Information extends MyAction
   String get content => super.content;
   String get publicationDate => super.publicationDate;
   Salle get salle => super.salle;
-  User get user => super.user;
+  UserModel get user => super.user;
 
   // les setters
   @override
@@ -33,7 +33,7 @@ class Information extends MyAction
   super.salle;
   }
   @override
-  set user(User value){
+  set user(UserModel value){
     super.user = value;
   }
 

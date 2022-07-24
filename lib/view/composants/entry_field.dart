@@ -12,6 +12,7 @@ class EntryField
   TextEditingController numberController = TextEditingController();
   TextEditingController textController = TextEditingController();
   TextEditingController multiTextController = TextEditingController();
+
   // champ de saisie pour le mot de passe
    Widget buildPasswordField()
    {
@@ -19,8 +20,11 @@ class EntryField
        controller: passwordController,
        obscureText: true,
        validator: (value){
-         if(value!.isEmpty || value==null){
-           return kPassNullError;
+         if(value!.isEmpty){
+           return kInvalidPassError;
+         }
+         else if(value.length<6){
+           return kShortPassword;
          }
          return null;
        },
@@ -40,8 +44,11 @@ class EntryField
        controller: confirmPasswordController,
        obscureText: true,
        validator: (value){
-         if(value!.isEmpty || value==null){
-           return kPassNullError;
+         if(value!.isEmpty){
+           return kInvalidPassError;
+         }
+         else if(value.length<6){
+           return kShortPassword;
          }
          return null;
        },
@@ -61,7 +68,7 @@ class EntryField
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       validator: (value){
-        if(value!.isEmpty || value ==null){
+        if(value!.isEmpty){
           return kEmailNullError;
         }
         else if(!emailValidatorRegExp.hasMatch(value)){
@@ -124,7 +131,7 @@ class EntryField
        controller: numberController,
        keyboardType: TextInputType.phone,
        validator: (value){
-         if(value!.isEmpty || value == null){
+         if(value!.isEmpty || value.length<8){
            return kNumberNullError;
          }
          return null;

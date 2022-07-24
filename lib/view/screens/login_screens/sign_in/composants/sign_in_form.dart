@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:openclass/CRUD/read.dart';
+import 'package:openclass/data/data_user.dart';
+import 'package:openclass/model/user.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/login_screens/forgot_password/forgot_password_page.dart';
+import '../../../../composants/alert_dialogue.dart';
 import '../../../../composants/entry_field.dart';
 import '../../../../composants/external_link.dart';
 import '../../../../composants/next_button.dart';
 import '../../../../constante.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class SignInForm extends StatefulWidget
 {
@@ -17,8 +24,10 @@ class _SignInFormState extends State<SignInForm>
 {
   final _formKey = GlobalKey<FormState>();
   final entryField = EntryField();
+  final read = Read();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Form(
       key: _formKey,
       child: Column(
@@ -32,34 +41,44 @@ class _SignInFormState extends State<SignInForm>
           NextButton(
               color: kColorPrimary,
               text: 'connexion',
-              press: (){
-                /*
-                if(_formKey.currentState!.validate()){
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Traitement des données ...',style: TextStyle(color: Colors.white),)),
-                  );
-                }
-                 */
-                Navigator.pushNamed(context, MainScreen.routeName);
-                /*
-                return showDialog(
-                    context: context,
-                    builder: (context){
-                      return AlertDialog(
-                        title: Text("Alert Message"),
-                        content: Text(entryField.emailController.text+"\n"+entryField.passwordController.text),
-                        actions: [
-                          TextButton(onPressed: (){Navigator.of(context).pop(context);}, child: Text("OK"))
-                        ],
-                      );
-                    }
-                );
-                 */
-              }
+              press: signIn,
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.05,),
         ],
       ),
     );
   }
+
+  // methode de traitement de la connexion avec firebase
+  Future <void> signIn() async
+  {
+    final formState = _formKey.currentState;
+    if(formState!.validate()){
+      try {
+        final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: entryField.emailController.text, password: entryField.passwordController.text);
+        read.initCurrentUser(credential.user?.uid);
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainScreen()), (route) => false);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialogError(message: "Email ou mot de passe incorrete !");
+              }
+          );
+        } else if (e.code == 'wrong-password') {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialogError(message: "Email ou mot de passe incorrete !");
+              }
+          );
+        }
+        print(e.toString());
+      }
+    }
+  }
+
 }

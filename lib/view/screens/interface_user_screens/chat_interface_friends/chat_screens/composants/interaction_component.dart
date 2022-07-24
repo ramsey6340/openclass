@@ -9,7 +9,7 @@ class InteractionComponent extends StatefulWidget
 {
   InteractionComponent({Key? key,required this.receiver,required this.message,required this.nbreSMSMain}):super(key: key);
   final int nbreSMSMain;
-  final User receiver;
+  final UserModel receiver;
   final Message message;
 
   int get nbreSMS => nbreSMSMain;
@@ -31,7 +31,7 @@ class _InteractionComponentState extends State<InteractionComponent>
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(widget.receiver.imgProfile),
+        backgroundImage: AssetImage(widget.receiver.imgProfile!),
         radius: 25,
       ),
       trailing: Container(
@@ -44,8 +44,8 @@ class _InteractionComponentState extends State<InteractionComponent>
           child: (widget.nbreSMS<=0)?Text(''):((widget.nbreSMS<1000)?Text('${widget.nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(widget.receiver.firstName,style: styleTitle),
-      subtitle: Text(widget.message.text,overflow: TextOverflow.ellipsis,),
+      title: Text(widget.receiver.firstName!,style: styleTitle),
+      subtitle: Text(widget.message.content!,overflow: TextOverflow.ellipsis,),
       onTap: (){
         data_current_friend = widget.receiver;
         Navigator.pushNamed(context, ChatPageUser.routeName);

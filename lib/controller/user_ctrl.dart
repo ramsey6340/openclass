@@ -3,21 +3,21 @@ import '../model/user.dart';
 
 class UserCtrl
 {
-  User _user = User.empty();
+  UserModel _user = UserModel();
 
   // stream controller pour la classe User
-  final _streamCtrl = StreamController<User>();
+  final _streamCtrl = StreamController<UserModel>();
 
   // les getters des stream controller de la classe User
-  Sink<User> get sink => _streamCtrl.sink;
-  Stream<User> get stream => _streamCtrl.stream;
+  Sink<UserModel> get sink => _streamCtrl.sink;
+  Stream<UserModel> get stream => _streamCtrl.stream;
 
   // les methode de modification de la valeur
-  modifUser(User value){
+  modifUser(UserModel value){
     _user = value;
     sink.add(_user);
   }
-  modifId(int value){
+  modifId(String value){
     _user.id = value;
     sink.add(_user);
   }

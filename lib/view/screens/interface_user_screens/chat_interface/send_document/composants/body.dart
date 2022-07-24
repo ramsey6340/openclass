@@ -20,7 +20,7 @@ class Body extends StatelessWidget
               itemCount: data_list_messages.length,
               itemBuilder: (context, index){
                 final item = data_list_messages[index];
-                return ChatBubble(text: item.text, time: item.time, is_me: true);
+                return ChatBubble(text: item.content!, time: item.date_creation!, is_me: true);
               },
             ),
           ),

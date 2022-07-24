@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/view/composants/search_bar.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/classroom_screen/list_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'composants/body.dart';
 

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:openclass/data/data_current_classroom.dart';
+import 'package:openclass/data/data_user.dart';
+import 'package:openclass/view/composants/alert_dialogue.dart';
 import 'package:openclass/view/composants/entry_field.dart';
 import 'package:openclass/view/composants/next_button.dart';
 import 'package:openclass/view/constante.dart';
-import 'package:openclass/view/screens/login_screens/authentication/authentication_page.dart';
-import 'package:openclass/view/screens/login_screens/confirmation/confirmation_page.dart';
-
+import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
+import '../../../../../CRUD/create.dart';
+import '../../../../../CRUD/read.dart';
+import '../../../../../model/user.dart';
 import '../../../../composants/external_link.dart';
 
 class SignUpForm extends StatefulWidget
@@ -18,6 +24,8 @@ class _SignUpFormState extends State<SignUpForm>
   final _formKey = GlobalKey<FormState>();
   final entryField = EntryField();
   bool accepteCondition = false;
+  final create = Create();
+  final read = Read();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -69,18 +77,71 @@ class _SignUpFormState extends State<SignUpForm>
           NextButton(
               color: kColorPrimary,
               text: 'continuer',
-              press: (){
-                if(_formKey.currentState!.validate()){
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Traitement des données ...',style: TextStyle(color: Colors.white),)),
-                  );
-                }
-                Navigator.pushNamed(context, ConfirmationPage.routename);
-              }
+              press: signUp,
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.05,),
         ],
       ),
     );
   }
+
+  // methode d'enregistrement de l'utilisateur
+  Future <void> signUp() async
+  {
+    final formState = _formKey.currentState;
+    if(entryField.passwordController.text == entryField.confirmPasswordController.text){
+      if(accepteCondition){
+        if(formState!.validate()){
+          try {
+            final user = UserModel(
+              id: '0',
+              first_name: entryField.firstNameController.text,
+              last_name: entryField.lastNameController.text,
+              email: entryField.emailController.text,
+              tel_number: entryField.numberController.text,
+              img_profile: '',
+              password: entryField.passwordController.text,
+              date_birth: '2000',
+            );
+
+            // enregistrement de l'utilisateur dans Firebase
+            create.signUpUserInFirebase(user);
+            // connexion de l'utilisateur à son compte
+            final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: entryField.emailController.text, password: entryField.passwordController.text);
+            //read.initCurrentUser(credential.user?.uid);
+            // redirection de l'utilisateur vers la page d'accueil
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainScreen()), (route) => false);
+
+          } on FirebaseAuthException catch (e) {
+            if (e.code == 'weak-password') {
+              print('Le mot de passe fourni est trop faible.');
+            } else if (e.code == 'email-already-in-use') {
+              print('Un compte existe déjà pour cet e-mail.');
+            }
+          } catch (e) {
+            print(e);
+          }
+        }
+      }
+      else{
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context){
+              return AlertDialogError(message: "Veuillez accepter notre politique d'utilisation pour pouvoir continuer");
+            }
+        );
+      }
+    }
+    else{
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context){
+            return AlertDialogError(message: "Le mot de passe et la confirmation sont different !");
+          }
+      );
+    }
+  }
+
 }

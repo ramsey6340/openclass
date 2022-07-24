@@ -40,7 +40,7 @@ class AdhesionCtrl
     _adhesion.classroom = value;
     sink.add(_adhesion);
   }
-  modifUser(User value){
+  modifUser(UserModel value){
     _adhesion.user = value;
     sink.add(_adhesion);
   }

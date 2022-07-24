@@ -12,4 +12,7 @@ class UserProfilePage extends StatelessWidget
       child: Body(),
     );
   }
+
+
+  // methode de recuperation des données de l'utilisateur
 }

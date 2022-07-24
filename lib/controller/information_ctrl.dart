@@ -36,7 +36,7 @@ class InformationCtrl
     _information.salle = value;
     sink.add(_information);
   }
-  modifUser(User value){
+  modifUser(UserModel value){
     _information.user = value;
     sink.add(_information);
   }

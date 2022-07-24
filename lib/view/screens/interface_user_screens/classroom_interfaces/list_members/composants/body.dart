@@ -38,8 +38,8 @@ class Body extends StatelessWidget
                 itemBuilder: (context, index){
                   final item = members[index];
                   return Contact(
-                      imgContact: item.imgProfile,
-                      nameContact: item.firstName+' '+item.lastName,
+                      imgContact: item.imgProfile!,
+                      nameContact: item.firstName!+' '+item.lastName!,
                       action: IconButton(
                         icon: Icon(Icons.navigate_next, color: Colors.white,),
                         onPressed: (){},
@@ -54,9 +54,9 @@ class Body extends StatelessWidget
   }
 
   // methode pour selectionner les membres de la classe courente
-  List<User> chooseMembers(List<Adhesion> list_adhesion)
+  List<UserModel> chooseMembers(List<Adhesion> list_adhesion)
   {
-    List<User> list_members = [];
+    List<UserModel> list_members = [];
     for(int i=0; i<list_adhesion.length; i++){
       if(data_current_classroom.id == list_adhesion[i].classroom.id){
         list_members.add(list_adhesion[i].user);
