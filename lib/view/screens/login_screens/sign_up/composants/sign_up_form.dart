@@ -103,12 +103,13 @@ class _SignUpFormState extends State<SignUpForm>
               password: entryField.passwordController.text,
               date_birth: '2000',
             );
+            final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: entryField.emailController.text, password: entryField.passwordController.text);
 
             // enregistrement de l'utilisateur dans Firebase
             create.signUpUserInFirebase(user);
             // connexion de l'utilisateur à son compte
-            final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: entryField.emailController.text, password: entryField.passwordController.text);
-            //read.initCurrentUser(credential.user?.uid);
+
+            read.initCurrentUser(credential.user?.uid);
             // redirection de l'utilisateur vers la page d'accueil
             Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainScreen()), (route) => false);
 

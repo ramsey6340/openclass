@@ -18,7 +18,7 @@ class InteractionComponent extends StatelessWidget
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(classroom.image),
+        backgroundImage: AssetImage(classroom.imgProfile!),
         radius: 25,
       ),
       trailing: Container(
@@ -31,7 +31,7 @@ class InteractionComponent extends StatelessWidget
           child: (nbreSMS<=0)?Text(''):((nbreSMS<1000)?Text('${nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(classroom.name,style: styleTitle, overflow: TextOverflow.ellipsis,),
+      title: Text(classroom.nameClassroom!,style: styleTitle, overflow: TextOverflow.ellipsis,),
       subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
       onTap: (){
         /*
@@ -46,7 +46,7 @@ class InteractionComponent extends StatelessWidget
         );
          */
         //Navigator.pop(context);
-        Increment.idCurrentClassroom = classroom.id;
+        Increment.idCurrentClassroom = classroom.idClassroom!;
         Scaffold.of(context).openEndDrawer();
       },
     );

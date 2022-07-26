@@ -60,7 +60,7 @@ class DrawerHeaderTools extends StatelessWidget
   {
     int nbre = 0;
     for(int i=0; i<list_adhesion.length; i++){
-      if(data_current_classroom.id == list_adhesion[i].classroom.id){
+      if(data_current_classroom.idClassroom == list_adhesion[i].classroomId){
         nbre++;
       }
     }

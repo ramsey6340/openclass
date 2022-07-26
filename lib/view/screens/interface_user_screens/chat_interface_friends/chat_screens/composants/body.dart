@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_user.dart';
 import 'interaction_component.dart';
 import 'package:openclass/model/message.dart';
 import '../../../../../../data/data_message.dart';
@@ -41,7 +42,7 @@ class _BodyState extends State<Body>
                 //ici on reinitialisera le nombre de message non lu à zéro
               }
             },
-            child: InteractionComponent(receiver: item.receiver!, message: item, nbreSMSMain: 12),
+            child: InteractionComponent(receiver: currentUser, message: item, nbreSMSMain: 12),
           );
         },
       ),

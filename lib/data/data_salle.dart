@@ -4,9 +4,12 @@ import 'data_category_salle.dart';
 /* ========================== Instances de la classe  Salle ========================== */
 List<Salle> data_list_salles =
 [
+  /*
   Salle(1, 'géneral', '10/07/2022', false, data_List_categories_salle[0]),
   Salle(2, 'géneral', '10/07/2022', false, data_List_categories_salle[1]),
   Salle(3, 'géneral', '10/07/2022', false, data_List_categories_salle[2]),
+
+   */
 
 /*
   Salle(10, 'coranique géneral', '02/02/2022', false, data_List_categories_salle[3]),

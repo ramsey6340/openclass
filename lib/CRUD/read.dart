@@ -4,7 +4,7 @@ import '../data/data_user.dart';
 
 class Read
 {
-  Future<UserModel> initCurrentUser(String? docId) async {
+  Future<void> initCurrentUser(String? docId) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     final ref = db.collection("users").doc(docId).withConverter(
       fromFirestore: UserModel.fromFirestore,
@@ -13,6 +13,5 @@ class Read
     final docSnap = await ref.get();
 
     currentUser = docSnap.data()!; // Convert to City object
-    return currentUser;
   }
 }

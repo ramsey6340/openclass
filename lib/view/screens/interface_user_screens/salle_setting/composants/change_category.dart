@@ -8,7 +8,7 @@ import '../../../../constante.dart';
 class ChangeCategory extends StatefulWidget
 {
   static String routeName = '/change_category';
-  var initCategoy = data_current_salle.categorySalle;
+  var initCategoy = data_current_salle.categorySalleId;
   @override
   State<ChangeCategory> createState() => _ChangeCategoryState();
 }
@@ -44,7 +44,7 @@ class _ChangeCategoryState extends State<ChangeCategory>
                   children: [
                     SizedBox(height: 10,),
                     Text(
-                      "Passer de la catégorie "+widget.initCategoy.name+" à la catégorie ",
+                      "Passer de la catégorie +widget.initCategoy.name+ à la catégorie ",
                       style: TextStyle(fontSize: 18,),
                     ),
                     SizedBox(height: 10,),
@@ -55,7 +55,7 @@ class _ChangeCategoryState extends State<ChangeCategory>
                             //index = index-1;
                             var item = data_current_list_categories_salle[index];
                             return CategoryItem(
-                              title: item.name,
+                              title: item.nameCategory!,
                               description: '',
                               leading: null,
                               radio: Radio(

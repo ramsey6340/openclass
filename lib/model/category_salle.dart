@@ -1,59 +1,87 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'enum_type.dart';
-import 'classroom.dart';
 
 class CategorySalle
 {
-  late int _id;
-  late String _name;
-  late String _creation_date;
-  late String _description;
-  late bool _is_private;
-  late EnumCategorySalle _type;
-  late Classroom _classroom;
+  String? id_category;
+  String? name_category;
+  String? creation_date;
+  String? description_category;
+  bool? is_private;
+  String? type_category;
+  String? classroom_id;
 
-  CategorySalle(this._id, this._name, this._creation_date, this._description, this._is_private, this._type,this._classroom);
-  CategorySalle.empty()
-  {
-    this._id = 0;
-    this._name = "";
-    this._creation_date = "";
-    this._description = "";
-    this._is_private = false;
-    this._type = EnumCategorySalle.discussion;
-    this._classroom = Classroom.empty();
-  }
+  CategorySalle(
+      {this.id_category,
+      this.name_category,
+      this.creation_date,
+      this.description_category,
+      this.is_private,
+      this.type_category,
+      this.classroom_id});
+
 
   // les getters
-  int get id => _id;
-  String get name => _name;
-  String get creationDate => _creation_date;
-  String get description => _description;
-  bool get isPrivate => _is_private;
-  EnumCategorySalle get type => _type;
-  Classroom get classroom => _classroom;
+  String? get idCategory => id_category;
+  String? get nameCategory => name_category;
+  String? get creationDate => creation_date;
+  String? get descriptionCategory => description_category;
+  bool? get isPrivate => is_private;
+  String? get typeCategory => type_category;
+  String? get classroomId => classroom_id;
   //les setters
-  set id(int value){
-    _id = value;
+  set idCategory(String? value){
+    id_category = value;
   }
-  set name(String value){
-    _name = value;
+  set nameCategory(String? value){
+    name_category = value;
   }
-  set creationDate(String value){
-    _creation_date = value;
+  set creationDate(String? value){
+    creation_date = value;
   }
-  set description(String value){
-    _description = value;
+  set descriptionCategory(String? value){
+    description_category = value;
   }
-  set isPrivate(bool value){
-    _is_private = value;
+  set isPrivate(bool? value){
+    is_private = value;
   }
-  set type(EnumCategorySalle value){
-    _type = value;
+  set typeCategory(String? value){
+    type_category = value;
   }
-  set classroom(Classroom value){
-    _classroom = value;
+  set classroomId(String? value){
+    classroom_id = value;
   }
 
+
+  // convertir la map en classe CategorySalle
+  factory CategorySalle.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      SnapshotOptions? options,
+      ) {
+    final data = snapshot.data();
+    return CategorySalle(
+      id_category: data?['id_category'],
+      name_category: data?['name_category'],
+      creation_date: data?['creation_date'],
+      description_category: data?['description_category'],
+      is_private: data?['is_private'],
+      type_category: data?['type_category'],
+      classroom_id: data?['classroom_id'],
+    );
+  }
+
+  // convertir la classe CategorySalle en map
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (id_category != null) "id_category": id_category,
+      if (name_category != null) "name_category": name_category,
+      if (creation_date != null) "creation_date": creation_date,
+      if (description_category != null) "description_category": description_category,
+      if (is_private != null) "is_private": is_private,
+      if (type_category != null) "type_category": type_category,
+      if (classroom_id != null) "classroom_id": classroom_id,
+    };
+  }
   //les methodes
   /*
 

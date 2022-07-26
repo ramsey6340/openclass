@@ -58,8 +58,8 @@ class Body extends StatelessWidget
   {
     List<UserModel> list_members = [];
     for(int i=0; i<list_adhesion.length; i++){
-      if(data_current_classroom.id == list_adhesion[i].classroom.id){
-        list_members.add(list_adhesion[i].user);
+      if(data_current_classroom.idClassroom == list_adhesion[i].classroom_id){
+        //list_members.add(list_adhesion[i].user);
       }
     }
     return list_members;

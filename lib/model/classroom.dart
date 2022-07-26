@@ -1,57 +1,84 @@
-import 'responsible.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Classroom
 {
-  late int _id;
-  late String _name;
-  late String _image;
-  late String _creation_date;
-  late String _description;
-  late bool _is_private;
-  late Responsible _responsible;
+  String? id_classroom;
+  String? name_classroom;
+  String? img_profile;
+  String? creation_date;
+  String? description_classroom;
+  bool? is_private;
+  String? responsible_id;
 
-  Classroom(this._id, this._name, this._image, this._creation_date, this._description, this._is_private, this._responsible);
-  Classroom.empty()
-  {
-    this._id = 0;
-    this._name = "";
-    this._image = "";
-    this._creation_date = "";
-    this._description = "";
-    this._is_private = false;
-    this._responsible = Responsible.empty();
-  }
+  Classroom(
+      {this.id_classroom,
+      this.name_classroom,
+      this.img_profile,
+      this.creation_date,
+      this.description_classroom,
+      this.is_private,
+      this.responsible_id});
 
   //les accesseurs
-  int get id => _id;
-  String get name => _name;
-  String get image => _image;
-  String get creationDate => _creation_date;
-  String get description => _description;
-  bool get isPrivate => _is_private;
-  Responsible get responsible => _responsible;
+  String? get idClassroom => id_classroom;
+  String? get nameClassroom => name_classroom;
+  String? get imgProfile => img_profile;
+  String? get creationDate => creation_date;
+  String? get descriptionClassroom => description_classroom;
+  bool? get isPrivate => is_private;
+  String? get responsibleId => responsible_id;
 
   // les mutateurs
-  set id(int value){
-    _id = value;
+  set id(String? value){
+    id_classroom = value;
   }
-  set name(String value){
-    _name = value;
+  set name(String? value){
+    name_classroom = value;
   }
-  set image(String value){
-    _image = value;
+  set image(String? value){
+    img_profile = value;
   }
-  set creationDate(String value){
-    _creation_date = value;
+  set creationDate(String? value){
+    creation_date = value;
   }
-  set description(String value){
-    _description = value;
+  set descriptionClassroom(String? value){
+    description_classroom = value;
   }
-  set isPrivate(bool value){
-    _is_private = value;
+  set isPrivate(bool? value){
+    is_private = value;
   }
-  set responsible(Responsible value){
-    _responsible = value;
+  set responsibleId(String? value){
+    responsible_id = value;
+  }
+
+  // convertir la map en classe Classroom
+  factory Classroom.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      SnapshotOptions? options,
+      ) {
+    final data = snapshot.data();
+    return Classroom(
+      id_classroom: data?['id_classroom'],
+      name_classroom: data?['name_classroom'],
+      img_profile: data?['img_profile'],
+      creation_date: data?['creation_date'],
+      is_private: data?['is_private'],
+      description_classroom: data?['description_classroom'],
+      responsible_id: data?['responsible_id'],
+    );
+  }
+
+  // convertir la classe Classroom en map
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (id_classroom != null) "id_classroom": id_classroom,
+      if (name_classroom != null) "name_classroom": name_classroom,
+      if (img_profile != null) "img_profile": img_profile,
+      if (creation_date != null) "creation_date": creation_date,
+      if (description_classroom != null) "description_classroom": description_classroom,
+      if (is_private != null) "is_private": is_private,
+      if (responsible_id != null) "responsible_id": responsible_id,
+    };
   }
 
 }

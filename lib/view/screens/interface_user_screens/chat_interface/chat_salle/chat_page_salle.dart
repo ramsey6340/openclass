@@ -19,7 +19,7 @@ class _ChatPageUserState extends State<ChatPageSalle>
     return Scaffold(
       appBar: ToolsBar.appBar(
           Icon(Icons.navigate_before),
-          data_current_salle.name,
+          data_current_salle.nameSalle,
           Icon(Icons.more_horiz, color: Colors.white,),
               (){
             Navigator.pop(context);

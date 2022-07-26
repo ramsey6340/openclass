@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/CRUD/create.dart';
+import 'package:openclass/data/data_current.dart';
 import 'package:openclass/data/data_salle.dart';
 import 'package:openclass/increment.dart';
 import 'package:openclass/model/category_salle.dart';
@@ -21,6 +23,7 @@ class _BodyState extends State<Body>
 {
   final entryField = EntryField();
   bool _privateSalle = false;
+  Create create = Create();
   @override
   build(BuildContext context)
   {
@@ -37,18 +40,7 @@ class _BodyState extends State<Body>
                 (){
                   Navigator.pushNamed(context, MainScreen.routeName);
                 },
-                (){
-                  createSalle(entryField.textController.text, _privateSalle, widget.categorySalle);
-                  if(_privateSalle == false){
-                    Navigator.pushNamed(context, MainScreen.routeName);
-                    // le drawer ne souvre pas, cherche une solution
-                    Scaffold.of(context).openEndDrawer();
-                  }
-                  else{
-                    Navigator.pushNamed(context, AddFriendsPage.routeName);
-                  }
-                  //(_privateSalle == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
-                }
+                creationOfSalle,
             ),
             Expanded(
                 child: ListView(
@@ -92,11 +84,37 @@ class _BodyState extends State<Body>
     );
   }
 
-  // methode de creation d'une instance de la classe Salle
-  void createSalle(String name, bool is_private, CategorySalle categorySalle)
+  // methode de creation d'une salle
+  void creationOfSalle()
   {
-    Salle salle = Salle(Increment.idSalle, name, '12/12/2019', is_private, categorySalle);
-    data_list_salles.add(salle);
+    try{
+
+      // creation d'une instance de la salle
+      final salle = Salle(
+          id_salle: '',
+          name_salle: entryField.textController.text,
+          creation_date: '',
+          is_private: _privateSalle,
+          category_salle_id: current_category.id_category,
+      );
+
+      // création de la salle dans Firebase
+      create.creationSalle(salle);
+
+      // redirection vers la prochaine page en fonction de la portée (privée ou public) de la salle
+      if(_privateSalle == false){
+        Navigator.pushNamed(context, MainScreen.routeName);
+        // le drawer ne souvre pas, cherche une solution
+        Scaffold.of(context).openEndDrawer();
+      }
+      else{
+        Navigator.pushNamed(context, AddFriendsPage.routeName);
+      }
+
+    }catch(e){
+      print(e);
+    }
   }
+
 
 }

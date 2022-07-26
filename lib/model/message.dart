@@ -4,32 +4,32 @@ import 'user.dart';
 
 class Message
 {
-  UserModel? sender;
-  UserModel? receiver;
+  String? sender_id;
+  String? receiver_id;
   String? date_creation;
   String? content;
   String? url_image;
 
   Message(
-      {this.sender,
-      this.receiver,
+      {this.sender_id,
+      this.receiver_id,
       this.date_creation,
       this.content,
       this.url_image});
 
   // les getters
-  UserModel? get senderM => this.sender;
-  UserModel? get receiverM => this.receiver;
+  String? get senderId => this.sender_id;
+  String? get receiverId => this.receiver_id;
   String ? get dateCreation => this.date_creation;
   String? get contentM => this.content;
   String? get urlImage => this.url_image;
 
   // les setters
-  set senderM(UserModel? value){
-    sender = value;
+  set senderM(String? value){
+    sender_id = value;
   }
-  set receiverM(UserModel? value){
-    receiver = value;
+  set receiverM(String? value){
+    receiver_id = value;
   }
   set dateCreation(String? value){
     date_creation = value;
@@ -48,8 +48,8 @@ class Message
       ) {
     final data = snapshot.data();
     return Message(
-      sender: data?['sender'],
-      receiver: data?['receiver'],
+      sender_id: data?['sender'],
+      receiver_id: data?['receiver'],
       date_creation: data?['date_creation'],
       content: data?['content'],
       url_image: data?['url_image'],
@@ -59,8 +59,8 @@ class Message
   // convertir la classe UserModel en map
   Map<String, dynamic> toFirestore() {
     return {
-      if (sender != null) "sender": sender,
-      if (receiver != null) "receiver": receiver,
+      if (sender_id != null) "sender": sender_id,
+      if (receiver_id != null) "receiver": receiver_id,
       if (date_creation != null) "date_creation": date_creation,
       if (content != null) "content": content,
       if (url_image != null) "url_image": url_image,

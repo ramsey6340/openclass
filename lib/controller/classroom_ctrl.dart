@@ -4,7 +4,7 @@ import '../model/responsible.dart';
 
 class ClassroomCtrl
 {
-  Classroom _classroom = Classroom.empty();
+  Classroom _classroom = Classroom();
   // stream controller pour la classe Classroom
   final _streamCrtl = StreamController<Classroom>();
 
@@ -17,7 +17,7 @@ class ClassroomCtrl
     _classroom = value;
     sink.add(_classroom);
   }
-  modifId(int value){
+  modifId(String? value){
     _classroom.id = value;
     sink.add(_classroom);
   }
@@ -33,16 +33,16 @@ class ClassroomCtrl
     _classroom.creationDate = value;
     sink.add(_classroom);
   }
-  modifDescription(String value){
-    _classroom.description = value;
+  modifDescription(String? value){
+    _classroom.descriptionClassroom = value;
     sink.add(_classroom);
   }
   modifIsPrivate(bool value){
     _classroom.isPrivate = value;
     sink.add(_classroom);
   }
-  modifResponsible(Responsible value){
-    _classroom.responsible = value;
+  modifResponsible(String? value){
+    _classroom.responsibleId = value;
     sink.add(_classroom);
   }
 

@@ -40,7 +40,7 @@ class _BodyState extends State<Body>
             Expanded(
                 child: ListView(
                   children: [
-                    PhotoProfile(imgProfile: data_current_classroom.image, nameUser: data_current_classroom.name, dateBirth: data_current_classroom.creationDate),
+                    PhotoProfile(imgProfile: data_current_classroom.imgProfile, nameUser: data_current_classroom.nameClassroom, dateBirth: data_current_classroom.creationDate),
                     SizedBox(height: 50,),
                     Text("PARAMETRES"),
                     InteractionComponent(

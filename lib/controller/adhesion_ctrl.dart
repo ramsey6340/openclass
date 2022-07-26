@@ -6,7 +6,7 @@ import '../model/user.dart';
 
 class AdhesionCtrl
 {
-  Adhesion _adhesion = Adhesion.empty();
+  Adhesion _adhesion = Adhesion();
 
   // stream controller pour la classe Adhesion
   final _streamCtrl = StreamController<Adhesion>();
@@ -20,28 +20,28 @@ class AdhesionCtrl
     _adhesion = value;
     sink.add(_adhesion);
   }
-  modifId(int value){
-    _adhesion.id = value;
+  modifId(String? value){
+    _adhesion.idAdhesion = value;
     sink.add(_adhesion);
   }
-  modifDate(String value){
-    _adhesion.date = value;
+  modifDate(String? value){
+    _adhesion.adhesion_date = value;
     sink.add(_adhesion);
   }
-  modifType(EnumTypeAdhesion value){
-    _adhesion.type = value;
+  modifType(EnumTypeAdhesion? value){
+    _adhesion.adhesion_type = value;
     sink.add(_adhesion);
   }
   modifReceiveNotification(bool value){
     _adhesion.receiveNotification = value;
     sink.add(_adhesion);
   }
-  modifClassroom(Classroom value){
-    _adhesion.classroom = value;
+  modifClassroom(String? value){
+    _adhesion.classroomId = value;
     sink.add(_adhesion);
   }
-  modifUser(UserModel value){
-    _adhesion.user = value;
+  modifUser(String? value){
+    _adhesion.userId = value;
     sink.add(_adhesion);
   }
 

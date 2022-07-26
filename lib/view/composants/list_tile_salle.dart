@@ -15,11 +15,11 @@ class ListTileSalle extends StatelessWidget
       iconColor: Colors.white,
       textColor: Colors.white,
       horizontalTitleGap: 0,
-      title: Text(salleInit.name,style: TextStyle(fontSize: 16,),),
+      title: Text(salleInit.nameSalle!,style: TextStyle(fontSize: 16,),),
       leading: leading,
       onTap: (){
         data_current_salle = salleInit;
-        data_current_category = data_current_salle.categorySalle;
+        //data_current_category = data_current_salle.categorySalle;
         Navigator.push(
             context,
             MaterialPageRoute(

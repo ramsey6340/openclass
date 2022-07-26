@@ -44,7 +44,7 @@ class _BodyState extends State<Body>
                   child: ListView.builder(
                     itemCount: data_current_list_categories_salle.length,
                     itemBuilder: (context, index){
-                      return ExpansionTileSalle(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CategorySettingPage(), settings: RouteSettings(arguments: data_current_list_categories_salle[index])));}, nameCategory: data_current_list_categories_salle[index].name, sallesInit: chooseSalle(data_current_list_categories_salle[index].id, data_current_list_salle), index: index,);
+                      return ExpansionTileSalle(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CategorySettingPage(), settings: RouteSettings(arguments: data_current_list_categories_salle[index])));}, nameCategory: data_current_list_categories_salle[index].nameCategory!, sallesInit: chooseSalle(data_current_list_categories_salle[index].idCategory, data_current_list_salle), index: index,);
                     },
                   ),
                 ),
@@ -56,11 +56,11 @@ class _BodyState extends State<Body>
 
 
   //methode pour choisir les salles correspondant à chaque categorie
-  static List<Salle> chooseSalle(int id_category, List<Salle> list_salles)
+  static List<Salle> chooseSalle(String? id_category, List<Salle> list_salles)
   {
     List<Salle> salles =[];
     for(int i=0; i<list_salles.length; i++){
-      if(list_salles[i].categorySalle.id == id_category){
+      if(list_salles[i].categorySalleId == id_category){
         salles.add(list_salles[i]);
       }
     }

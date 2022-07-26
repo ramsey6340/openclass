@@ -17,10 +17,10 @@ Classroom data_current_classroom =   data_list_classrooms[0];
 int data_current_number_of_member = 0;
 
 // la catégorie de de salle courante
-CategorySalle data_current_category = CategorySalle.empty();
+CategorySalle data_current_category = CategorySalle();
 
 // la salle courante
-Salle data_current_salle = Salle.empty();
+Salle data_current_salle = Salle();
 
 // la liste de catégorie de la classe courante
 List<CategorySalle> data_current_list_categories_salle = [];

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_category_salle.dart';
-import 'package:openclass/increment.dart';
+import 'package:openclass/CRUD/create.dart';
+import 'package:openclass/data/data_current.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/model/classroom.dart';
-import 'package:openclass/model/enum_type.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import '../../../main_screen.dart';
 import '../../add_friends/add_friends_page.dart';
@@ -23,7 +22,7 @@ class _BodyState extends State<Body>
 {
   final entryField = EntryField();
   bool _privateCategory = false;
-  ChooseClasseCategorie chooseClasseCategorie = ChooseClasseCategorie();
+  Create create = Create();
   @override
   build(BuildContext context)
   {
@@ -41,10 +40,7 @@ class _BodyState extends State<Body>
                 (){
                   Navigator.of(context).pop();
                 },
-                (){
-                  createClassroom(entryField.textController.text, entryField.multiTextController.text, _privateCategory, chooseClasseCategorie.categoryChoose, widget.classroom);
-                  (_privateCategory == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
-                }
+                creationOfCategory,// la methode à appeler pour le traitement
             ),
 
             Expanded(
@@ -107,10 +103,31 @@ class _BodyState extends State<Body>
     );
   }
 
-  // methode de creation d'une instance de la classe Salle
-  void createClassroom(String name, String description, bool is_private, EnumCategorySalle type, Classroom classroom)
+
+  // methode de création d'une catégorie
+  Future<void> creationOfCategory() async
   {
-    CategorySalle categorySalle = CategorySalle(Increment.idCategory, name, '12/12/2022', description, is_private, type, classroom);
-    data_List_categories_salle.add(categorySalle);
+    try{
+      // creation d'une instance de la categorie
+      final category = CategorySalle(
+        id_category: '',
+        name_category: entryField.textController.text,
+        creation_date: '',
+        description_category: entryField.multiTextController.text,
+        is_private: _privateCategory,
+        type_category: ChooseClasseCategorie.categoryChoose,
+        classroom_id: current_classroom.id_classroom,
+      );
+
+      // création de la catégorie dans Firebase
+      create.creationCategorySalle(category);
+
+      // redirection vers la prochaine page en fonction de la portée (privée ou public) de la catégorie
+      (_privateCategory == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
+
+    }catch(e){
+      print(e);
+    }
   }
+
 }

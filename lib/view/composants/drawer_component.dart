@@ -27,11 +27,11 @@ class _DrawerComponentState extends State<DrawerComponent>
   Widget build(BuildContext context) {
     //final classroomValue = ModalRoute.of(context)!.settings.arguments as Classroom;
     //final classroomValue = data_list_classrooms[Increment.id_current_classroom-1];
-    data_current_classroom = data_list_classrooms[Increment.id_current_classroom-1];
+    //data_current_classroom = data_list_classrooms[Increment.id_current_classroom];
     //classroom.modifClassroom(classroomValue);
     classroom.modifClassroom(data_current_classroom);
     //final list_categories = chooseCategorySalle(classroomValue.id, data_List_categories_salle);
-    data_current_list_categories_salle = chooseCategoriesSalle(data_current_classroom.id, data_List_categories_salle);
+    data_current_list_categories_salle = chooseCategoriesSalle(data_current_classroom.idClassroom, data_List_categories_salle);
     data_current_list_salle = chooseCurrentSalles(data_current_list_categories_salle, data_list_salles);
 
     return Drawer(
@@ -39,17 +39,17 @@ class _DrawerComponentState extends State<DrawerComponent>
       width: MediaQuery.of(context).size.width * 0.82,
       child: StreamBuilder<Classroom>(
         stream: classroom.stream,
-        initialData: Classroom.empty(),
+        initialData: Classroom(),
         builder: (context, snapshot){
           return Column(
             children: <Widget>[
-              DrawerHeaderTools(nameClasse: snapshot.data!.name, classroom: data_current_classroom,),
+              DrawerHeaderTools(nameClasse: snapshot.data!.name_classroom!, classroom: data_current_classroom,),
               Divider(color: Colors.white,height: 20,),
               Expanded(
                 child: ListView.builder(
                   itemCount: data_current_list_categories_salle.length,
                   itemBuilder: (context, index){
-                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: data_current_list_categories_salle[index])));}, nameCategory: data_current_list_categories_salle[index].name, sallesInit: chooseSalles(data_current_list_categories_salle[index].id, data_current_list_salle), index: index,);
+                    return ExpansionTileTool(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CreateSallePage(), settings: RouteSettings(arguments: data_current_list_categories_salle[index])));}, nameCategory: data_current_list_categories_salle[index].nameCategory, sallesInit: chooseSalles(data_current_list_categories_salle[index].idCategory, data_current_list_salle), index: index,);
                   },
                 ),
               ),
@@ -66,11 +66,11 @@ class _DrawerComponentState extends State<DrawerComponent>
   }
 
   //methode pour choisir les salles correspondant à chaque categorie
-  static List<Salle> chooseSalles(int id_category, List<Salle> list_salles)
+  static List<Salle> chooseSalles(String? id_category, List<Salle> list_salles)
   {
     List<Salle> salles =[];
     for(int i=0; i<list_salles.length; i++){
-      if(list_salles[i].categorySalle.id == id_category){
+      if(list_salles[i].categorySalleId == id_category){
         salles.add(list_salles[i]);
       }
     }
@@ -84,7 +84,7 @@ class _DrawerComponentState extends State<DrawerComponent>
     List<Salle> salles =[];
     for(int i=0; i<list_categories.length; i++){
       for(int j=0; j<list_salles.length; j++){
-        if(list_salles[j].categorySalle.id == list_categories[i].id){
+        if(list_salles[j].categorySalleId == list_categories[i].idCategory){
           salles.add(list_salles[j]);
         }
       }
@@ -95,11 +95,11 @@ class _DrawerComponentState extends State<DrawerComponent>
 
 
   //methode pour choisir les categories correspondant à chaque classe
-  static List<CategorySalle> chooseCategoriesSalle(int id_classroom, List<CategorySalle> list_categories)
+  static List<CategorySalle> chooseCategoriesSalle(String? id_classroom, List<CategorySalle> list_categories)
   {
     List<CategorySalle> categories = [];
     for(int i=0; i<list_categories.length; i++){
-      if(list_categories[i].classroom.id == id_classroom){
+      if(list_categories[i].classroomId == id_classroom){
         categories.add(list_categories[i]);
       }
     }

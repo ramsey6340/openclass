@@ -8,10 +8,10 @@ class ChooseClasseCategorie extends StatefulWidget
 {
   @override
   State<ChooseClasseCategorie> createState() => _ChooseClasseCategorieState();
-  EnumCategorySalle _categorySalle = EnumCategorySalle.discussion;
+  static String _categorySalle = EnumCategorySalle.discussion;
 
   // methode pour retourner le type de categorie choisie
-  EnumCategorySalle get categoryChoose => _categorySalle;
+  static String get categoryChoose => _categorySalle;
 
 }
 
@@ -30,11 +30,11 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
               leading: Icon(Icons.picture_in_picture, color: Colors.white,),
               radio: Radio(
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
-                groupValue: widget._categorySalle,
+                groupValue: ChooseClasseCategorie._categorySalle,
                 value: EnumCategorySalle.discussion,
                 onChanged: (value){
                   setState((){
-                    widget._categorySalle = value;
+                    ChooseClasseCategorie._categorySalle = value;
                   });
                 },
               )
@@ -47,11 +47,11 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
               radio: Radio(
                 activeColor: Color(0xFF3979d4),
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
-                groupValue: widget._categorySalle,
+                groupValue: ChooseClasseCategorie._categorySalle,
                 value: EnumCategorySalle.bibliotheque,
                 onChanged: (value){
                   setState((){
-                    widget._categorySalle = value;
+                    ChooseClasseCategorie._categorySalle = value;
                   });
                 },
               )
@@ -64,11 +64,11 @@ class _ChooseClasseCategorieState extends State<ChooseClasseCategorie>
               radio: Radio(
                 fillColor: MaterialStateProperty.all(Color(0xFF3979d4)),
                 activeColor: Color(0xFF3979d4),
-                groupValue: widget._categorySalle,
+                groupValue: ChooseClasseCategorie._categorySalle,
                 value: EnumCategorySalle.information,
                 onChanged: (value){
                   setState((){
-                    widget._categorySalle = value;
+                    ChooseClasseCategorie._categorySalle = value;
                   });
                 },
               )

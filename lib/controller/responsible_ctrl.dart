@@ -3,7 +3,7 @@ import 'package:openclass/model/responsible.dart';
 
 class ResponsibleCtrl
 {
-  Responsible _responsible = Responsible.empty();
+  Responsible _responsible = Responsible();
 
   // stream controller pour la classe Responsible
   final _streamCtrl = StreamController<Responsible>();

@@ -6,7 +6,7 @@ import '../../model/salle.dart';
 class ExpansionTileTool extends StatefulWidget {
   ExpansionTileTool({Key? key, required this.addNavigator, required this.nameCategory, required this.sallesInit, required this.index}):super(key: key);
   final Function addNavigator;
-  final String nameCategory;
+  final String? nameCategory;
   final List<Salle> sallesInit;
   final int index;
   @override
@@ -46,7 +46,8 @@ class _ExpansionTileToolState extends State<ExpansionTileTool>{
     for(int i=0; i<widget.sallesInit.length; i++){
       final temp = ListTileSalle(
           salleInit: widget.sallesInit[i],
-          leading: (widget.sallesInit[i].categorySalle.type == EnumCategorySalle.information)?iconInfo:(widget.sallesInit[i].categorySalle.type == EnumCategorySalle.bibliotheque)?iconBiblio:iconDiscussion,
+          leading: iconDiscussion,
+          //leading: (widget.sallesInit[i].categorySalle.type == EnumCategorySalle.information)?iconInfo:(widget.sallesInit[i].categorySalle.type == EnumCategorySalle.bibliotheque)?iconBiblio:iconDiscussion,
       );
       list_salles.add(temp);
     }

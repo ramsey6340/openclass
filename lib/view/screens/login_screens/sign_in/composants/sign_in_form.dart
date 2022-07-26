@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:openclass/CRUD/read.dart';
-import 'package:openclass/data/data_user.dart';
-import 'package:openclass/model/user.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/login_screens/forgot_password/forgot_password_page.dart';
 import '../../../../composants/alert_dialogue.dart';
@@ -11,7 +9,6 @@ import '../../../../composants/external_link.dart';
 import '../../../../composants/next_button.dart';
 import '../../../../constante.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class SignInForm extends StatefulWidget

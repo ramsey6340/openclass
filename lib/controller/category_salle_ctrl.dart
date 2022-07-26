@@ -6,7 +6,7 @@ import '../model/category_salle.dart';
 
 class CategorySalleCtrl
 {
-  CategorySalle _categorySalle = CategorySalle.empty();
+  CategorySalle _categorySalle = CategorySalle();
   // stream controller pour la classe CategorySalle
   final _streamCtrl = StreamController<CategorySalle>();
 
@@ -19,28 +19,28 @@ class CategorySalleCtrl
     _categorySalle = value;
     sink.add(_categorySalle);
   }
-  modifId(int value){
-    _categorySalle.id = value;
+  modifId(String? value){
+    _categorySalle.idCategory = value;
     sink.add(_categorySalle);
   }
-  modifName(String value){
-    _categorySalle.name = value;
+  modifName(String? value){
+    _categorySalle.nameCategory = value;
     sink.add(_categorySalle);
   }
-  modifCreationDate(String value){
+  modifCreationDate(String? value){
     _categorySalle.creationDate = value;
     sink.add(_categorySalle);
   }
-  modifDescription(String value){
-    _categorySalle.description = value;
+  modifDescription(String? value){
+    _categorySalle.descriptionCategory = value;
     sink.add(_categorySalle);
   }
-  modifType(EnumCategorySalle value){
-    _categorySalle.type = value;
+  modifType(String? value){
+    _categorySalle.typeCategory = value;
     sink.add(_categorySalle);
   }
-  modifClassroom(Classroom value){
-    _categorySalle.classroom = value;
+  modifClassroom(String? value){
+    _categorySalle.classroomId = value;
     sink.add(_categorySalle);
   }
   // la methode dispose

@@ -52,8 +52,9 @@ class _ExpansionTileSalleState extends State<ExpansionTileSalle>{
         iconColor: Colors.white,
         textColor: Colors.white,
         horizontalTitleGap: 0,
-        title: Text(widget.sallesInit[i].name,style: TextStyle(fontSize: 16,),),
-        leading: (widget.sallesInit[i].categorySalle.type == EnumCategorySalle.information)?iconInfo:(widget.sallesInit[i].categorySalle.type == EnumCategorySalle.bibliotheque)?iconBiblio:iconDiscussion,
+        title: Text(widget.sallesInit[i].nameSalle!,style: TextStyle(fontSize: 16,),),
+        leading: iconDiscussion,
+        //leading: (widget.sallesInit[i].categorySalle.type == EnumCategorySalle.information)?iconInfo:(widget.sallesInit[i].categorySalle.type == EnumCategorySalle.bibliotheque)?iconBiblio:iconDiscussion,
         onTap: (){
           data_current_salle = widget.sallesInit[i];
           Navigator.push(
