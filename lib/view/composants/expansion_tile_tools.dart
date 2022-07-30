@@ -57,7 +57,13 @@ class _ExpansionTileToolState extends State<ExpansionTileTool>{
                 onTap: (){
                   current_salle = item;
                   current_peer_id = current_salle.id_salle;
-                  current_group_id = current_user.id+'-'+current_peer_id;
+                  current_group_id = '';
+                  if(current_user.id.hashCode <= current_peer_id.hashCode){
+                    current_group_id = current_user.id+'-'+current_peer_id;
+                  }
+                  else{
+                    current_group_id = current_peer_id+'-'+current_user.id;
+                  }
                   Navigator.push(
                       context,
                       MaterialPageRoute(

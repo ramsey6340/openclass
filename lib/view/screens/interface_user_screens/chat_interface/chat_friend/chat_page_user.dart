@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/constante.dart';
 import '../../../../../data/data_current.dart';
 import 'composants/chat_page_setting.dart';
@@ -22,7 +21,7 @@ class _ChatPageUserState extends State<ChatPageUser>
           Icon(Icons.navigate_before),
           current_friend.firstName!,
           Icon(Icons.more_horiz, color: Colors.white,),
-              (){
+          (){
             Navigator.pop(context);
           },
           (){
