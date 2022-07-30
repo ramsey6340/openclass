@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
-import 'package:openclass/data/data_salle.dart';
-import 'package:openclass/increment.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import '../../../../../../model/salle.dart';
@@ -13,8 +11,6 @@ import '../../add_friends/add_friends_page.dart';
 
 class Body extends StatefulWidget
 {
-  Body({Key?key, required this.categorySalle}):super(key: key);
-  final CategorySalle categorySalle;
   @override
   State<Body> createState() => _BodyState();
 
@@ -84,18 +80,19 @@ class _BodyState extends State<Body>
     );
   }
 
-  // methode de creation d'une salle
+  // =================================methode de creation d'une salle=================================
   void creationOfSalle()
   {
     try{
 
       // creation d'une instance de la salle
       final salle = Salle(
-          id_salle: '',
+          '',
+        current_category.id_category,
           name_salle: entryField.textController.text,
           creation_date: '',
           is_private: _privateSalle,
-          category_salle_id: current_category.id_category,
+
       );
 
       // création de la salle dans Firebase
@@ -115,6 +112,6 @@ class _BodyState extends State<Body>
       print(e);
     }
   }
-
+  // ================================= FIN =================================
 
 }

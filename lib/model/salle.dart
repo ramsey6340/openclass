@@ -1,30 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'category_salle.dart';
-
 class Salle
 {
-  String? id_salle;
+  String id_salle;
   String? name_salle;
   String? creation_date;
   bool? is_private;
-  String? category_salle_id;
+  String category_salle_id;
 
   Salle(
-      {this.id_salle,
+      this.id_salle,
+      this.category_salle_id,
+      {
       this.name_salle,
       this.creation_date,
       this.is_private,
-      this.category_salle_id});
+      });
 
   // Les accesseurs
-  String? get idSalle => id_salle;
+  String get idSalle => id_salle;
   String? get nameSalle => name_salle;
   String? get creationDate => creation_date;
   bool? get isPrivate => is_private;
-  String? get categorySalleId => category_salle_id;
+  String get categorySalleId => category_salle_id;
   // Les mutateurs
-  set idSalle(String? value){
+  set idSalle(String value){
     id_salle = value;
   }
   set nameSalle(String? value){
@@ -36,7 +36,7 @@ class Salle
   set isPrivate(bool? value){
     is_private = value;
   }
-  set categorySalleId(String? value){
+  set categorySalleId(String value){
     category_salle_id = value;
   }
 
@@ -47,11 +47,23 @@ class Salle
       ) {
     final data = snapshot.data();
     return Salle(
-      id_salle: data?['id_salle'],
+      data?['id_salle'],
+      data?['category_salle_id'],
       name_salle: data?['name_salle'],
       creation_date: data?['creation_date'],
       is_private: data?['is_private'],
-      category_salle_id: data?['category_salle_id'],
+    );
+  }
+
+  // convertir un DocumentSnapshot en classe Salle
+  factory Salle.fromSnapshot(DocumentSnapshot? snapshot) {
+    final data = snapshot?.data() as Map<String, dynamic>;
+    return Salle(
+      data['id_salle'],
+      data['category_salle_id'],
+      name_salle: data['name_salle'],
+      creation_date: data['creation_date'],
+      is_private: data['is_private'],
     );
   }
 

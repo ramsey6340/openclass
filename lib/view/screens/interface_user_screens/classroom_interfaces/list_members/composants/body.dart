@@ -3,6 +3,7 @@ import 'package:openclass/data/data_adhesion.dart';
 import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_friends/composants/contact.dart';
+import '../../../../../../data/data_current.dart';
 import '../../../../../../model/adhesion.dart';
 import '../../../../../../model/user.dart';
 import '../../../../../composants/search_bar.dart';
@@ -58,7 +59,7 @@ class Body extends StatelessWidget
   {
     List<UserModel> list_members = [];
     for(int i=0; i<list_adhesion.length; i++){
-      if(data_current_classroom.idClassroom == list_adhesion[i].classroom_id){
+      if(current_classroom.idClassroom == list_adhesion[i].classroom_id){
         //list_members.add(list_adhesion[i].user);
       }
     }

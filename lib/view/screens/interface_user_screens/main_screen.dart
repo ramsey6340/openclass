@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/model/classroom.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/user_profile_page.dart';
 import 'package:openclass/view/composants/drawer_component.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/constante.dart';
+import '../../../data/data_current.dart';
 import 'chat_interface_friends/chat_screens/composants/list_contact_page.dart';
 import 'chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
@@ -30,19 +32,19 @@ class _MainScreenState extends State<MainScreen>
   initState()
   {
     super.initState();
-    _currentIndex = 0;
     _pageClass = ListClassroomPage();
     _pageChat = ListFriendPage();
     _pageInfo = NewPage();
     _pageProfile = UserProfilePage();
     _pageList = [_pageClass, _pageChat, _pageInfo,_pageProfile];
-    _currentPage = _pageClass;
+    _currentPage = _pageList[current_menu_index];
+
   }
 
   void _onItemTapped(int index) {
     setState(() {
-      _currentIndex = index;
-      _currentPage = _pageList[index];
+      current_menu_index = index;
+      _currentPage = _pageList[current_menu_index];
     });
   }
 
@@ -51,18 +53,18 @@ class _MainScreenState extends State<MainScreen>
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
       endDrawer: DrawerComponent(),
-      appBar: (_currentIndex==0)?appBarClass():(_currentIndex==1)?appBarChat():(_currentIndex==2)?appBarNew():null,
+      appBar: (current_menu_index==0)?appBarClass():(current_menu_index==1)?appBarChat():(current_menu_index==2)?appBarNew():null,
       body: _currentPage,
       bottomNavigationBar: BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
-       BottomNavigationBarItem(icon: Icon(Icons.school),label: '',),
-      BottomNavigationBarItem(icon: Icon(Icons.chat),label: '',),
-      BottomNavigationBarItem(icon: Icon(Icons.info),label: '',),
-      BottomNavigationBarItem(icon: Icon(Icons.account_circle_sharp),label: '',),
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.school),label: '',),
+        BottomNavigationBarItem(icon: Icon(Icons.chat),label: '',),
+        BottomNavigationBarItem(icon: Icon(Icons.info),label: '',),
+        BottomNavigationBarItem(icon: Icon(Icons.account_circle_sharp),label: '',),
       ],
       backgroundColor: kColorAppBar,
       selectedItemColor: kColorPrimary,
-      currentIndex: _currentIndex,
+      currentIndex: current_menu_index,
       onTap: _onItemTapped,
       iconSize: 30.0,
       showSelectedLabels: false,
@@ -73,14 +75,6 @@ class _MainScreenState extends State<MainScreen>
       elevation: 0.0,
       type: BottomNavigationBarType.fixed,
        ),
-
-   /*   floatingActionButton: (_currentIndex == 0)?FloatingActionButton(
-        onPressed: (){
-          Scaffold.of(context).openEndDrawer();
-        },
-        backgroundColor: kColorPrimary,
-        child: Icon(Icons.navigate_next, color: Colors.white,),
-      ):null,*/
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/data/data_adhesion.dart';
+import '../../data/data_current.dart';
 import '../../data/data_current_classroom.dart';
 import '../../model/adhesion.dart';
 import '../../model/classroom.dart';
@@ -24,7 +25,7 @@ class DrawerHeaderTools extends StatelessWidget
               GestureDetector(
                 child: Icon(Icons.more_horiz,color: Colors.white,),
                 onTap: (){
-                  data_current_number_of_member = nbOfMembers(data_list_adhesion_classes);
+                  current_number_of_member = nbOfMembers(data_list_adhesion_classes);
                   _showClassroomSettingSheet(context, classroom);
                 },
               ),
@@ -60,7 +61,7 @@ class DrawerHeaderTools extends StatelessWidget
   {
     int nbre = 0;
     for(int i=0; i<list_adhesion.length; i++){
-      if(data_current_classroom.idClassroom == list_adhesion[i].classroomId){
+      if(current_classroom.idClassroom == list_adhesion[i].classroomId){
         nbre++;
       }
     }

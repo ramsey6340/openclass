@@ -17,10 +17,10 @@ Classroom data_current_classroom =   data_list_classrooms[0];
 int data_current_number_of_member = 0;
 
 // la catégorie de de salle courante
-CategorySalle data_current_category = CategorySalle();
+CategorySalle data_current_category = CategorySalle('','');
 
 // la salle courante
-Salle data_current_salle = Salle();
+Salle data_current_salle = Salle('','');
 
 // la liste de catégorie de la classe courante
 List<CategorySalle> data_current_list_categories_salle = [];
@@ -29,4 +29,4 @@ List<CategorySalle> data_current_list_categories_salle = [];
 List<Salle> data_current_list_salle = [];
 
 // l'ami courant avec qui l'utilisateur courant est entraint de discuter
-UserModel data_current_friend = UserModel();
+UserModel data_current_friend = UserModel('');

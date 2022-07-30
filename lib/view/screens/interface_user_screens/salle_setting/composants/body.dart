@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/CRUD/update.dart';
 import 'package:openclass/view/composants/interaction_next_component.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/composants/change_category.dart';
 import '../../../../composants/entry_field.dart';
 import '../../../../constante.dart';
+import 'body_change_category.dart';
 
 class Body extends StatefulWidget
 {
@@ -15,7 +17,8 @@ class Body extends StatefulWidget
 class _BodyState extends State<Body>
 {
   final entryField = EntryField();
-  bool _privateCategory = false;
+  bool _privateSalle = false;
+  Update update = Update();
   @override
   build(BuildContext context)
   {
@@ -28,12 +31,10 @@ class _BodyState extends State<Body>
                 Text('Annuler'),
                 'Parametre de la salle',
                 Text('Enregistrer'),
-                    (){
+                (){
                   Navigator.of(context).pop();
                 },
-                    (){
-                  Navigator.pushNamed(context, ListSallePage.routeName);
-                }
+                updateSalle,
             ),
           ),
           Expanded(
@@ -52,7 +53,7 @@ class _BodyState extends State<Body>
                       ],
                     ),
                     SizedBox(height: 40,),
-                    InteractionComponent(title: 'catégorie', press: (){Navigator.pushNamed(context, ChangeCategory.routeName);}),
+                    InteractionComponent(title: 'catégorie', press: (){Navigator.pushNamed(context, BodyChangeCategory.routeName);}),
                     SizedBox(height: 40,),
                     Column(
                       children: [
@@ -63,10 +64,10 @@ class _BodyState extends State<Body>
                             title: Text("Salle privé", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.white),),
                             trailing: Switch(
                               activeColor: Colors.green,
-                              value: _privateCategory,
+                              value: _privateSalle,
                               onChanged: (value){
                                 setState((){
-                                  _privateCategory = value;
+                                  _privateSalle = value;
                                 });
                               },
                             ),
@@ -99,6 +100,22 @@ class _BodyState extends State<Body>
         ],
       ),
     );
+  }
+
+  // methode de mise à jour de la salle
+  void updateSalle()
+  {
+    Map<String, dynamic> new_value = Map();
+    if(entryField.textController.text.isNotEmpty){
+      String name_salle = entryField.textController.text;
+      new_value = {"name_salle":name_salle, "is_private":_privateSalle};
+      update.updateSalle(new_value);
+    }
+    else{
+      new_value = {"is_private":_privateSalle};
+      update.updateSalle(new_value);
+    }
+    Navigator.pushNamed(context, ListSallePage.routeName);
   }
 
 }

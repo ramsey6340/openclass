@@ -94,7 +94,7 @@ class _SignUpFormState extends State<SignUpForm>
         if(formState!.validate()){
           try {
             final user = UserModel(
-              id: '0',
+              '',
               first_name: entryField.firstNameController.text,
               last_name: entryField.lastNameController.text,
               email: entryField.emailController.text,

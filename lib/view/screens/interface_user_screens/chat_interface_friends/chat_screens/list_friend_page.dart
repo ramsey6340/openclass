@@ -5,7 +5,6 @@ import 'composants/body.dart';
 
 class ListFriendPage extends StatelessWidget
 {
-  static String routeName = '/list_friend_page';
   @override
   Widget build(BuildContext context) {
     return Container(

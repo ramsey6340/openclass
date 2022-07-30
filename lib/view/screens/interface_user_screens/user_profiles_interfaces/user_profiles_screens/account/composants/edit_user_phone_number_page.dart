@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/CRUD/update.dart';
 import 'package:openclass/view/composants/entry_field.dart';
 import 'package:openclass/view/composants/next_button.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/constante.dart';
 
-class EditUserPhoneNumberPage extends StatelessWidget {
-  const EditUserPhoneNumberPage({Key? key}) : super(key: key);
+import '../../../../../../../controller/user_ctrl.dart';
+import '../../../../../../../data/data_current.dart';
+import '../body_account.dart';
+
+class EditUserPhoneNumberPage extends StatefulWidget
+{
+  @override
+  State<EditUserPhoneNumberPage> createState() => _EditUserPhoneNumberPageState();
   static String routeName = '/edit_user_phone_number_page';
+
+}
+
+class _EditUserPhoneNumberPageState extends State<EditUserPhoneNumberPage> {
+  EntryField entryField = EntryField();
+  Update update = Update();
+  UserCtrl userCtrl = UserCtrl();
 
   @override
   Widget build(BuildContext context) {
-    EntryField entryField = EntryField();
     return Scaffold(
       appBar: ToolsBar.appBar(
           Text("Annuler"),
@@ -34,12 +47,26 @@ class EditUserPhoneNumberPage extends StatelessWidget {
               NextButton(
                   color: kColorPrimary,
                   text: 'Enregistrer',
-                  press: (){}
+                  press: updatePhoneNumber
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  // methode de mise à jour le numero de téléphone
+  void updatePhoneNumber()
+  {
+    Map<String,String> new_value = Map();
+    if(entryField.numberController.text.isNotEmpty){
+      String tel_number = entryField.numberController.text;
+      new_value = {"tel_number":tel_number};
+      update.updateUserProfile(new_value);
+      current_user.tel_number = tel_number;
+      userCtrl.modifUser(current_user);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => BodyAccount()));
+    }
   }
 }

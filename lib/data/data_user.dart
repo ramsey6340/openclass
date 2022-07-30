@@ -1,7 +1,7 @@
 import '../model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 /* ========================== Instances de l'utilisateur courant ========================== */
-UserModel currentUser = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+//UserModel currentUser = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
 User? currentUserFirebabe = null;
 /* ========================== FIN ========================== */
 
@@ -22,17 +22,17 @@ final UserModel sow = UserModel(13,'Aliou', 'Sow', 'sow@gmail.com', '77391909', 
 final UserModel boubacar = UserModel(14,'Boubacar', 'Diarra', 'boubacar@gmail.com', '77391909', 'assets/images/img_default_person.png', '1234', '12/12/2022');
 
  */
-UserModel issa = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel ibg = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel abdoulaye = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel togola = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel ousmane = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel adama = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel baissa = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel hassane = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel sougoule = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel alhousseyni = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel ibrahim = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
-UserModel sow = UserModel(id: '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel issa = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel ibg = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel abdoulaye = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel togola = UserModel( '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel ousmane = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel adama = UserModel( '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel baissa = UserModel( '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel hassane = UserModel( '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel sougoule = UserModel( '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel alhousseyni = UserModel( '1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel ibrahim = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
+UserModel sow = UserModel('1',first_name: 'Drissa Sidiki', last_name: 'Traore', email: 'drissa7219@gmail.com', tel_number: '72196636', img_profile: 'assets/images/informatique.jpg', password: '65', date_birth: '12/01/2022');
 
 /* ========================== FIN ========================== */

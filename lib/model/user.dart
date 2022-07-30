@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserModel
 {
   // les attribues
-  String? id;
+  final String id;
   String? first_name;
   String? last_name;
   String? email;
@@ -14,7 +14,8 @@ class UserModel
 
   // les constructeurs
   UserModel(
-      {this.id,
+      this.id,
+      {
       this.first_name,
       this.last_name,
       this.email,
@@ -23,7 +24,7 @@ class UserModel
       this.password,
       this.date_birth});
   // les accesseurs
-  String? get idU => id;
+  String get idU => id;
   String? get firstName => first_name;
   String? get lastName => last_name;
   String? get emailU => email;
@@ -33,9 +34,6 @@ class UserModel
   String? get dateBirth => date_birth;
 
   // les mutateurs
-  set idU(String? value){
-    id = value;
-  }
   set firstName(String? value){
     first_name = value;
   }
@@ -67,7 +65,7 @@ class UserModel
       ) {
     final data = snapshot.data();
     return UserModel(
-      id: data?['id'],
+      data?['id'],
       first_name: data?['first_name'],
       last_name: data?['last_name'],
       email: data?['email'],
@@ -75,6 +73,21 @@ class UserModel
       img_profile: data?['img_profile'],
       password: data?['password'],
       date_birth: data?['date_birth'],
+    );
+  }
+
+  // convertir un DocumentSnapshot en classe UserModel
+  factory UserModel.fromSnapshot(DocumentSnapshot? snapshot) {
+    final data = snapshot?.data() as Map<String, dynamic>;
+    return UserModel(
+      data['id'],
+      first_name: data['first_name'],
+      last_name: data['last_name'],
+      email: data['email'],
+      tel_number: data['tel_number'],
+      img_profile: data['img_profile'],
+      password: data['password'],
+      date_birth: data['date_birth'],
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current.dart';
 import 'package:openclass/data/data_user.dart';
 import 'package:openclass/model/user.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/body_account.dart';
@@ -34,7 +35,7 @@ class _BodyState extends State<Body>
     InteractionComponent(title: 'Notification', press: (){}),
   ];
 */
-  UserModel? user = UserModel();
+  UserModel? user = UserModel('');
 
 
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -69,7 +70,7 @@ class _BodyState extends State<Body>
           child: ListView(
             children: [
               //PhotoProfile(imgProfile: currentUser.imgProfile, nameUser: currentUser.firstName+' '+currentUser.lastName, dateBirth: currentUser.dateBirth),
-              PhotoProfile(imgProfile: 'assets/images/img_default_person.png', nameUser: currentUser.firstName!+' '+currentUser.lastName!, dateBirth: currentUser.dateBirth),
+              PhotoProfile(imgProfile: current_user.imgProfile, nameUser: current_user.firstName!+' '+current_user.lastName!, dateBirth: current_user.dateBirth),
               SizedBox(height: 50,),
               Text("PARAMETRE DE L'UTILISATEUR"),
               InteractionComponent(
@@ -112,6 +113,7 @@ class _BodyState extends State<Body>
                       ],
                     )
                 ),
+              SizedBox(height: 50,),
             ],
           ),
         ),

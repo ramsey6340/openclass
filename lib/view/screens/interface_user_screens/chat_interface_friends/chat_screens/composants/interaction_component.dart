@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/model/user.dart';
 import 'package:openclass/model/message.dart';
 
+import '../../../../../../data/data_current.dart';
 import '../../../chat_interface/chat_friend/chat_page_user.dart';
 
 class InteractionComponent extends StatefulWidget
 {
-  InteractionComponent({Key? key,required this.receiver,required this.message,required this.nbreSMSMain}):super(key: key);
+  InteractionComponent({Key? key,required this.receiver, required this.message,required this.nbreSMSMain}):super(key: key);
   final int nbreSMSMain;
   final UserModel receiver;
   final Message message;
@@ -31,7 +31,7 @@ class _InteractionComponentState extends State<InteractionComponent>
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(widget.receiver.imgProfile!),
+        backgroundImage: AssetImage('assets/images/img_default_person.png'),
         radius: 25,
       ),
       trailing: Container(
@@ -45,9 +45,11 @@ class _InteractionComponentState extends State<InteractionComponent>
         ),
       ),
       title: Text(widget.receiver.firstName!,style: styleTitle),
-      subtitle: Text(widget.message.content!,overflow: TextOverflow.ellipsis,),
+      //subtitle: Text(widget.message.content!,overflow: TextOverflow.ellipsis,),
       onTap: (){
-        data_current_friend = widget.receiver;
+        current_friend = widget.receiver;
+        current_peer_id = current_friend.id;
+        current_group_id = current_user.id+'-'+current_peer_id;
         Navigator.pushNamed(context, ChatPageUser.routeName);
       },
     );

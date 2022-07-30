@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/model/classroom.dart';
+import 'package:openclass/CRUD/update.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
 import '../../../../composants/entry_field.dart';
@@ -15,6 +15,7 @@ class _BodyState extends State<Body>
 {
   final entryField = EntryField();
   bool _privateCategory = false;
+  Update update = Update();
   @override
   build(BuildContext context)
   {
@@ -30,9 +31,7 @@ class _BodyState extends State<Body>
                         (){
                       Navigator.of(context).pop();
                     },
-                        (){
-                      Navigator.pushNamed(context, ListSallePage.routeName);
-                    }
+                    updateCategorySalle,
                 ),
             ),
             Expanded(
@@ -105,5 +104,33 @@ class _BodyState extends State<Body>
         ),
     );
   }
+
+  // methode de mise à jour de la category
+  void updateCategorySalle()
+  {
+    Map<String, dynamic> new_value = Map();
+    if(entryField.textController.text.isNotEmpty && entryField.multiTextController.text.isNotEmpty){
+      String name_category = entryField.textController.text;
+      String description_category = entryField.multiTextController.text;
+      new_value = {"name_category": name_category, "description_category":description_category, "is_private":_privateCategory};
+      update.updateCategorySalle(new_value);
+    }
+    else if(entryField.textController.text.isNotEmpty && entryField.multiTextController.text.isEmpty){
+      String name_category = entryField.textController.text;
+      new_value = {"name_category": name_category, "is_private":_privateCategory};
+      update.updateCategorySalle(new_value);
+    }
+    else if(entryField.textController.text.isEmpty && entryField.multiTextController.text.isNotEmpty){
+      String description_category = entryField.multiTextController.text;
+      new_value = {"description_category":description_category, "is_private":_privateCategory};
+      update.updateCategorySalle(new_value);
+    }
+    else{
+      new_value = {"is_private":_privateCategory};
+      update.updateCategorySalle(new_value);
+    }
+    Navigator.pushNamed(context, ListSallePage.routeName);
+  }
+
 
 }

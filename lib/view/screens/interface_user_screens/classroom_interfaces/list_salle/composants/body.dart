@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
-import 'package:openclass/view/screens/interface_user_screens/category_setting/category_setting_page.dart';
+import '../../../../../../data/data_current.dart';
+import '../../../../../../model/category_salle.dart';
 import '../../../../../../model/salle.dart';
+import '../../../../../composants/loading.dart';
 import '../../../../../constante.dart';
+import '../../../category_setting/category_setting_page.dart';
+import '../../../classroom_setting/setting_page.dart';
 import 'expansion_tile_salle.dart';
 
 class Body extends StatefulWidget
@@ -17,40 +21,56 @@ class _BodyState extends State<Body>
   @override
   Widget build(BuildContext context)
   {
-    /*
-    final classroomValue = data_list_classrooms[Increment.id_current_classroom-1];
-    final list_categories = chooseCategorySalle(classroomValue.id, data_List_categories_salle);
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').doc(current_classroom.id_classroom).collection(current_classroom.id_classroom).orderBy('name_category').snapshots();
 
-     */
-
-    return SafeArea(
-      child: Column(
-          children: [
-            Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-              child: ToolsBar.falseAppBar(
-                  Text("Retour"),
-                  'Salles',
-                  Text(''),
+    return StreamBuilder<QuerySnapshot>(
+        stream: _categorySalleStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text("Quelque chose s'est mal passé");
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Loading();
+          }
+          return SafeArea(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  child: ToolsBar.falseAppBar(
+                      Text("Retour"),
+                      'Salles',
+                      Text(''),
                       (){
-                    Navigator.of(context).pop();
-                  },
+                        Navigator.pushNamed(context, SettingPage.routeName);
+                      },
                       (){}
-              ),
-            ),
-              Expanded(
-                child: Container(
-                  color: kColorAppBar,
-                  child: ListView.builder(
-                    itemCount: data_current_list_categories_salle.length,
-                    itemBuilder: (context, index){
-                      return ExpansionTileSalle(addNavigator: (){Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CategorySettingPage(), settings: RouteSettings(arguments: data_current_list_categories_salle[index])));}, nameCategory: data_current_list_categories_salle[index].nameCategory!, sallesInit: chooseSalle(data_current_list_categories_salle[index].idCategory, data_current_list_salle), index: index,);
-                    },
                   ),
                 ),
-              ),
-          ],
-        ),
+                Expanded(
+                  child: Container(
+                    color: kColorAppBar,
+                    child: ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final item = CategorySalle.fromSnapshot(snapshot.data?.docs[index]);
+                        return ExpansionTileSalle(
+                          addNavigator: () {
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (BuildContext context) => CategorySettingPage(),
+                                settings: RouteSettings(arguments: item)));
+                          },
+                          category: item,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
     );
   }
 

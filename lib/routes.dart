@@ -5,10 +5,8 @@ import 'package:openclass/view/screens/interface_user_screens/chat_interface/cha
 import 'package:openclass/view/screens/interface_user_screens/chat_interface/send_document/send_document_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface/share_information/share_information_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/composants/list_contact_page.dart';
-import 'package:openclass/view/screens/interface_user_screens/chat_interface_friends/chat_screens/list_friend_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_friends/add_friends_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/choose_create_classroom/choose_create_classroom_page.dart';
-import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/classroom_screen/list_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_category/create_category_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_classroom/create_classroom_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_salle/create_salle_page.dart';
@@ -17,6 +15,7 @@ import 'package:openclass/view/screens/interface_user_screens/classroom_interfac
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_setting/setting_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
+import 'package:openclass/view/screens/interface_user_screens/salle_setting/composants/body_change_category.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/composants/change_category.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/salle_setting_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/body_account.dart';
@@ -45,8 +44,6 @@ final Map<String,WidgetBuilder> routes = {
   SignUpSuccessPage.routeName: (context) => SignUpSuccessPage(),
   AuthenticationPage.routename: (context) => AuthenticationPage(),
   ConfirmationPage.routename: (context) => ConfirmationPage(),
-  ListClassroomPage.routeName: (context) => ListClassroomPage(),
-  ListFriendPage.routeName: (context) => ListFriendPage(),
   MainScreen.routeName: (context) => MainScreen(),
   ChooseCreateClassroomPage.routeName: (context) => ChooseCreateClassroomPage(),
   CreateClassroomPage.routeName: (context) => CreateClassroomPage(),
@@ -73,4 +70,5 @@ final Map<String,WidgetBuilder> routes = {
   Language.routeName: (context) => Language(),
   Profile.routeName: (context) => Profile(),
   ListContactPage.routeName: (context) => ListContactPage(),
+  BodyChangeCategory.routeName: (context) => BodyChangeCategory(),
 };

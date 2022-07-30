@@ -3,34 +3,36 @@ import 'enum_type.dart';
 
 class CategorySalle
 {
-  String? id_category;
+  String id_category;
   String? name_category;
   String? creation_date;
   String? description_category;
   bool? is_private;
   String? type_category;
-  String? classroom_id;
+  String classroom_id;
 
   CategorySalle(
-      {this.id_category,
+      this.id_category,
+      this.classroom_id,
+      {
       this.name_category,
       this.creation_date,
       this.description_category,
       this.is_private,
       this.type_category,
-      this.classroom_id});
+      });
 
 
   // les getters
-  String? get idCategory => id_category;
+  String get idCategory => id_category;
   String? get nameCategory => name_category;
   String? get creationDate => creation_date;
   String? get descriptionCategory => description_category;
   bool? get isPrivate => is_private;
   String? get typeCategory => type_category;
-  String? get classroomId => classroom_id;
+  String get classroomId => classroom_id;
   //les setters
-  set idCategory(String? value){
+  set idCategory(String value){
     id_category = value;
   }
   set nameCategory(String? value){
@@ -48,7 +50,7 @@ class CategorySalle
   set typeCategory(String? value){
     type_category = value;
   }
-  set classroomId(String? value){
+  set classroomId(String value){
     classroom_id = value;
   }
 
@@ -60,13 +62,27 @@ class CategorySalle
       ) {
     final data = snapshot.data();
     return CategorySalle(
-      id_category: data?['id_category'],
+      data?['id_category'],
+      data?['classroom_id'],
       name_category: data?['name_category'],
       creation_date: data?['creation_date'],
       description_category: data?['description_category'],
       is_private: data?['is_private'],
       type_category: data?['type_category'],
-      classroom_id: data?['classroom_id'],
+    );
+  }
+
+  // convertir un DocumentSnapshot en classe CategorySalle
+  factory CategorySalle.fromSnapshot(DocumentSnapshot? snapshot) {
+    final data = snapshot?.data() as Map<String, dynamic>;
+    return CategorySalle(
+      data['id_category'],
+      data['classroom_id'],
+      name_category: data['name_category'],
+      creation_date: data['creation_date'],
+      description_category: data['description_category'],
+      is_private: data['is_private'],
+      type_category: data['type_category'],
     );
   }
 

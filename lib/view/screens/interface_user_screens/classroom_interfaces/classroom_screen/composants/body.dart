@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/view/composants/loading.dart';
+import '../../../../../../data/data_current.dart';
 import 'interaction_component.dart';
 import 'package:openclass/data/data_classroom.dart';
 import 'package:openclass/model/classroom.dart';
@@ -14,38 +17,51 @@ class _BodyState extends State<Body>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView.separated(
-        separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
-        itemCount: data_list_classrooms.length,
-        itemBuilder: (context,index){
-          index = (data_list_classrooms.length-1)-index;
-          final item = data_list_classrooms[index];
-          return Dismissible(
-            key: ValueKey<Classroom>(item),
-            secondaryBackground: backgroundDelete,
-            background: backgroundReaded,
-            confirmDismiss: (direction) async{
-              if(direction == DismissDirection.endToStart){
-                bool isDelete = await deleteDialog();
-                return isDelete;
-              }
-              else{}
-            },
-            onDismissed: (direction){
-              if(direction == DismissDirection.endToStart){
-                setState((){
-                  data_list_classrooms.removeAt(index);
-                });
-              }
-              else if(direction == DismissDirection.startToEnd){
-                //ici on reinitialisera le nombre de message non lu à zéro
-              }
-            },
-            child: InteractionComponent(classroom: item, nbreSMS: 12, subTitle: 'd'),
-          );
-        },
-      ),
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final Stream<QuerySnapshot> _classroomStream = db.collection('classrooms').doc(current_user.id).collection(current_user.id).snapshots();
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: _classroomStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Text("Quelque chose s'est mal passé");
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Loading();
+        }
+
+        return ListView.separated(
+          separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
+          itemCount: snapshot.data!.docs.length,
+          itemBuilder: (context,index){
+            final item = Classroom.fromSnapshot(snapshot.data?.docs[index]);
+            return Dismissible(
+              key: ValueKey<Classroom>(item),
+              secondaryBackground: backgroundDelete,
+              background: backgroundReaded,
+              confirmDismiss: (direction) async{
+                if(direction == DismissDirection.endToStart){
+                  bool isDelete = await deleteDialog();
+                  return isDelete;
+                }
+                else{}
+              },
+              onDismissed: (direction){
+                if(direction == DismissDirection.endToStart){
+                  setState((){
+                    data_list_classrooms.removeAt(index);
+                  });
+                }
+                else if(direction == DismissDirection.startToEnd){
+                  //ici on reinitialisera le nombre de message non lu à zéro
+                }
+              },
+              child: InteractionComponent(classroom: item, nbreSMS: 12, subTitle: 'd'),
+            );
+          },
+        );
+      },
     );
   }
 

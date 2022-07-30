@@ -6,7 +6,7 @@ import '../model/category_salle.dart';
 
 class CategorySalleCtrl
 {
-  CategorySalle _categorySalle = CategorySalle();
+  CategorySalle _categorySalle = CategorySalle('','');
   // stream controller pour la classe CategorySalle
   final _streamCtrl = StreamController<CategorySalle>();
 
@@ -19,7 +19,7 @@ class CategorySalleCtrl
     _categorySalle = value;
     sink.add(_categorySalle);
   }
-  modifId(String? value){
+  modifId(String value){
     _categorySalle.idCategory = value;
     sink.add(_categorySalle);
   }
@@ -39,7 +39,7 @@ class CategorySalleCtrl
     _categorySalle.typeCategory = value;
     sink.add(_categorySalle);
   }
-  modifClassroom(String? value){
+  modifClassroom(String value){
     _categorySalle.classroomId = value;
     sink.add(_categorySalle);
   }

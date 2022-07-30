@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/constante.dart';
 
+import '../../../../../../data/data_current.dart';
+
 class ChatPageSetting extends StatelessWidget
 {
   @override
@@ -18,12 +20,12 @@ class ChatPageSetting extends StatelessWidget
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: AssetImage(data_current_friend.imgProfile!),
+                  backgroundImage: AssetImage(current_friend.imgProfile!),
                   radius: 35,
                 ),
                 SizedBox(height: 10,),
-                Text("${data_current_friend.firstName} ${data_current_friend.lastName}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
-                Text(data_current_friend.telNumber!, textAlign: TextAlign.center,),
+                Text("${current_friend.firstName} ${current_friend.lastName}",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                Text(current_friend.telNumber!, textAlign: TextAlign.center,),
               ],
             ),
             SizedBox(height: 20,),

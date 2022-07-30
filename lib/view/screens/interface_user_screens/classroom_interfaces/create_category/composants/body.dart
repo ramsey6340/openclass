@@ -104,19 +104,19 @@ class _BodyState extends State<Body>
   }
 
 
-  // methode de création d'une catégorie
+  // =================================methode de création d'une catégorie=================================
   Future<void> creationOfCategory() async
   {
     try{
       // creation d'une instance de la categorie
       final category = CategorySalle(
-        id_category: '',
+        '',
+        current_classroom.id_classroom,
         name_category: entryField.textController.text,
         creation_date: '',
         description_category: entryField.multiTextController.text,
         is_private: _privateCategory,
         type_category: ChooseClasseCategorie.categoryChoose,
-        classroom_id: current_classroom.id_classroom,
       );
 
       // création de la catégorie dans Firebase
@@ -129,5 +129,6 @@ class _BodyState extends State<Body>
       print(e);
     }
   }
+  // ================================= FIN =================================
 
 }

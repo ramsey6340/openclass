@@ -3,7 +3,7 @@ import 'package:openclass/model/administrator.dart';
 
 class AdministratorCtrl
 {
-  Administrator _administrator = Administrator();
+  Administrator _administrator = Administrator('');
 
   // stream controller pour la classe Administrator
   final _streamCtrl = StreamController<Administrator>();
@@ -15,10 +15,6 @@ class AdministratorCtrl
   // les methode de modification de la valeur
   modifAdministrator(Administrator value){
     _administrator = value;
-    sink.add(_administrator);
-  }
-  modifId(String value){
-    _administrator.id = value;
     sink.add(_administrator);
   }
   modifFirstName(String value){

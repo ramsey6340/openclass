@@ -3,7 +3,7 @@ import '../model/user.dart';
 
 class UserCtrl
 {
-  UserModel _user = UserModel();
+  UserModel _user = UserModel('');
 
   // stream controller pour la classe User
   final _streamCtrl = StreamController<UserModel>();
@@ -15,10 +15,6 @@ class UserCtrl
   // les methode de modification de la valeur
   modifUser(UserModel value){
     _user = value;
-    sink.add(_user);
-  }
-  modifId(String value){
-    _user.id = value;
     sink.add(_user);
   }
   modifFirstName(String value){

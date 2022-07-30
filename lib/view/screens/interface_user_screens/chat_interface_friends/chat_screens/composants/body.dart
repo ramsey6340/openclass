@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_user.dart';
+import 'package:openclass/view/composants/loading.dart';
+import '../../../../../../model/user.dart';
 import 'interaction_component.dart';
 import 'package:openclass/model/message.dart';
 import '../../../../../../data/data_message.dart';
@@ -13,39 +15,55 @@ class Body extends StatefulWidget
 class _BodyState extends State<Body>
 {
 
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView.separated(
-        separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
-        itemCount: data_list_messages.length,
-        itemBuilder: (context,index){
-          final item = data_list_messages[index];
-          return Dismissible(
-            key: ValueKey<Message>(data_list_messages[index]),
-            secondaryBackground: backgroundDelete,
-            background: backgroundReaded,
-            confirmDismiss: (direction) async{
-              if(direction == DismissDirection.endToStart){
-                bool isDelete = await deleteDialog();
-                return isDelete;
-              }
-              else{}
-            },
-            onDismissed: (direction){
-              if(direction == DismissDirection.endToStart){
-                setState((){
-                  data_list_messages.removeAt(index);
-                });
-              }
-              else if(direction == DismissDirection.startToEnd){
-                //ici on reinitialisera le nombre de message non lu à zéro
-              }
-            },
-            child: InteractionComponent(receiver: currentUser, message: item, nbreSMSMain: 12),
-          );
-        },
-      ),
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final Stream<QuerySnapshot> _usersStream = db.collection('users').orderBy('last_name').snapshots();
+
+    return StreamBuilder(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+
+        if (snapshot.hasError) {
+          return const Text("Quelque chose s'est mal passé");
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Loading();
+        }
+
+        return ListView.separated(
+          separatorBuilder: (context,index) => Divider(color: Colors.white,height: 3,indent: 80,),
+          itemCount: snapshot.data!.docs.length,
+          itemBuilder: (context,index){
+            final item = UserModel.fromSnapshot(snapshot.data?.docs[index]);
+            return Dismissible(
+              key: ValueKey<UserModel>(item),
+              secondaryBackground: backgroundDelete,
+              background: backgroundReaded,
+              confirmDismiss: (direction) async{
+                if(direction == DismissDirection.endToStart){
+                  bool isDelete = await deleteDialog();
+                  return isDelete;
+                }
+                else{}
+              },
+              onDismissed: (direction){
+                if(direction == DismissDirection.endToStart){
+                  setState((){
+                    data_list_messages.removeAt(index);
+                  });
+                }
+                else if(direction == DismissDirection.startToEnd){
+                  //ici on reinitialisera le nombre de message non lu à zéro
+                }
+              },
+              child: InteractionComponent(receiver: item, message: Message(), nbreSMSMain: 12),
+            );
+          },
+        );
+      },
     );
   }
 

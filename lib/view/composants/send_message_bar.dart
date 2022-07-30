@@ -1,15 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_user.dart';
+import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/model/message.dart';
 
-import '../../data/data_current_classroom.dart';
+import '../../data/data_current.dart';
 import '../constante.dart';
 
 class SendMessageBar extends StatelessWidget
 {
   TextEditingController messageController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  Create create = Create();
   @override
   Widget build(BuildContext context)
   {
@@ -51,26 +51,13 @@ class SendMessageBar extends StatelessWidget
   // methode pour envoyer le message sur Firebase
   void registerMessage()
   {
-    final formState = _formKey.currentState;
-    //if(formState!.validate()){
-      // creation d'une instance de massage
       final message = Message(
-        sender_id: currentUser.id,
-        receiver_id: 'data_current_friend.id',
+        sender_id: current_user.id,
+        receiver_id: current_peer_id,
         date_creation: '',
         content: messageController.text,
         url_image: '',
       );
-      FirebaseFirestore db = FirebaseFirestore.instance;
-      String group_id = 'currentUser.id!+-'+data_current_friend.id!;
-      // creation d'une reference pour le document
-      final docRef = db.collection("chats").doc(group_id).collection(group_id).withConverter(
-        fromFirestore: Message.fromFirestore,
-        toFirestore: (Message message, options) => message.toFirestore(),
-      ).doc(currentUser.id);
-
-      // enregistrement des données dans le document
-      docRef.set(message);
-   // }
+      create.creationMessage(message);
   }
 }

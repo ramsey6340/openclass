@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Classroom
 {
-  String? id_classroom;
+  final String id_classroom;
   String? name_classroom;
   String? img_profile;
   String? creation_date;
@@ -11,7 +11,8 @@ class Classroom
   String? responsible_id;
 
   Classroom(
-      {this.id_classroom,
+      this.id_classroom,
+      {
       this.name_classroom,
       this.img_profile,
       this.creation_date,
@@ -20,7 +21,7 @@ class Classroom
       this.responsible_id});
 
   //les accesseurs
-  String? get idClassroom => id_classroom;
+  String get idClassroom => id_classroom;
   String? get nameClassroom => name_classroom;
   String? get imgProfile => img_profile;
   String? get creationDate => creation_date;
@@ -29,9 +30,6 @@ class Classroom
   String? get responsibleId => responsible_id;
 
   // les mutateurs
-  set id(String? value){
-    id_classroom = value;
-  }
   set name(String? value){
     name_classroom = value;
   }
@@ -58,13 +56,28 @@ class Classroom
       ) {
     final data = snapshot.data();
     return Classroom(
-      id_classroom: data?['id_classroom'],
+      data?['id_classroom'],
       name_classroom: data?['name_classroom'],
       img_profile: data?['img_profile'],
       creation_date: data?['creation_date'],
       is_private: data?['is_private'],
       description_classroom: data?['description_classroom'],
       responsible_id: data?['responsible_id'],
+    );
+  }
+
+  // convertir un DocumentSnapshot en classe Classroom
+  factory Classroom.fromSnapshot(
+      DocumentSnapshot? snapshot) {
+    final data = snapshot?.data() as Map<String, dynamic>;
+    return Classroom(
+      data['id_classroom'],
+      name_classroom: data['name_classroom'],
+      img_profile: data['img_profile'],
+      creation_date: data['creation_date'],
+      is_private: data['is_private'],
+      description_classroom: data['description_classroom'],
+      responsible_id: data['responsible_id'],
     );
   }
 

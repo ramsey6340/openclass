@@ -4,6 +4,7 @@ import 'user.dart';
 
 class Message
 {
+  String? id_message;
   String? sender_id;
   String? receiver_id;
   String? date_creation;
@@ -11,13 +12,15 @@ class Message
   String? url_image;
 
   Message(
-      {this.sender_id,
+      {this.id_message,
+      this.sender_id,
       this.receiver_id,
       this.date_creation,
       this.content,
       this.url_image});
 
   // les getters
+  String? get idMessage => this.id_message;
   String? get senderId => this.sender_id;
   String? get receiverId => this.receiver_id;
   String ? get dateCreation => this.date_creation;
@@ -25,6 +28,9 @@ class Message
   String? get urlImage => this.url_image;
 
   // les setters
+  set idMessage(String? value){
+    id_message = value;
+  }
   set senderM(String? value){
     sender_id = value;
   }
@@ -48,6 +54,7 @@ class Message
       ) {
     final data = snapshot.data();
     return Message(
+      id_message: data?['id_massage'],
       sender_id: data?['sender'],
       receiver_id: data?['receiver'],
       date_creation: data?['date_creation'],
@@ -56,9 +63,23 @@ class Message
     );
   }
 
+  // convertir un DocumentSnapshot en classe UserModel
+  factory Message.fromSnapshot(DocumentSnapshot? snapshot) {
+    final data = snapshot?.data() as Map<String, dynamic>;
+    return Message(
+      id_message: data['id_message'],
+      sender_id: data['sender'],
+      receiver_id: data['receiver'],
+      date_creation: data['date_creation'],
+      content: data['content'],
+      url_image: data['url_image'],
+    );
+  }
+
   // convertir la classe UserModel en map
   Map<String, dynamic> toFirestore() {
     return {
+      if (id_message != null) "id_message": id_message,
       if (sender_id != null) "sender": sender_id,
       if (receiver_id != null) "receiver": receiver_id,
       if (date_creation != null) "date_creation": date_creation,

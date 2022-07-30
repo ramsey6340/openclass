@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_category/create_category_page.dart';
-
-import '../../../../../data/data_current_classroom.dart';
+import '../../../../../data/data_current.dart';
 import '../../../../../model/classroom.dart';
 import '../../../../composants/interaction_next_component.dart';
 import '../../../../constante.dart';
 import '../../classroom_setting/setting_page.dart';
 import '../classsroom_invitation_sheet/classroom_invitation_sheet_page.dart';
-import '../create_salle/create_salle_page.dart';
 
 class ClassroomSettingSheetPage extends StatelessWidget
 {
@@ -58,7 +56,7 @@ class ClassroomSettingSheetPage extends StatelessWidget
                       radius: 5,
                     ),
                     SizedBox(width: 5,),
-                    Text('${data_current_number_of_member} membres'),
+                    Text('${current_number_of_member} membres'),
                   ],
                 ),
               ],

@@ -6,7 +6,6 @@ import 'composants/body.dart';
 class ListClassroomPage extends StatelessWidget
 {
 
-  static String routeName = '/list_classroom_page';
   final _key = GlobalKey();
   @override
   Widget build(BuildContext context) {

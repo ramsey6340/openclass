@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
-import 'package:openclass/data/data_current_classroom.dart';
-import 'package:openclass/data/data_user.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/external_link.dart';
 import 'package:openclass/view/composants/next_button.dart';
 import 'package:openclass/view/constante.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
-import '../../../../../../data/data_category_salle.dart';
-import '../../../../../../data/data_classroom.dart';
-import '../../../../../../data/data_responsible.dart';
-import '../../../../../../data/data_salle.dart';
-import '../../../../../../increment.dart';
 import '../../../../../../model/classroom.dart';
 import '../../../../../../model/enum_type.dart';
 import '../../../../../../model/salle.dart';
@@ -28,7 +21,7 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
-  Classroom classroom_create = Classroom();
+  Classroom classroom_create = Classroom('');
   final entryField = EntryField();
   bool _privateClassroom = false;
   Create create = Create();
@@ -91,28 +84,28 @@ class _BodyState extends State<Body>
   }
 
 
-  // methode de creation d'une classe
+  // =================================methode de creation d'une classe=================================
   void creationOfClassroom()
   {
     try{
       // l'instance de la classe
       final classroom = Classroom(
-        id_classroom: '',
+        '',
         name_classroom: entryField.textController.text,
-        img_profile: '',
+        img_profile: 'assets/images/img_default_class.png',
         creation_date: '',
         description_classroom: entryField.multiTextController.text,
         is_private: _privateClassroom,
-        responsible_id: currentUser.id,
+        responsible_id: current_user.id,
       );
 
       // création de la classe dans Firebase
       create.creationClassroom(classroom);
 
       // les instances des trois catégories de base
-      final categorySalleInfo = CategorySalle(id_category:'', name_category:'SALLES INFORMATION', creation_date:'', description_category:'Salle de catégorie information', is_private:false, type_category:EnumCategorySalle.information, classroom_id:current_classroom_id);
-      final categorySalleDoc = CategorySalle(id_category:'', name_category:'SALLES BIBLIOTHEQUE', creation_date:'', description_category:'Salle de catégorie document', is_private:false, type_category:EnumCategorySalle.bibliotheque, classroom_id:current_classroom_id);
-      final categorySalleDis = CategorySalle(id_category:'', name_category:'SALLES DISCUSSION', creation_date:'', description_category:'Salle de catégorie discussion', is_private:false, type_category:EnumCategorySalle.discussion, classroom_id:current_classroom_id);
+      final categorySalleInfo = CategorySalle('',current_classroom_id, name_category:'SALLES INFORMATION', creation_date:'', description_category:'Salle de catégorie information', is_private:false, type_category:EnumCategorySalle.information);
+      final categorySalleDoc = CategorySalle('', current_classroom_id,name_category:'SALLES BIBLIOTHEQUE', creation_date:'', description_category:'Salle de catégorie document', is_private:false, type_category:EnumCategorySalle.bibliotheque);
+      final categorySalleDis = CategorySalle('', current_classroom_id,name_category:'SALLES DISCUSSION', creation_date:'', description_category:'Salle de catégorie discussion', is_private:false, type_category:EnumCategorySalle.discussion,);
 
       // création des trois catégories de base dans Firebase
       create.creationCategorySalle(categorySalleInfo);
@@ -120,9 +113,9 @@ class _BodyState extends State<Body>
       create.creationCategorySalle(categorySalleDis);
 
       // les instances des trois salles
-      final salleInfo = Salle(id_salle: '', name_salle: 'géneral', creation_date: '', is_private: false, category_salle_id: current_categories_salle_id[0]);
-      final salleDoc = Salle(id_salle: '', name_salle: 'géneral', creation_date: '', is_private: false, category_salle_id: current_categories_salle_id[1]);
-      final salleDis = Salle(id_salle: '', name_salle: 'géneral', creation_date: '', is_private: false, category_salle_id: current_categories_salle_id[2]);
+      final salleInfo = Salle('', current_categories_salle_id[0],name_salle: 'géneral', creation_date: '', is_private: false,);
+      final salleDoc = Salle('', current_categories_salle_id[1],name_salle: 'géneral', creation_date: '', is_private: false,);
+      final salleDis = Salle('', current_categories_salle_id[2],name_salle: 'géneral', creation_date: '', is_private: false,);
 
 
       // création d'une salle pour chacun des trois catégories dans Firebase
@@ -136,33 +129,6 @@ class _BodyState extends State<Body>
       print(e);
     }
   }
-
-  /*
-  // methode de creation des trois categories de base
-  List<CategorySalle> creationOfTheeBaseCategories(Classroom classroom)
-  {
-    List<CategorySalle> list_category = [];
-    CategorySalle categorySalle = CategorySalle();
-    List<String> name_category = ['SALLES INFORMATION', 'SALLES BIBLIOTHEQUE', 'SALLES DISCUSSION'];
-    List<String> description_category = ['Salle de catégorie information', 'Salle de catégorie document', 'Salle de catégorie discussion'];
-    List<EnumCategorySalle> type_category = [EnumCategorySalle.information, EnumCategorySalle.bibliotheque, EnumCategorySalle.discussion];
-
-    for(int i=0; i<3; i++){
-      categorySalle = CategorySalle(id_category:Increment.id_category, name_category:name_category[i], creation_date:'02/02/2022', description_category:description_category[i], is_private:false, type_category:type_category[i], classroom_id:classroom.idClassroom);
-      data_List_categories_salle.add(categorySalle);
-      list_category.add(categorySalle);
-    }
-    return list_category;
-  }
-
-  // methode de creation de la salle de base pour chacun des trois categories de base
-  void creationOfBaseSalle(List<CategorySalle> list_category)
-  {
-    Salle salle = Salle();
-    for(int i=0; i<3; i++){
-      salle = Salle(id_salle:Increment.id_salle, name_salle:'géneral', creation_date:'12/02/2019', is_private:false, category_salle_id:list_category[i].idCategory);
-      data_list_salles.add(salle);
-    }
-  }*/
+  // ================================= FIN =================================
 
 }

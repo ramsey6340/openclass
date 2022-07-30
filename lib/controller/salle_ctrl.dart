@@ -4,7 +4,7 @@ import '../model/salle.dart';
 
 class SalleCtrl
 {
-  Salle _salle = Salle();
+  Salle _salle = Salle('','');
 
   // stream controller pour la classe Classroom
   final _streamCtrl = StreamController<Salle>();
@@ -18,7 +18,7 @@ class SalleCtrl
     _salle = value;
     sink.add(_salle);
   }
-  modifId(String? value){
+  modifId(String value){
     _salle.idSalle = value;
     sink.add(_salle);
   }
@@ -34,7 +34,7 @@ class SalleCtrl
     _salle.isPrivate = value;
     sink.add(_salle);
   }
-  modifCategorySalle(String? value){
+  modifCategorySalle(String value){
     _salle.categorySalleId = value;
     sink.add(_salle);
   }

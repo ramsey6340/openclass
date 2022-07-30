@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:openclass/data/data_user.dart';
 import 'package:openclass/view/composants/confirmation_alert_dialogue.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
+import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_email_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/composants/edit_user_first_name_page.dart';
+import '../../../../../../data/data_current.dart';
 import '../../../../../composants/interaction_next_component.dart';
 import '../../../../../constante.dart';
+import '../user_profile_page.dart';
 import 'composants/edit_user_last_name_page.dart';
 import 'composants/edit_user_password_page.dart';
 import 'composants/edit_user_phone_number_page.dart';
@@ -20,7 +23,10 @@ class BodyAccount extends StatelessWidget {
           Text("Retour"),
           'Compte',
           Text(""),
-          (){Navigator.of(context).pop();},
+          (){
+              current_menu_index = 3;
+              Navigator.pushNamed(context, MainScreen.routeName);
+            },
           (){}
       ),
       body: Column(
@@ -34,13 +40,13 @@ class BodyAccount extends StatelessWidget {
                   children: [
                     SizedBox(height: 50,),
                     Text("Mes informations", style: TextStyle(fontSize: 18),),
-                    InteractionComponent(title: currentUser.firstName!, press: (){Navigator.pushNamed(context, EditUserFirstNamePage.routeName);}),
+                    InteractionComponent(title: current_user.firstName!, press: (){Navigator.pushNamed(context, EditUserFirstNamePage.routeName);}),
                     SizedBox(height: 2,),
-                    InteractionComponent(title: currentUser.lastName!, press: (){Navigator.pushNamed(context, EditUserLastNamePage.routeName);}),
+                    InteractionComponent(title: current_user.lastName!, press: (){Navigator.pushNamed(context, EditUserLastNamePage.routeName);}),
                     SizedBox(height: 2,),
-                    InteractionComponent(title: currentUser.email!, press: (){Navigator.pushNamed(context, EditUserEmailNamePage.routeName);}),
+                    InteractionComponent(title: current_user.email!, press: (){Navigator.pushNamed(context, EditUserEmailNamePage.routeName);}),
                     SizedBox(height: 2,),
-                    InteractionComponent(title: currentUser.telNumber!, press: (){Navigator.pushNamed(context, EditUserPhoneNumberPage.routeName);}),
+                    InteractionComponent(title: current_user.telNumber!, press: (){Navigator.pushNamed(context, EditUserPhoneNumberPage.routeName);}),
                     SizedBox(height: 2,),
                     InteractionComponent(title: 'Mot de passe', press: (){Navigator.pushNamed(context, EditUserPasswordPage.routeName);}),
                     SizedBox(height: 50,),

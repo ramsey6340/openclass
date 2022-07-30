@@ -4,7 +4,7 @@ import 'package:openclass/model/responsible.dart';
 
 class DeputyCtrl
 {
-  Deputy _deputy = Deputy();
+  Deputy _deputy = Deputy('');
 
   // stream controller pour la classe Deputy
   final _streamCtrl = StreamController<Deputy>();
@@ -16,10 +16,6 @@ class DeputyCtrl
   // les methode de modification de la valeur
   modifDeputy(Deputy value){
     _deputy = value;
-    sink.add(_deputy);
-  }
-  modifId(String value){
-    _deputy.id = value;
     sink.add(_deputy);
   }
   modifFirstName(String value){

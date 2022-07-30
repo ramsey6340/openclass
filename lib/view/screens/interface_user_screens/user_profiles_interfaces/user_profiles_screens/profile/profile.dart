@@ -3,6 +3,7 @@ import 'package:openclass/view/composants/entry_field.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/constante.dart';
 
+import '../../../../../../data/data_current.dart';
 import '../../../../../../data/data_user.dart';
 import '../../../classroom_setting/composants/photo_profile.dart';
 
@@ -22,14 +23,14 @@ class Profile extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(height: 20,),
-              PhotoProfile(imgProfile: currentUser.imgProfile!, nameUser: '', dateBirth: ''),
+              PhotoProfile(imgProfile: current_user.imgProfile!, nameUser: '', dateBirth: ''),
               Divider(color: Colors.white,),
               SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Prenom et nom:", style: TextStyle(fontSize: 18),),
-                  Text(currentUser.firstName!+' '+currentUser.lastName!,style: TextStyle(fontSize: 18),)
+                  Text(current_user.firstName!+' '+current_user.lastName!,style: TextStyle(fontSize: 18),)
                 ],
               ),
               SizedBox(height: 10,),
@@ -37,7 +38,7 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Date de naissance:", style: TextStyle(fontSize: 18),),
-                  Text(currentUser.dateBirth!,style: TextStyle(fontSize: 18),)
+                  Text(current_user.dateBirth!,style: TextStyle(fontSize: 18),)
                 ],
               ),
               SizedBox(height: 10,),
@@ -45,7 +46,7 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Email:", style: TextStyle(fontSize: 18),),
-                  Text(currentUser.email!,style: TextStyle(fontSize: 18),)
+                  Text(current_user.email!,style: TextStyle(fontSize: 18),)
                 ],
               ),
               SizedBox(height: 10,),
@@ -53,7 +54,7 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Numero de téléphone:", style: TextStyle(fontSize: 18),),
-                  Text(currentUser.telNumber!,style: TextStyle(fontSize: 18),)
+                  Text(current_user.telNumber!,style: TextStyle(fontSize: 18),)
                 ],
               ),
               SizedBox(height: 10,),

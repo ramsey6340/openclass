@@ -12,23 +12,14 @@ class ChatBubble extends StatelessWidget
   Widget build(BuildContext context)
   {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: (is_me)?MainAxisAlignment.end:MainAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(
-              top: 5,
-              bottom: 5,
-              right: 10
-          ),
+          margin: (is_me)?EdgeInsets.only(top: 5, bottom: 5, right: 10):EdgeInsets.only(top: 5, bottom: 5, left: 10),
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           decoration: BoxDecoration(
-              color: kColorPrimary,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft:is_me?Radius.circular(20):Radius.circular(0),
-                  bottomRight: Radius.circular(0)
-              )
+              color: (is_me)?kColorPrimary:Colors.grey,
+              borderRadius: BorderRadius.circular(8)
           ),
           constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width*0.8

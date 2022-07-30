@@ -15,8 +15,8 @@ class SettingClass
   {
     this._id = 0;
     this._is_notify = false;
-    this._classroom = Classroom();
-    this._user = UserModel();
+    this._classroom = Classroom('');
+    this._user = UserModel('');
   }
 
   // getters

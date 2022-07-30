@@ -3,7 +3,7 @@ import 'package:openclass/model/responsible.dart';
 
 class ResponsibleCtrl
 {
-  Responsible _responsible = Responsible();
+  Responsible _responsible = Responsible('');
 
   // stream controller pour la classe Responsible
   final _streamCtrl = StreamController<Responsible>();
@@ -15,10 +15,6 @@ class ResponsibleCtrl
   // les methode de modification de la valeur
   modifResponsible(Responsible value){
     _responsible = value;
-    sink.add(_responsible);
-  }
-  modifId(String value){
-    _responsible.id = value;
     sink.add(_responsible);
   }
   modifFirstName(String value){

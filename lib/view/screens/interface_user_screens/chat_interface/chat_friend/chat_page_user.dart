@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/constante.dart';
+import '../../../../../data/data_current.dart';
 import 'composants/chat_page_setting.dart';
 import '../../../../composants/tools_bar.dart';
 import 'composants/body.dart';
@@ -19,12 +20,12 @@ class _ChatPageUserState extends State<ChatPageUser>
     return Scaffold(
       appBar: ToolsBar.appBar(
           Icon(Icons.navigate_before),
-          data_current_friend.firstName!,
+          current_friend.firstName!,
           Icon(Icons.more_horiz, color: Colors.white,),
               (){
             Navigator.pop(context);
           },
-              (){
+          (){
             _showSettingPage(context);
           }
       ),

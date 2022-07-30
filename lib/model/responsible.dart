@@ -6,17 +6,18 @@ class Responsible extends Administrator
 {
   // les constructeurs
   Responsible(
-      {String? id,
+      String id,
+      {
       String? first_name,
       String? last_name,
       String? email,
       String? tel_number,
       String? img_profile,
       String? password,
-      String? date_birth}):super(id:id, first_name:first_name, last_name:last_name, email:email, tel_number:tel_number, img_profile:img_profile, password:password, date_birth:date_birth);
+      String? date_birth}):super(id, first_name:first_name, last_name:last_name, email:email, tel_number:tel_number, img_profile:img_profile, password:password, date_birth:date_birth);
 
   // les getters
-  String? get idResponsible => super.id;
+  String get idResponsible => super.id;
   String? get firstName => super.firstName;
   String? get lastName => super.lastName;
   String? get email => super.email;
@@ -26,9 +27,6 @@ class Responsible extends Administrator
   String? get dateBirth => super.dateBirth;
 
   // les setters
-  set id(String? value){
-    id = value;
-  }
   set firstName(String? value){
     firstName = value;
   }
@@ -58,7 +56,7 @@ class Responsible extends Administrator
       ) {
     final data = snapshot.data();
     return Responsible(
-      id: data?['id'],
+      data?['id'],
       first_name: data?['first_name'],
       last_name: data?['last_name'],
       email: data?['email'],

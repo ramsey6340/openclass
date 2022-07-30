@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/increment.dart';
 import 'package:openclass/model/classroom.dart';
+
+import '../../../../../../data/data_current.dart';
 
 class InteractionComponent extends StatelessWidget
 {
@@ -18,7 +19,7 @@ class InteractionComponent extends StatelessWidget
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(classroom.imgProfile!),
+        backgroundImage: AssetImage((classroom.imgProfile == '')?'assets/images/img_default_class.png':classroom.imgProfile!),
         radius: 25,
       ),
       trailing: Container(
@@ -34,19 +35,7 @@ class InteractionComponent extends StatelessWidget
       title: Text(classroom.nameClassroom!,style: styleTitle, overflow: TextOverflow.ellipsis,),
       subtitle: Text(subTitle,overflow: TextOverflow.ellipsis,),
       onTap: (){
-        /*
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DrawerComponent(),
-              settings: RouteSettings(
-                arguments: classroom,
-              )
-            )
-        );
-         */
-        //Navigator.pop(context);
-        Increment.idCurrentClassroom = classroom.idClassroom!;
+        current_classroom = classroom;
         Scaffold.of(context).openEndDrawer();
       },
     );
