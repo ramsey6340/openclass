@@ -2,23 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Classroom
 {
-  final String id_classroom;
+  String id_classroom;
   String? name_classroom;
   String? img_profile;
   String? creation_date;
   String? description_classroom;
   bool? is_private;
-  String? responsible_id;
+  String responsible_id;
 
   Classroom(
       this.id_classroom,
+      this.responsible_id,
       {
       this.name_classroom,
       this.img_profile,
       this.creation_date,
       this.description_classroom,
-      this.is_private,
-      this.responsible_id});
+      this.is_private,});
 
   //les accesseurs
   String get idClassroom => id_classroom;
@@ -27,8 +27,12 @@ class Classroom
   String? get creationDate => creation_date;
   String? get descriptionClassroom => description_classroom;
   bool? get isPrivate => is_private;
-  String? get responsibleId => responsible_id;
+  String get responsibleId => responsible_id;
 
+  // les mutateurs
+  set idClassroom(String value){
+    id_classroom = value;
+  }
   // les mutateurs
   set name(String? value){
     name_classroom = value;
@@ -45,7 +49,7 @@ class Classroom
   set isPrivate(bool? value){
     is_private = value;
   }
-  set responsibleId(String? value){
+  set responsibleId(String value){
     responsible_id = value;
   }
 
@@ -57,12 +61,12 @@ class Classroom
     final data = snapshot.data();
     return Classroom(
       data?['id_classroom'],
+      data?['responsible_id'],
       name_classroom: data?['name_classroom'],
       img_profile: data?['img_profile'],
       creation_date: data?['creation_date'],
       is_private: data?['is_private'],
       description_classroom: data?['description_classroom'],
-      responsible_id: data?['responsible_id'],
     );
   }
 
@@ -72,12 +76,12 @@ class Classroom
     final data = snapshot?.data() as Map<String, dynamic>;
     return Classroom(
       data['id_classroom'],
+      data['responsible_id'],
       name_classroom: data['name_classroom'],
       img_profile: data['img_profile'],
       creation_date: data['creation_date'],
       is_private: data['is_private'],
       description_classroom: data['description_classroom'],
-      responsible_id: data['responsible_id'],
     );
   }
 

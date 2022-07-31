@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/data/data_current.dart';
-import 'package:openclass/data/data_user.dart';
 import 'package:openclass/model/user.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/account/body_account.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/composants/photo_profile.dart';
@@ -35,7 +34,7 @@ class _BodyState extends State<Body>
     InteractionComponent(title: 'Notification', press: (){}),
   ];
 */
-  UserModel? user = UserModel('');
+  UserModel? user = UserModel('','');
 
 
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -123,6 +122,7 @@ class _BodyState extends State<Body>
   // methode de deconnexion de l'utilisateur
   Future<void> signOutUser() async{
     await FirebaseAuth.instance.signOut();
+    current_menu_index = 0;
     //Navigator.pushNamed(context, MainScreen.routeName);
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(

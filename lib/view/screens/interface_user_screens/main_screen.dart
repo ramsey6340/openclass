@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/model/classroom.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/user_profile_page.dart';
 import 'package:openclass/view/composants/drawer_component.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
@@ -20,7 +19,6 @@ class MainScreen extends StatefulWidget
 
 class _MainScreenState extends State<MainScreen>
 {
-  late int _currentIndex;
   late Widget _currentPage;
   late List<Widget> _pageList;
   late Widget _pageClass;

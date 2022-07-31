@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:openclass/view/composants/entry_field.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/constante.dart';
-
 import '../../../../../../data/data_current.dart';
-import '../../../../../../data/data_user.dart';
 import '../../../classroom_setting/composants/photo_profile.dart';
 
 class Profile extends StatelessWidget {
@@ -46,7 +44,7 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Email:", style: TextStyle(fontSize: 18),),
-                  Text(current_user.email!,style: TextStyle(fontSize: 18),)
+                  Text(current_user.email,style: TextStyle(fontSize: 18),)
                 ],
               ),
               SizedBox(height: 10,),

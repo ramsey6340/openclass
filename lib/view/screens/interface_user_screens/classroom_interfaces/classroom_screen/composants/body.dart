@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:openclass/view/composants/loading.dart';
 import '../../../../../../data/data_current.dart';
 import 'interaction_component.dart';
-import 'package:openclass/data/data_classroom.dart';
 import 'package:openclass/model/classroom.dart';
 
 class Body extends StatefulWidget
@@ -50,7 +49,7 @@ class _BodyState extends State<Body>
               onDismissed: (direction){
                 if(direction == DismissDirection.endToStart){
                   setState((){
-                    data_list_classrooms.removeAt(index);
+                    //data_list_classrooms.removeAt(index);
                   });
                 }
                 else if(direction == DismissDirection.startToEnd){

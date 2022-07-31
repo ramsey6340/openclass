@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:openclass/data/data_current_classroom.dart';
-import 'package:openclass/data/data_user.dart';
 import 'package:openclass/view/composants/alert_dialogue.dart';
 import 'package:openclass/view/composants/entry_field.dart';
 import 'package:openclass/view/composants/next_button.dart';
@@ -10,6 +8,7 @@ import 'package:openclass/view/constante.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import '../../../../../CRUD/create.dart';
 import '../../../../../CRUD/read.dart';
+import '../../../../../data/data_current.dart';
 import '../../../../../model/user.dart';
 import '../../../../composants/external_link.dart';
 
@@ -93,23 +92,29 @@ class _SignUpFormState extends State<SignUpForm>
       if(accepteCondition){
         if(formState!.validate()){
           try {
+            FirebaseFirestore db = FirebaseFirestore.instance;
+
             final user = UserModel(
               '',
+              entryField.emailController.text,
               first_name: entryField.firstNameController.text,
               last_name: entryField.lastNameController.text,
-              email: entryField.emailController.text,
               tel_number: entryField.numberController.text,
               img_profile: '',
               password: entryField.passwordController.text,
               date_birth: '2000',
             );
 
+            final credentialUp = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: user.email, password: user.password!);
+            user.idU = credentialUp.user?.uid as String;
+
             // enregistrement de l'utilisateur dans Firebase
             create.signUpUserInFirebase(user);
             // connexion de l'utilisateur à son compte
-            final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: entryField.emailController.text, password: entryField.passwordController.text);
+            final credentialIn = await FirebaseAuth.instance.signInWithEmailAndPassword(email: user.email, password: user.password!);
 
-            read.initCurrentUser(credential.user?.uid);
+            read.initCurrentUser(credentialIn.user?.uid);
+            current_menu_index = 0;
             // redirection de l'utilisateur vers la page d'accueil
             Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainScreen()), (route) => false);
 

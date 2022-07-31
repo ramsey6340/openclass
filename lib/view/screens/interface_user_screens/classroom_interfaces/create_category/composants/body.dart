@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
@@ -108,9 +109,20 @@ class _BodyState extends State<Body>
   Future<void> creationOfCategory() async
   {
     try{
+      FirebaseFirestore db = FirebaseFirestore.instance;
+      // creation d'un id pour la categorie
+      final cat11 = entryField.textController.text.trim();
+      final lcat1 = current_user.email.split('@');
+      final cat12 = lcat1[0];
+      final cat13 = current_user.tel_number;
+      final cat14 = current_user.password;
+      final listcat1 = [cat11,cat12,cat13,cat14];
+      final id_categorie = listcat1.join();
+
+
       // creation d'une instance de la categorie
       final category = CategorySalle(
-        '',
+        id_categorie,
         current_classroom.id_classroom,
         name_category: entryField.textController.text,
         creation_date: '',
@@ -118,6 +130,11 @@ class _BodyState extends State<Body>
         is_private: _privateCategory,
         type_category: ChooseClasseCategorie.categoryChoose,
       );
+
+      final docRefCat = db.collection("categoriesSalles").doc(category.classroom_id).collection(category.classroom_id).doc();
+
+      String firebase_id_cat = docRefCat.id;
+      category.idCategory = firebase_id_cat;
 
       // création de la catégorie dans Firebase
       create.creationCategorySalle(category);

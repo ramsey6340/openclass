@@ -4,7 +4,6 @@ import 'package:openclass/view/composants/loading.dart';
 import '../../../../../../model/user.dart';
 import 'interaction_component.dart';
 import 'package:openclass/model/message.dart';
-import '../../../../../../data/data_message.dart';
 
 class Body extends StatefulWidget
 {
@@ -52,7 +51,7 @@ class _BodyState extends State<Body>
               onDismissed: (direction){
                 if(direction == DismissDirection.endToStart){
                   setState((){
-                    data_list_messages.removeAt(index);
+                    //data_list_messages.removeAt(index);
                   });
                 }
                 else if(direction == DismissDirection.startToEnd){

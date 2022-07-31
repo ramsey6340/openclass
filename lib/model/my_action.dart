@@ -15,7 +15,7 @@ abstract class MyAction
     this._id = 0;
     this._content = "";
     this._publication_date = "";
-    this._user = UserModel('');
+    this._user = UserModel('','');
   }
   // getters
   int get id => _id;

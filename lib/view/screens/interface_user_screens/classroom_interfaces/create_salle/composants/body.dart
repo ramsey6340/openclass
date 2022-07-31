@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
@@ -84,16 +85,29 @@ class _BodyState extends State<Body>
   void creationOfSalle()
   {
     try{
+      FirebaseFirestore db = FirebaseFirestore.instance;
+
+      // creation d'un id pour la salle
+      final salle11 = entryField.textController.text.trim();
+      final lsalle1 = current_user.email.split('@');
+      final salle12 = lsalle1[0];
+      final salle13 = current_user.tel_number;
+      final salle14 = current_user.password;
+      final listsalle1 = [salle11,salle12,salle13,salle14];
+      final id_salle = listsalle1.join();
 
       // creation d'une instance de la salle
       final salle = Salle(
-          '',
-        current_category.id_category,
+          id_salle,
+          current_category.id_category,
           name_salle: entryField.textController.text,
           creation_date: '',
           is_private: _privateSalle,
-
       );
+
+      final docRefSalle = db.collection("salles").doc(salle.category_salle_id).collection(salle.category_salle_id).doc();
+      String firebase_id_Salle = docRefSalle.id;
+      salle.idSalle = firebase_id_Salle;
 
       // création de la salle dans Firebase
       create.creationSalle(salle);

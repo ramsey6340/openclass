@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_user.dart';
 import 'package:openclass/view/composants/confirmation_alert_dialogue.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
@@ -44,7 +43,7 @@ class BodyAccount extends StatelessWidget {
                     SizedBox(height: 2,),
                     InteractionComponent(title: current_user.lastName!, press: (){Navigator.pushNamed(context, EditUserLastNamePage.routeName);}),
                     SizedBox(height: 2,),
-                    InteractionComponent(title: current_user.email!, press: (){Navigator.pushNamed(context, EditUserEmailNamePage.routeName);}),
+                    InteractionComponent(title: current_user.email, press: (){Navigator.pushNamed(context, EditUserEmailNamePage.routeName);}),
                     SizedBox(height: 2,),
                     InteractionComponent(title: current_user.telNumber!, press: (){Navigator.pushNamed(context, EditUserPhoneNumberPage.routeName);}),
                     SizedBox(height: 2,),

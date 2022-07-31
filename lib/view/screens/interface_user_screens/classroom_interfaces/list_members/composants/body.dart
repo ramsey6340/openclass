@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_adhesion.dart';
-import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/add_friends/composants/contact.dart';
 import '../../../../../../data/data_current.dart';
@@ -14,7 +12,7 @@ class Body extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    final members = chooseMembers(data_list_adhesion_classes);
+    final members = [];
 
     return Container(
       //color: kColorAppBar,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:openclass/data/data_current_classroom.dart';
 import 'package:openclass/view/constante.dart';
 
 import '../../../../../../data/data_current.dart';

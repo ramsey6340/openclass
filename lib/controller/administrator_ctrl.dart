@@ -3,7 +3,7 @@ import 'package:openclass/model/administrator.dart';
 
 class AdministratorCtrl
 {
-  Administrator _administrator = Administrator('');
+  Administrator _administrator = Administrator('','');
 
   // stream controller pour la classe Administrator
   final _streamCtrl = StreamController<Administrator>();

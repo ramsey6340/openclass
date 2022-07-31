@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserModel
 {
   // les attribues
-  final String id;
+  String id;
   String? first_name;
   String? last_name;
-  String? email;
+  String email;
   String? tel_number;
   String? img_profile;
   String? password;
@@ -15,10 +15,10 @@ class UserModel
   // les constructeurs
   UserModel(
       this.id,
+      this.email,
       {
       this.first_name,
       this.last_name,
-      this.email,
       this.tel_number,
       this.img_profile,
       this.password,
@@ -27,12 +27,16 @@ class UserModel
   String get idU => id;
   String? get firstName => first_name;
   String? get lastName => last_name;
-  String? get emailU => email;
+  String get emailU => email;
   String? get telNumber => tel_number;
   String? get imgProfile => img_profile;
   String? get passwordU => password;
   String? get dateBirth => date_birth;
 
+  // les mutateurs
+  set idU(String value){
+    id = value;
+  }
   // les mutateurs
   set firstName(String? value){
     first_name = value;
@@ -40,7 +44,7 @@ class UserModel
   set lastName(String? value){
     last_name = value;
   }
-  set emailU(String? value){
+  set emailU(String value){
     email = value;
   }
   set telNumber(String? value){
@@ -66,9 +70,9 @@ class UserModel
     final data = snapshot.data();
     return UserModel(
       data?['id'],
+      data?['email'],
       first_name: data?['first_name'],
       last_name: data?['last_name'],
-      email: data?['email'],
       tel_number: data?['tel_number'],
       img_profile: data?['img_profile'],
       password: data?['password'],
@@ -81,9 +85,9 @@ class UserModel
     final data = snapshot?.data() as Map<String, dynamic>;
     return UserModel(
       data['id'],
+      data['email'],
       first_name: data['first_name'],
       last_name: data['last_name'],
-      email: data['email'],
       tel_number: data['tel_number'],
       img_profile: data['img_profile'],
       password: data['password'],

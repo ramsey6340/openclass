@@ -6,20 +6,20 @@ class Administrator extends UserModel
 {
   Administrator(
       String id,
+      String email,
       {
       String? first_name,
       String? last_name,
-      String? email,
       String? tel_number,
       String? img_profile,
       String? password,
-      String? date_birth}):super(id, first_name:first_name, last_name:last_name, email:email, tel_number:tel_number, img_profile:img_profile, password:password, date_birth:date_birth);
+      String? date_birth}):super(id, email,first_name:first_name, last_name:last_name, tel_number:tel_number, img_profile:img_profile, password:password, date_birth:date_birth);
 
   // les getters
   String get id => super.id;
   String? get firstName => super.firstName;
   String? get lastName => super.lastName;
-  String? get email => super.email;
+  String get email => super.email;
   String? get telNumber => super.telNumber;
   String? get imgProfile => super.imgProfile;
   String? get password => super.password;
@@ -56,9 +56,9 @@ class Administrator extends UserModel
     final data = snapshot.data();
     return Administrator(
       data?['id'],
+      data?['email'],
       first_name: data?['first_name'],
       last_name: data?['last_name'],
-      email: data?['email'],
       tel_number: data?['tel_number'],
       img_profile: data?['img_profile'],
       password: data?['password'],

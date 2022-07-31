@@ -10,7 +10,15 @@ class Update
     final docRef = db.collection("users").doc(current_user.id);
     docRef.update(new_value);
   }
-  
+
+  // methode de mise à jour de la classe
+  Future<void> updateClassroom(Map<String, dynamic> new_value) async
+  {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final docRef = db.collection("classrooms").doc(current_classroom.responsible_id).collection(current_classroom.responsible_id).doc(current_classroom.id_classroom);
+    docRef.update(new_value);
+  }
+
   // methode de mise à jour de la catégorie
   Future<void> updateCategorySalle(Map<String, dynamic> new_value) async
   {

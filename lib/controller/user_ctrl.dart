@@ -3,7 +3,7 @@ import '../model/user.dart';
 
 class UserCtrl
 {
-  UserModel _user = UserModel('');
+  UserModel _user = UserModel('','');
 
   // stream controller pour la classe User
   final _streamCtrl = StreamController<UserModel>();

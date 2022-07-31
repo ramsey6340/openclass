@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:openclass/model/deputy.dart';
-import 'package:openclass/model/responsible.dart';
 
 class DeputyCtrl
 {
-  Deputy _deputy = Deputy('');
+  Deputy _deputy = Deputy('','');
 
   // stream controller pour la classe Deputy
   final _streamCtrl = StreamController<Deputy>();

@@ -25,13 +25,14 @@ class Body extends StatelessWidget
                 Text("Connecte toi avec ton email pour commencer l'aventure",style: subHeaderFontSize,textAlign: subHeaderTextAlign,),
                 SizedBox(height: MediaQuery.of(context).size.height*0.10,),
                 SignInForm(),//les champs de formulaire
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Vous n\'avez pas de compte ?', style: TextStyle(fontSize: 20),),
                     ExternalLink(color: kColorPrimarySecond, text: 'S\'inscrire', destination: SignUpPage.routeName),
                   ],
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.05)
               ],
             ),
           ],

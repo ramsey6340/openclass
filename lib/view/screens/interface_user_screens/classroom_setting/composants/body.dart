@@ -3,9 +3,7 @@ import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/user_profiles_interfaces/user_profiles_screens/composants/photo_profile.dart';
 import 'package:openclass/view/composants/interaction_next_component.dart';
-
 import '../../../../../data/data_current.dart';
-import '../../../../../data/data_current_classroom.dart';
 import '../../classroom_interfaces/list_members/list_members_page.dart';
 import '../../main_screen.dart';
 class Body extends StatefulWidget
