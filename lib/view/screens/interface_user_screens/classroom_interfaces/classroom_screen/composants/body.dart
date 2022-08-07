@@ -13,11 +13,20 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
-
+  late String id;
+  initState(){
+    super.initState();
+    id = current_user_id!;
+  }
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final Stream<QuerySnapshot> _classroomStream = db.collection('classrooms').doc(current_user.id).collection(current_user.id).snapshots();
+    if(id == ''){
+      return const Loading();
+    }
+
+    final Stream<QuerySnapshot> _classroomStream = db.collection('classrooms').doc(id).collection(id).snapshots();
+
 
     return StreamBuilder<QuerySnapshot>(
       stream: _classroomStream,
@@ -64,17 +73,6 @@ class _BodyState extends State<Body>
     );
   }
 
-  //methode pour choisir les classes créer par l'utilisateur courent
-  static List<Classroom> chooseMyClassroom(int id_current_user, List<Classroom> list_classrooms)
-  {
-    List<Classroom> classrooms = [];
-    for(int i=0; i<list_classrooms.length; i++){
-      if(list_classrooms[i].responsibleId == id_current_user){
-        classrooms.add(list_classrooms[i]);
-      }
-    }
-    return classrooms;
-  }
 
   final backgroundDelete = Container(
     child: Icon(Icons.delete,color: Colors.white,size: 40,),

@@ -12,9 +12,7 @@ class Read
       toFirestore: (UserModel user, _) => user.toFirestore(),
     );
     final docSnap = await ref.get();
-
     current_user = docSnap.data()!; // Convert to UserModel object
-    UserCtrl userCtrl = UserCtrl();
-    userCtrl.modifUser(current_user);
   }
+
 }

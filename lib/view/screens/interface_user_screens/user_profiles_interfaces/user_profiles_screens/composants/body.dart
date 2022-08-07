@@ -69,7 +69,7 @@ class _BodyState extends State<Body>
           child: ListView(
             children: [
               //PhotoProfile(imgProfile: currentUser.imgProfile, nameUser: currentUser.firstName+' '+currentUser.lastName, dateBirth: currentUser.dateBirth),
-              PhotoProfile(imgProfile: current_user.imgProfile, nameUser: current_user.firstName!+' '+current_user.lastName!, dateBirth: current_user.dateBirth),
+              PhotoProfile(imgProfile: current_user.imgProfile, nameUser: '${current_user.firstName} ${current_user.lastName}', dateBirth: current_user.dateBirth),
               SizedBox(height: 50,),
               Text("PARAMETRE DE L'UTILISATEUR"),
               InteractionComponent(
@@ -123,6 +123,7 @@ class _BodyState extends State<Body>
   Future<void> signOutUser() async{
     await FirebaseAuth.instance.signOut();
     current_menu_index = 0;
+    current_user_id = '';
     //Navigator.pushNamed(context, MainScreen.routeName);
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(

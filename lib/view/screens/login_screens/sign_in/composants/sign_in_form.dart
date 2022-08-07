@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:openclass/CRUD/read.dart';
 import 'package:openclass/data/data_current.dart';
+import 'package:openclass/view/composants/loading.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/login_screens/forgot_password/forgot_password_page.dart';
 import '../../../../composants/alert_dialogue.dart';
@@ -48,12 +49,12 @@ class _SignInFormState extends State<SignInForm>
   }
 
   // methode de traitement de la connexion avec firebase
-  Future <void> signIn() async
-  {
+  Future<void> signIn() async {
     final formState = _formKey.currentState;
     if(formState!.validate()){
       try {
         final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: entryField.emailController.text, password: entryField.passwordController.text);
+        current_user_id = credential.user?.uid;
         read.initCurrentUser(credential.user?.uid);
         current_menu_index = 0;
         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainScreen()), (route) => false);

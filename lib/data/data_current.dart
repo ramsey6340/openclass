@@ -5,6 +5,8 @@ import 'package:openclass/model/user.dart';
 
 // l'utilisateur courent
 UserModel current_user = UserModel('','');
+// l'id de l'utilisateur courent
+String? current_user_id;
 // l'id de la classe courent
 String current_classroom_id = '';
 // les id des trois categories de base

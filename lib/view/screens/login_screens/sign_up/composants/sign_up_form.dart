@@ -105,8 +105,9 @@ class _SignUpFormState extends State<SignUpForm>
               date_birth: '2000',
             );
 
-            final credentialUp = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: user.email, password: user.password!);
+            var credentialUp = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: user.email, password: user.password!);
             user.idU = credentialUp.user?.uid as String;
+            current_user_id = user.id;
 
             // enregistrement de l'utilisateur dans Firebase
             create.signUpUserInFirebase(user);

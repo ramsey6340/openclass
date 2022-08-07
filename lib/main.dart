@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:openclass/routes.dart';
 import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/login_screens/welcome/welcome_page.dart';
+import 'package:openclass/view/screens/splash_screen/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         //home: (is_logged_user)?MainScreen():WelcomePage(),
-        home: WelcomePage(),
+        home: SplashPage(),
         routes: routes,
       );
   }

@@ -9,6 +9,7 @@ class Message
   String? receiver_id;
   String? date_creation;
   String? content;
+  String? type_message;
   String? url_image;
 
   Message(
@@ -17,6 +18,7 @@ class Message
       this.receiver_id,
       this.date_creation,
       this.content,
+      this.type_message,
       this.url_image});
 
   // les getters
@@ -25,6 +27,7 @@ class Message
   String? get receiverId => this.receiver_id;
   String ? get dateCreation => this.date_creation;
   String? get contentM => this.content;
+  String? get typeMessage => this.type_message;
   String? get urlImage => this.url_image;
 
   // les setters
@@ -43,6 +46,9 @@ class Message
   set contentM(String? value){
     content = value;
   }
+  set typeMessage(String? value){
+    type_message = value;
+  }
   set urlImage(String? value){
     url_image = value;
   }
@@ -59,6 +65,7 @@ class Message
       receiver_id: data?['receiver'],
       date_creation: data?['date_creation'],
       content: data?['content'],
+      type_message: data?['type_message'],
       url_image: data?['url_image'],
     );
   }
@@ -72,6 +79,7 @@ class Message
       receiver_id: data['receiver'],
       date_creation: data['date_creation'],
       content: data['content'],
+      type_message: data['type_message'],
       url_image: data['url_image'],
     );
   }
@@ -84,6 +92,7 @@ class Message
       if (receiver_id != null) "receiver": receiver_id,
       if (date_creation != null) "date_creation": date_creation,
       if (content != null) "content": content,
+      if(type_message != null) "type_message":type_message,
       if (url_image != null) "url_image": url_image,
     };
   }
