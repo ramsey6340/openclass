@@ -27,7 +27,9 @@ class _InteractionComponentState extends  State<InteractionComponent>
       textColor: Colors.white,
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage((widget.classroom.imgProfile == '')?'assets/images/img_default_class.png':widget.classroom.imgProfile!),
+        backgroundImage: AssetImage(
+            (widget.classroom.imgProfile == '')? 'assets/images/img_default_class.png': widget.classroom.imgProfile
+        ),
         radius: 25,
       ),
       trailing: Container(
@@ -40,7 +42,7 @@ class _InteractionComponentState extends  State<InteractionComponent>
           child: (widget.nbreSMS<=0)?Text(''):((widget.nbreSMS<1000)?Text('${widget.nbreSMS}',style: styleNbreSMS,textAlign: TextAlign.center,):Text('+999',style: styleNbreSMS,textAlign: TextAlign.center,)),
         ),
       ),
-      title: Text(widget.classroom.nameClassroom!,style: styleTitle, overflow: TextOverflow.ellipsis,),
+      title: Text(widget.classroom.nameClassroom,style: styleTitle, overflow: TextOverflow.ellipsis,),
       subtitle: Text(widget.subTitle,overflow: TextOverflow.ellipsis,),
       onTap: (){
          current_classroom = widget.classroom;

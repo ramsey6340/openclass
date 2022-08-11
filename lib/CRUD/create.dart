@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:openclass/CRUD/read.dart';
 import 'package:openclass/data/data_current.dart';
+import 'package:openclass/model/adhesion.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/model/classroom.dart';
+import 'package:openclass/model/information.dart';
 import 'package:openclass/model/message.dart';
 import 'package:openclass/model/user.dart';
 import '../model/salle.dart';
@@ -29,15 +31,11 @@ class Create
   Future<void> creationClassroom(Classroom classroom) async
   {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final docRef = db.collection("classrooms").doc(classroom.responsible_id).collection(classroom.responsible_id).withConverter(
+    final docRef = db.collection("classrooms").withConverter(
         fromFirestore: Classroom.fromFirestore,
         toFirestore: (Classroom classroom, options) => classroom.toFirestore(),
     ).doc(classroom.id_classroom);
     docRef.set(classroom);
-    /*
-    final docUpdateRef = db.collection("classrooms").doc(classroom.responsible_id).collection(classroom.responsible_id).doc(docRef.id);
-    docUpdateRef.update({"id_classroom":docRef.id});
-     */
     current_classroom_id = classroom.id_classroom;
   }
 
@@ -85,6 +83,17 @@ class Create
     docRef.set(message);
     final docUpdateRef = db.collection("chats").doc(current_group_id).collection(current_group_id).doc(docRef.id);
     docUpdateRef.update({"id_message": docUpdateRef.id});
+  }
+
+  // methode de création d'une information dans Firebase
+  Future<void> creationInformation(Information information) async
+  {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final docRef = db.collection("informations").withConverter(
+      fromFirestore: Information.fromFirestore,
+      toFirestore: (Information information, options) => information.toFirestore(),
+    ).doc(information.id_action);
+    docRef.set(information);
   }
 
 }

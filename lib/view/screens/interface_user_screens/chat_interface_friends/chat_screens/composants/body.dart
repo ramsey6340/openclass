@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/view/composants/loading.dart';
+import '../../../../../../data/data_current.dart';
 import '../../../../../../model/user.dart';
 import 'interaction_component.dart';
 import 'package:openclass/model/message.dart';
@@ -18,7 +19,7 @@ class _BodyState extends State<Body>
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final Stream<QuerySnapshot> _usersStream = db.collection('users').orderBy('last_name').snapshots();
+    final Stream<QuerySnapshot> _usersStream = db.collection('users').where("id", isNotEqualTo: current_user.id).snapshots();
 
     return StreamBuilder(
       stream: _usersStream,

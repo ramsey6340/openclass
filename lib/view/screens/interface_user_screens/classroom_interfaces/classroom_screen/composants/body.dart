@@ -17,6 +17,7 @@ class _BodyState extends State<Body>
   initState(){
     super.initState();
     id = current_user_id!;
+    list_id_classroom = [];
   }
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _BodyState extends State<Body>
       return const Loading();
     }
 
-    final Stream<QuerySnapshot> _classroomStream = db.collection('classrooms').doc(id).collection(id).snapshots();
+    final Stream<QuerySnapshot> _classroomStream = db.collection('classrooms').where("membres", arrayContains: id).snapshots();
 
 
     return StreamBuilder<QuerySnapshot>(
@@ -44,6 +45,7 @@ class _BodyState extends State<Body>
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context,index){
             final item = Classroom.fromSnapshot(snapshot.data?.docs[index]);
+            list_id_classroom.add(item.id_classroom);
             return Dismissible(
               key: ValueKey<Classroom>(item),
               secondaryBackground: backgroundDelete,

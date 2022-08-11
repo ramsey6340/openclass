@@ -1,68 +1,84 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current.dart';
 import 'package:openclass/view/constante.dart';
 
 import '../../../../../model/user.dart';
+import '../../../../composants/loading.dart';
 import '../../../../composants/search_bar.dart';
 import '../add_friends/composants/contact.dart';
 import 'composants/button_share_copy.dart';
 import 'composants/header_invitation_sheet.dart';
 
-class ClassroomInvitationSheetPage extends StatelessWidget
+class ClassroomInvitationSheetPage extends StatefulWidget
 {
+  @override
+  State<ClassroomInvitationSheetPage> createState() => _ClassroomInvitationSheetPageState();
+}
 
-  List<UserModel> contact = [
-/*
-    UserModel(2,'Issa', 'Kamite', 'issa@gmail.com', '77391909', 'assets/images/img_default_person.png', '1234', '12/02/2022'),
-    UserModel(3,'Ibrahime dit Bakoroba', 'Goumané', 'moussa@gmail.com', '66390178', 'assets/images/medecine.jpg', '4324', '12/03/2022'),
-    UserModel(4,'Abdoulaye', 'Sacko', 'sacko@gmail.com', '77391909', 'assets/images/geologie.jpg', 'FR241', '12/02/2022'),
-    UserModel(5,'Nouhoun', 'Soumare', 'togola@gmail.com', '77391909', 'assets/images/img_default_person.png', 'JK98', '12/04/2022'),
-    UserModel(6,'Ousmane', 'Sanogo', 'ousmane@gmail.com', '77391909', 'assets/images/informatique.jpg', '5413', '12/05/2022'),
-    UserModel(7,'Adama', 'Cisse', 'adama@gmail.com', '77391909', 'assets/images/medecine.jpg', '7642', '12/02/2022'),
-    UserModel(8,'Issa', 'Coulibaly', 'baissa@gmail.com', '77391909', 'assets/images/img_default_person.png', '43256143', '12/06/2022'),
-    UserModel(9,'Hassane', 'Sidibe', 'hassane@gmail.com', '77391909', 'assets/images/img_default_person.png', '643245', '12/07/2022'),
-    UserModel(10,'Souleymane', 'Sougoule', 'sougoule@gmail.com', '77391909', 'assets/images/informatique.jpg', '4625', '12/08/2022'),
-    UserModel(11,'Alhousseyni', 'Maiga', 'maiga@gmail.com', '77391909', 'assets/images/img_default_person.png', '9087', '12/09/2022'),
-    UserModel(12,'Ibrahime', 'Traore', 'bolo@gmail.com', '77391909', 'assets/images/hackaTeam.png', 'huug-è(', '12/10/2022'),
-    UserModel(13,'Aliou', 'Sow', 'sow@gmail.com', '77391909', 'assets/images/geekacademie.png', '0000', '12/11/2022'),
-    UserModel(14,'Boubacar', 'Diarra', 'boubacar@gmail.com', '77391909', 'assets/images/img_default_person.png', '1234', '12/12/2022'),
-
- */
-  ];
+class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetPage>
+{
 
   @override
   build(BuildContext context)
   {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        height: MediaQuery.of(context).size.height*0.8,
-        child: Column(
-          children: [
-            HeaderInvitationSheet(),
-            ButtonShareCopy(),
-            SearchBar(listSearch: []),
-            Expanded(
-                child:  ListView.builder(
-                    itemCount: contact.length,
-                    itemBuilder: (context, index){
-                      final item = contact[index];
-                      return Contact(
-                          imgContact: item.imgProfile!,
-                          nameContact: item.firstName!+' '+item.lastName!,
-                          action: ElevatedButton(
-                            child: Text('Ajouter'),
-                            onPressed: (){},
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.grey,
-                            ),
-                          )
-                      );
-                    }
+    String action = "Ajouter";
+
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final Stream<QuerySnapshot> _usersStream = db.collection('users').where("id", isNotEqualTo: current_user.id).snapshots();
+
+    return StreamBuilder(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+        if (snapshot.hasError) {
+          return const Text("Quelque chose s'est mal passé");
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Loading();
+        }
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Container(
+            height: MediaQuery.of(context).size.height*0.8,
+            child: Column(
+              children: [
+                HeaderInvitationSheet(),
+                ButtonShareCopy(),
+                SearchBar(listSearch: []),
+                Expanded(
+                  child:  ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index){
+                        final item = UserModel.fromSnapshot(snapshot.data?.docs[index]);
+                        return Contact(
+                            imgContact: item.imgProfile!,
+                            nameContact: item.firstName!+' '+item.lastName!,
+                            action: ElevatedButton(
+                              child: Text(action),
+                              onPressed: (){
+                                final classRef = db.collection("classrooms").doc(current_classroom.id_classroom);
+                                classRef.update({
+                                  "membres": FieldValue.arrayUnion([item.id]),
+                                });
+
+                                setState(() {
+                                  action  = (action == "Ajouter")?"Ejecter":"Ajouter";
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: (action == "Ajouter")?kColorPrimary:Colors.grey,
+                              ),
+                            )
+                        );
+                      }
+                  ),
                 ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

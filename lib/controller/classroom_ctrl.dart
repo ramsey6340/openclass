@@ -4,7 +4,7 @@ import '../model/responsible.dart';
 
 class ClassroomCtrl
 {
-  Classroom _classroom = Classroom('','');
+  Classroom _classroom = Classroom('','','','');
   // stream controller pour la classe Classroom
   final _streamCrtl = StreamController<Classroom>();
 

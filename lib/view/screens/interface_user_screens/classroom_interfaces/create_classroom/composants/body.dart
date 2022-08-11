@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
+import 'package:openclass/model/adhesion.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/external_link.dart';
 import 'package:openclass/view/composants/next_button.dart';
@@ -89,7 +90,8 @@ class _BodyState extends State<Body>
   {
     try{
       FirebaseFirestore db = FirebaseFirestore.instance;
-
+      String name_classroom = entryField.textController.text;
+      String default_profile = 'assets/images/img_default_class.png';
       // creation d'un id pour la classe
       final v1 = entryField.textController.text.trim().toUpperCase();
       final l = current_user.email.split('@');
@@ -103,17 +105,18 @@ class _BodyState extends State<Body>
       final classroom = Classroom(
         id_classroom,
         current_user.id,
-        name_classroom: entryField.textController.text,
-        img_profile: 'assets/images/img_default_class.png',
-        creation_date: '',
+        default_profile,
+        name_classroom,
+        creation_date: DateTime.now().toString(),
         description_classroom: entryField.multiTextController.text,
         is_private: _privateClassroom,
+        membres: [],
       );
 
-      final docRefClass = db.collection("classrooms").doc(classroom.responsible_id).collection(classroom.responsible_id).doc();
+      final docRefClass = db.collection("classrooms").doc();
       String firebase_id_class = docRefClass.id;
       classroom.idClassroom = firebase_id_class;
-
+      classroom.membresClassroom = [current_user.id];
 
       // création de la classe dans Firebase
       create.creationClassroom(classroom);

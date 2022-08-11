@@ -25,12 +25,12 @@ class ClassroomSettingSheetPage extends StatelessWidget
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: AssetImage(classroom.imgProfile!),
+                  backgroundImage: AssetImage(classroom.imgProfile),
                   backgroundColor: Colors.transparent,
                   radius: 35,
                 ),
                 SizedBox(height: 10,),
-                Text(classroom.nameClassroom!,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                Text(classroom.nameClassroom,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
               ],
             ),
             SizedBox(height: 20,),

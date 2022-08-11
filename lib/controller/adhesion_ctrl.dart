@@ -6,7 +6,7 @@ import '../model/user.dart';
 
 class AdhesionCtrl
 {
-  Adhesion _adhesion = Adhesion();
+  Adhesion _adhesion = Adhesion('','','');
 
   // stream controller pour la classe Adhesion
   final _streamCtrl = StreamController<Adhesion>();
@@ -20,7 +20,7 @@ class AdhesionCtrl
     _adhesion = value;
     sink.add(_adhesion);
   }
-  modifId(String? value){
+  modifId(String value){
     _adhesion.idAdhesion = value;
     sink.add(_adhesion);
   }
@@ -28,7 +28,7 @@ class AdhesionCtrl
     _adhesion.adhesion_date = value;
     sink.add(_adhesion);
   }
-  modifType(EnumTypeAdhesion? value){
+  modifType(String? value){
     _adhesion.adhesion_type = value;
     sink.add(_adhesion);
   }
@@ -36,11 +36,11 @@ class AdhesionCtrl
     _adhesion.receiveNotification = value;
     sink.add(_adhesion);
   }
-  modifClassroom(String? value){
+  modifClassroom(String value){
     _adhesion.classroomId = value;
     sink.add(_adhesion);
   }
-  modifUser(String? value){
+  modifUser(String value){
     _adhesion.userId = value;
     sink.add(_adhesion);
   }

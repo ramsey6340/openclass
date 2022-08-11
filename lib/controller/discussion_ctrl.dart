@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'package:openclass/model/discussion.dart';
-import 'package:openclass/model/salle.dart';
-import 'package:openclass/model/user.dart';
-
+/*
 class DiscussionCtrl
 {
-  Discussion _discussion = Discussion.empty();
+  Discussion _discussion = Discussion('','','');
 
   // stream controller pour la classe Discussion
   final _streamCtrl = StreamController<Discussion>();
@@ -19,24 +17,24 @@ class DiscussionCtrl
     _discussion = value;
     sink.add(_discussion);
   }
-  modifId(int value){
-    _discussion.id = value;
+  modifId(String value){
+    _discussion.id_action = value;
     sink.add(_discussion);
   }
   modifContent(String value){
-    _discussion.content = value;
+    _discussion.content_action = value;
     sink.add(_discussion);
   }
   modifPublicationDate(String value){
     _discussion.publicationDate = value;
     sink.add(_discussion);
   }
-  modifSalle(Salle value){
-    _discussion.salle = value;
+  modifSalle(String value){
+    _discussion.salle_action_id = value;
     sink.add(_discussion);
   }
-  modifUser(UserModel value){
-    _discussion.user = value;
+  modifUser(String value){
+    _discussion.user_action_name = value;
     sink.add(_discussion);
   }
 
@@ -45,4 +43,6 @@ class DiscussionCtrl
     _streamCtrl.close();
   }
 
-}
+ */
+
+//}

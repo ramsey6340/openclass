@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:openclass/model/salle.dart';
 import 'package:openclass/model/user.dart';
 import '../model/document.dart';
-
+/*
 class DocumentCtrl
 {
-  Document _document = Document.empty();
+  Document _document = Document('','','');
 
   // stream controller pour la classe Document
   final _streamCtrl = StreamController<Document>();
@@ -19,24 +19,24 @@ class DocumentCtrl
     _document = value;
     sink.add(_document);
   }
-  modifId(int value){
-    _document.id = value;
+  modifId(String value){
+    _document.id_action = value;
     sink.add(_document);
   }
   modifContent(String value){
-    _document.content = value;
+    _document.content_action = value;
     sink.add(_document);
   }
   modifPublicationDate(String value){
     _document.publicationDate = value;
     sink.add(_document);
   }
-  modifSalle(Salle value){
-    _document.salle = value;
+  modifSalle(String value){
+    _document.salle_action_id = value;
     sink.add(_document);
   }
-  modifUser(UserModel value){
-    _document.user = value;
+  modifUser(String value){
+    _document.user_action_name = value;
     sink.add(_document);
   }
 
@@ -45,4 +45,6 @@ class DocumentCtrl
     _streamCtrl.close();
   }
 
-}
+ */
+
+//}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../composants/build_list_message.dart';
-import '../../../../../composants/send_message_bar.dart';
+import 'send_message_bar.dart';
 
 class Body extends StatelessWidget
 {

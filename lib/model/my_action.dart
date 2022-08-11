@@ -3,42 +3,46 @@ import 'user.dart';
 
 abstract class MyAction
 {
-  late int _id;
-  late String _content;
-  late String _publication_date;
-  late Salle _salle;
-  late UserModel _user;
+  String id_action;
+  String salle_action_id;
+  String user_action_name;
+  String? content_action;
+  String? publication_date;
+  String? name_classroom;
+  String id_classroom;
 
-  MyAction(this._id, this._content, this._publication_date, this._salle, this._user);
-  MyAction.empty()
-  {
-    this._id = 0;
-    this._content = "";
-    this._publication_date = "";
-    this._user = UserModel('','');
-  }
+  MyAction(this.id_action, this.salle_action_id, this.user_action_name,this.id_classroom,
+      {this.content_action, this.publication_date, this.name_classroom});
   // getters
-  int get id => _id;
-  String get content => _content;
-  String get publicationDate => _publication_date;
-  Salle get salle => _salle;
-  UserModel get user => _user;
+  String get idAction => id_action;
+  String? get contentAction => content_action;
+  String? get publicationDate => publication_date;
+  String? get nameClassroom => name_classroom;
+  String get salleActionId => salle_action_id;
+  String get userActionName => user_action_name;
+  String get idClassroom => id_classroom;
 
   // setters
-  set id(int value){
-    _id = value;
+  set idAction(String value){
+    id_action = value;
   }
-  set content(String value){
-    _content = value;
+  set contentAction(String? value){
+    content_action = value;
   }
-  set publicationDate(String value){
-    _publication_date = value;
+  set publicationDate(String? value){
+    publication_date = value;
   }
-  set salle(Salle value){
-    _salle = value;
+  set nameClassroom(String? value){
+    name_classroom = value;
   }
-  set user(UserModel value){
-    _user = value;
+  set salleAction(String value){
+    salle_action_id = value;
+  }
+  set userActionName(String value){
+    user_action_name = value;
+  }
+  set idClassroom(String value){
+    id_classroom = value;
   }
 
 }

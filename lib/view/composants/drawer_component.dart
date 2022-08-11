@@ -37,7 +37,7 @@ class _DrawerComponentState extends State<DrawerComponent>
           width: MediaQuery.of(context).size.width * 0.82,
           child: Column(
             children: <Widget>[
-              DrawerHeaderTools(nameClasse: current_classroom.nameClassroom!, classroom: current_classroom,),
+              DrawerHeaderTools(nameClasse: current_classroom.nameClassroom, classroom: current_classroom,),
               Divider(color: Colors.white, height: 20,),
               Expanded(
                 child: ListView.builder(

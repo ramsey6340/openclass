@@ -6,6 +6,8 @@ import 'package:openclass/view/composants/loading.dart';
 import '../../data/data_current.dart';
 import '../../model/salle.dart';
 import '../screens/interface_user_screens/chat_interface/chat_salle/chat_page_salle.dart';
+import '../screens/interface_user_screens/chat_interface/send_document/send_document_page.dart';
+import '../screens/interface_user_screens/chat_interface/share_information/share_information_page.dart';
 
 class ExpansionTileTool extends StatefulWidget {
   ExpansionTileTool({Key? key, required this.addNavigator, required this.category}):super(key: key);
@@ -58,18 +60,14 @@ class _ExpansionTileToolState extends State<ExpansionTileTool>{
                   current_salle = item;
                   current_peer_id = current_salle.id_salle;
                   current_group_id = '';
-                  if(current_user.id.hashCode <= current_peer_id.hashCode){
-                    current_group_id = current_user.id+'-'+current_peer_id;
-                  }
-                  else{
-                    current_group_id = current_peer_id+'-'+current_user.id;
-                  }
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChatPageSalle(),
-                      )
-                  );
+                  current_group_id = current_peer_id;
+
+
+                  (widget.category.type_category == EnumCategorySalle.information)
+                      ?Navigator.push(context, MaterialPageRoute(builder: (context) => ShareInformationPage(),))
+                      :(widget.category.type_category == EnumCategorySalle.bibliotheque)
+                      ?Navigator.push(context, MaterialPageRoute(builder: (context) => SendDocumentPage(),))
+                      :Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPageSalle(),));
                 },
               );
           })

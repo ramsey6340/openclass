@@ -16,7 +16,7 @@ class PhotoProfile extends StatelessWidget
               GestureDetector(
                 child: CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage(imgProfile!),
+                  backgroundImage: AssetImage('$imgProfile'),
                 ),
                 onTap: (){},
               ),
@@ -27,8 +27,8 @@ class PhotoProfile extends StatelessWidget
               ),
             ],
           ),
-          Text(nameUser!, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),textAlign: TextAlign.center,),
-          Text(dateBirth!,textAlign: TextAlign.center,),
+          Text('$nameUser', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),textAlign: TextAlign.center,),
+          Text('$dateBirth',textAlign: TextAlign.center,),
         ]
     );
   }

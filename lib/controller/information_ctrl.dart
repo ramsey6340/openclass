@@ -6,7 +6,7 @@ import '../model/user.dart';
 
 class InformationCtrl
 {
-  Information _information = Information.empty();
+  Information _information = Information('','','','');
 
   // stream controller pour la classe Information
   final _streamCtrl = StreamController<Information>();
@@ -20,24 +20,24 @@ class InformationCtrl
     _information = value;
     sink.add(_information);
   }
-  modifId(int value){
-    _information.id = value;
+  modifId(String value){
+    _information.id_action = value;
     sink.add(_information);
   }
   modifContent(String value){
-    _information.content = value;
+    _information.content_action = value;
     sink.add(_information);
   }
   modifPublicationDate(String value){
     _information.publicationDate = value;
     sink.add(_information);
   }
-  modifSalle(Salle value){
-    _information.salle = value;
+  modifSalle(String value){
+    _information.salle_action_id = value;
     sink.add(_information);
   }
-  modifUser(UserModel value){
-    _information.user = value;
+  modifUser(String value){
+    _information.user_action_name = value;
     sink.add(_information);
   }
 
