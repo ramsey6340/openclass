@@ -14,6 +14,7 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
+  List<String>? date = current_classroom.creationDate?.split(' ');
   @override
   build(BuildContext context)
   {
@@ -35,15 +36,15 @@ class _BodyState extends State<Body>
             Expanded(
                 child: ListView(
                   children: [
-                    PhotoProfile(imgProfile: current_classroom.imgProfile, nameUser: current_classroom.nameClassroom, dateBirth: current_classroom.creationDate),
+                    PhotoProfile(imgProfile: current_classroom.imgProfile, nameUser: current_classroom.nameClassroom, dateBirth: '${date![0]}'),
                     SizedBox(height: 50,),
                     Text("PARAMETRES"),
-                    InteractionComponent(
+                    (current_classroom.responsible_id == current_user.id)?InteractionComponent(
                         title: "Salles",
                         press: (){
                           Navigator.pushNamed(context, ListSallePage.routeName);
                         }
-                        ),
+                        ):Container(),
                     Divider(color: Colors.white,height: 0,thickness:0.5),
                     InteractionComponent(title: "Membres", press: (){Navigator.pushNamed(context, ListMembersPage.routeName);}),
                     Divider(color: Colors.white,height: 0,thickness:0.5),

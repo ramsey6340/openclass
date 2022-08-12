@@ -19,7 +19,10 @@ class _BodyState extends State<Body>
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _streamInfo = db.collection("informations").where("id_classroom", whereIn: list_id_classroom).snapshots();
+    Stream<QuerySnapshot> _streamInfo = db.collection("informations").snapshots();
+    if(current_list_id_classroom.isNotEmpty){
+      _streamInfo = db.collection("informations").where("id_classroom", whereIn: current_list_id_classroom).snapshots();
+    }
     return StreamBuilder(
         stream: _streamInfo,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

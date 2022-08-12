@@ -43,7 +43,13 @@ class Create
   Future<void> creationCategorySalle(CategorySalle categorySalle) async
   {
     FirebaseFirestore db = FirebaseFirestore.instance;
+    /*
     final docRef = db.collection("categoriesSalles").doc(categorySalle.classroom_id).collection(categorySalle.classroom_id).withConverter(
+      fromFirestore: CategorySalle.fromFirestore,
+      toFirestore: (CategorySalle categorySalle, options) => categorySalle.toFirestore(),
+    ).doc(categorySalle.id_category);
+     */
+    final docRef = db.collection("categoriesSalles").withConverter(
       fromFirestore: CategorySalle.fromFirestore,
       toFirestore: (CategorySalle categorySalle, options) => categorySalle.toFirestore(),
     ).doc(categorySalle.id_category);
@@ -60,7 +66,13 @@ class Create
   Future<void> creationSalle(Salle salle) async
   {
     FirebaseFirestore db = FirebaseFirestore.instance;
+    /*
     final docRef = db.collection("salles").doc(salle.category_salle_id).collection(salle.category_salle_id).withConverter(
+      fromFirestore: Salle.fromFirestore,
+      toFirestore: (Salle salle, options) => salle.toFirestore(),
+    ).doc(salle.id_salle);
+     */
+    final docRef = db.collection("salles").withConverter(
       fromFirestore: Salle.fromFirestore,
       toFirestore: (Salle salle, options) => salle.toFirestore(),
     ).doc(salle.id_salle);

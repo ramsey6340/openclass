@@ -22,7 +22,9 @@ class _ExpansionTileSalleState extends State<ExpansionTileSalle>{
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final Stream<QuerySnapshot> _salleStream = db.collection('salles').doc(widget.category.id_category).collection(widget.category.id_category).snapshots();
+    //final Stream<QuerySnapshot> _salleStream = db.collection('salles').doc(widget.category.id_category).collection(widget.category.id_category).snapshots();
+    final Stream<QuerySnapshot> _salleStream = db.collection('salles').where("category_salle_id", isEqualTo: widget.category.id_category).snapshots();
+
     return StreamBuilder<QuerySnapshot>(
       stream: _salleStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

@@ -72,8 +72,7 @@ class Information extends MyAction
   }
 
   // convertir un DocumentSnapshot en classe Information
-  factory Information.fromSnapshot(
-      DocumentSnapshot? snapshot) {
+  factory Information.fromSnapshot(DocumentSnapshot? snapshot) {
     final data = snapshot?.data() as Map<String, dynamic>;
     return Information(
       data['id_info'],

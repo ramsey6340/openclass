@@ -6,6 +6,7 @@ class PhotoProfile extends StatelessWidget
   final String imgProfile;
   final String nameUser;
   final String dateBirth;
+
   @override
   build(BuildContext context)
   {

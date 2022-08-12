@@ -21,14 +21,6 @@ class MyApp extends StatefulWidget
 
 class _MyAppState extends State<MyApp> {
 
-  late bool is_logged_user;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    userState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,21 +39,6 @@ class _MyAppState extends State<MyApp> {
         home: SplashPage(),
         routes: routes,
       );
-  }
-
-  // methode pour verifier l'etat de l'utilisateur
-  void userState()
-  {
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        is_logged_user = false;
-      } else {
-        is_logged_user = true;
-      }
-    });
-
   }
 
 }

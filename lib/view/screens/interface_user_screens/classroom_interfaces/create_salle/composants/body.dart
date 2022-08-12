@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
-import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import '../../../../../../model/salle.dart';
 import '../../../../../composants/entry_field.dart';
@@ -101,11 +100,12 @@ class _BodyState extends State<Body>
           id_salle,
           current_category.id_category,
           name_salle: entryField.textController.text,
-          creation_date: '',
+          creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}',
           is_private: _privateSalle,
       );
 
-      final docRefSalle = db.collection("salles").doc(salle.category_salle_id).collection(salle.category_salle_id).doc();
+      //final docRefSalle = db.collection("salles").doc(salle.category_salle_id).collection(salle.category_salle_id).doc();
+      final docRefSalle = db.collection("salles").doc();
       String firebase_id_Salle = docRefSalle.id;
       salle.idSalle = firebase_id_Salle;
 

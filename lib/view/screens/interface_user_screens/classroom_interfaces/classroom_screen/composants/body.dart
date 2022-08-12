@@ -13,11 +13,11 @@ class Body extends StatefulWidget
 
 class _BodyState extends State<Body>
 {
-  late String id;
+  late String? id;
   initState(){
     super.initState();
-    id = current_user_id!;
-    list_id_classroom = [];
+    id = current_user_id;
+    current_list_id_classroom = [];
   }
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _BodyState extends State<Body>
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context,index){
             final item = Classroom.fromSnapshot(snapshot.data?.docs[index]);
-            list_id_classroom.add(item.id_classroom);
+            current_list_id_classroom.add(item.id_classroom);
             return Dismissible(
               key: ValueKey<Classroom>(item),
               secondaryBackground: backgroundDelete,
@@ -67,7 +67,7 @@ class _BodyState extends State<Body>
                   //ici on reinitialisera le nombre de message non lu à zéro
                 }
               },
-              child: InteractionComponent(classroom: item, nbreSMS: 12, subTitle: 'd'),
+              child: InteractionComponent(classroom: item, nbreSMS: 0, subTitle: ''),
             );
           },
         );

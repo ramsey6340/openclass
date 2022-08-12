@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/update.dart';
+import 'package:openclass/data/data_current.dart';
+import 'package:openclass/view/composants/confirmation_alert_dialogue.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
+import '../../../../../CRUD/delete.dart';
+import '../../../../../model/category_salle.dart';
 import '../../../../composants/entry_field.dart';
 import '../../../../constante.dart';
 
@@ -16,6 +20,7 @@ class _BodyState extends State<Body>
   final entryField = EntryField();
   bool _privateCategory = false;
   Update update = Update();
+  Delete delete = Delete();
   @override
   build(BuildContext context)
   {
@@ -81,7 +86,7 @@ class _BodyState extends State<Body>
                         ],
                       ),
                       SizedBox(height: 40,),
-                      GestureDetector(
+                      InkWell(
                         child: Container(
                             height: 50,
                             color: kColorSearch,
@@ -92,7 +97,21 @@ class _BodyState extends State<Body>
                               ],
                             )
                         ),
-                        onTap: (){},
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return ConfirmationAlertDialog(
+                                title: 'Supprimer la categorie',
+                                message: 'Toutes les salles et les conversations seront supprimer',
+                                action: 'Supprimer',
+                                press: () {
+                                  delete.deleteCategorie(current_category.id_category);
+                                  Navigator.pushNamed(context, ListSallePage.routeName);
+                                  current_category = CategorySalle('','');
+                                },
+                              );
+                            }
+                        ),
                       ),
                     ],
                   ),

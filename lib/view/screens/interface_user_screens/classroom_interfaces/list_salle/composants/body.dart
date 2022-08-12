@@ -22,7 +22,8 @@ class _BodyState extends State<Body>
   Widget build(BuildContext context)
   {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').doc(current_classroom.id_classroom).collection(current_classroom.id_classroom).orderBy('name_category').snapshots();
+    //final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').doc(current_classroom.id_classroom).collection(current_classroom.id_classroom).orderBy('name_category').snapshots();
+    final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').where("classroom_id", isEqualTo: current_classroom.id_classroom).snapshots();
 
     return StreamBuilder<QuerySnapshot>(
         stream: _categorySalleStream,

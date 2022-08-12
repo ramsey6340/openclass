@@ -18,15 +18,11 @@ class _ChatPageUserState extends State<ChatPageSalle>
   {
     return Scaffold(
       appBar: ToolsBar.appBar(
-          Icon(Icons.navigate_before),
-          current_salle.nameSalle,
-          Icon(Icons.more_horiz, color: Colors.white,),
-              (){
-            Navigator.pop(context);
-          },
-              (){
-            _showSettingPage(context);
-          }
+        Icon(Icons.navigate_before),
+        current_salle.nameSalle,
+        /*Icon(Icons.more_horiz, color: Colors.white,)*/Text(""),
+         (){Navigator.pop(context);},
+         (){_showSettingPage(context);}
       ),
       body: Body(),
     );

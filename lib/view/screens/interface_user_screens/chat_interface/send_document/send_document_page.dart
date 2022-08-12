@@ -15,7 +15,7 @@ class SendDocumentPage extends StatelessWidget
       appBar: ToolsBar.appBar(
           Icon(Icons.navigate_before),
           current_salle.nameSalle,
-          Icon(Icons.more_horiz, color: Colors.white,),
+          /*Icon(Icons.more_horiz, color: Colors.white,)*/Text(""),
               (){
             Navigator.pop(context);
           },

@@ -4,7 +4,6 @@ import 'package:openclass/CRUD/update.dart';
 import 'package:openclass/data/data_current.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/view/composants/category_item.dart';
-
 import '../../../../composants/loading.dart';
 import '../../../../composants/tools_bar.dart';
 import '../../../../constante.dart';
@@ -20,6 +19,7 @@ class ChangeCategory extends StatefulWidget
 class _ChangeCategoryState extends State<ChangeCategory>
 {
   Update update = Update();
+  String val = '';
   @override
   Widget build(BuildContext context)
   {
@@ -46,7 +46,6 @@ class _ChangeCategoryState extends State<ChangeCategory>
                         'Parametre de la salle',
                         Text(''),
                         (){
-                          updateSalleCategory;
                           Navigator.of(context).pop();
                         },
                         (){},
@@ -81,8 +80,11 @@ class _ChangeCategoryState extends State<ChangeCategory>
                                         onChanged: (value){
                                           setState((){
                                             widget.init_category_id = value;
-
+                                            current_salle.category_salle_id = value;
                                           });
+                                          Map<String, String> new_value = Map();
+                                          new_value = {"category_salle_id": widget.init_category_id};
+                                          update.updateSalle(new_value);
                                         },
                                       ),
                                     );
@@ -105,7 +107,7 @@ class _ChangeCategoryState extends State<ChangeCategory>
   void updateSalleCategory()
   {
     Map<String, String> new_value = Map();
-    new_value = {"category_salle_id":widget.init_category_id};
+    new_value = {"category_salle_id":''};
     update.updateSalle(new_value);
   }
 }

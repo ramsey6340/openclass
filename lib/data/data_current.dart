@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/model/classroom.dart';
 import 'package:openclass/model/salle.dart';
@@ -30,4 +31,7 @@ Salle current_salle = Salle('','');
 int current_menu_index = 0;
 
 // liste des id des classes de l'utilisateur
-List<String> list_id_classroom = [];
+List<String> current_list_id_classroom = [''];
+
+// list des nom des membres de la classe courente
+List<String> current_list_name_members = [];

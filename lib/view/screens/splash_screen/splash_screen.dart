@@ -1,5 +1,7 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:openclass/view/constante.dart';
+import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
 import 'package:openclass/view/screens/login_screens/welcome/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
@@ -26,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
       showLoader: false,
       loaderColor: Colors.blue,
       durationInSeconds: 5,
-      navigator: WelcomePage(),
+      navigator: (FirebaseAuth.instance.currentUser != null)?MainScreen():WelcomePage(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/update.dart';
 import 'package:openclass/data/data_current.dart';
@@ -63,6 +64,7 @@ class _EditUserEmailNamePageState extends State<EditUserEmailNamePage> {
       String email = entryField.emailController.text;
       new_value = {"email":email};
       update.updateUserProfile(new_value);
+      FirebaseAuth.instance.currentUser?.updateEmail(email);
       current_user.email = email;
       userCtrl.modifUser(current_user);
       Navigator.push(context, MaterialPageRoute(builder: (context) => BodyAccount()));

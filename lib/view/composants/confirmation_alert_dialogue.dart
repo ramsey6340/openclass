@@ -3,8 +3,8 @@ import '../constante.dart';
 
 class ConfirmationAlertDialog extends StatelessWidget {
   const ConfirmationAlertDialog({Key? key, required this.message, required this.title, required this.action, required this.press}) : super(key: key);
-  final String message;
   final String title;
+  final String message;
   final String action;
   final Function press;
 

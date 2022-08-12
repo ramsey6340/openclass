@@ -11,6 +11,7 @@ class UserModel
   String? img_profile;
   String? password;
   String? date_birth;
+  String? date_creation;
 
   // les constructeurs
   UserModel(
@@ -22,7 +23,8 @@ class UserModel
       this.tel_number,
       this.img_profile,
       this.password,
-      this.date_birth});
+      this.date_birth,
+      this.date_creation});
   // les accesseurs
   String get idU => id;
   String? get firstName => first_name;
@@ -32,6 +34,7 @@ class UserModel
   String? get imgProfile => img_profile;
   String? get passwordU => password;
   String? get dateBirth => date_birth;
+  String? get dateCreation => date_creation;
 
   // les mutateurs
   set idU(String value){
@@ -59,6 +62,9 @@ class UserModel
   set dateBirth(String? value){
     date_birth = value;
   }
+  set dateCreation(String? value){
+    date_creation = value;
+  }
 
   // les autres methodes
 
@@ -77,6 +83,7 @@ class UserModel
       img_profile: data?['img_profile'],
       password: data?['password'],
       date_birth: data?['date_birth'],
+      date_creation: data?['date_creation'],
     );
   }
 
@@ -92,6 +99,7 @@ class UserModel
       img_profile: data['img_profile'],
       password: data['password'],
       date_birth: data['date_birth'],
+      date_creation: data['date_creation'],
     );
   }
 
@@ -106,6 +114,7 @@ class UserModel
       if (img_profile != null) "img_profile": img_profile,
       if (password != null) "password": password,
       if (date_birth != null) "date_birth": date_birth,
+      if (date_creation != null) "date_creation": date_creation,
     };
   }
 

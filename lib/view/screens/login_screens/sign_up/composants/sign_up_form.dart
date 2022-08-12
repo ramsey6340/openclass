@@ -100,9 +100,10 @@ class _SignUpFormState extends State<SignUpForm>
               first_name: entryField.firstNameController.text,
               last_name: entryField.lastNameController.text,
               tel_number: entryField.numberController.text,
-              img_profile: '',
+              img_profile: 'assets/images/img_default_person.png',
               password: entryField.passwordController.text,
               date_birth: '2000',
+              date_creation: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}',
             );
 
             var credentialUp = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: user.email, password: user.password!);

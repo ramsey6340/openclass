@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/CRUD/delete.dart';
 import 'package:openclass/CRUD/update.dart';
+import 'package:openclass/data/data_current.dart';
+import 'package:openclass/model/salle.dart';
 import 'package:openclass/view/composants/interaction_next_component.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/list_salle/list_salle_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/salle_setting/composants/change_category.dart';
+import '../../../../composants/confirmation_alert_dialogue.dart';
 import '../../../../composants/entry_field.dart';
 import '../../../../constante.dart';
 import 'body_change_category.dart';
@@ -19,6 +23,7 @@ class _BodyState extends State<Body>
   final entryField = EntryField();
   bool _privateSalle = false;
   Update update = Update();
+  Delete delete = Delete();
   @override
   build(BuildContext context)
   {
@@ -78,7 +83,7 @@ class _BodyState extends State<Body>
                       ],
                     ),
                     SizedBox(height: 40,),
-                    GestureDetector(
+                    InkWell(
                       child: Container(
                           height: 50,
                           color: kColorSearch,
@@ -89,7 +94,21 @@ class _BodyState extends State<Body>
                             ],
                           )
                       ),
-                      onTap: (){},
+                      onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ConfirmationAlertDialog(
+                              title: 'Supprimer la salle',
+                              message: 'Toutes les conversations seront aussi supprimer',
+                              action: 'Supprimer',
+                              press: () {
+                                delete.deleteSalle(current_salle.id_salle);
+                                Navigator.pushNamed(context, ListSallePage.routeName);
+                                current_salle = Salle('','');
+                              },
+                            );
+                          }
+                      ),
                     ),
                   ],
                 ),

@@ -125,13 +125,14 @@ class _BodyState extends State<Body>
         id_categorie,
         current_classroom.id_classroom,
         name_category: entryField.textController.text,
-        creation_date: '',
+        creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}',
         description_category: entryField.multiTextController.text,
         is_private: _privateCategory,
         type_category: ChooseClasseCategorie.categoryChoose,
       );
 
-      final docRefCat = db.collection("categoriesSalles").doc(category.classroom_id).collection(category.classroom_id).doc();
+      //final docRefCat = db.collection("categoriesSalles").doc(category.classroom_id).collection(category.classroom_id).doc();
+      final docRefCat = db.collection("categoriesSalles").doc();
 
       String firebase_id_cat = docRefCat.id;
       category.idCategory = firebase_id_cat;

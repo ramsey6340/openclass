@@ -31,7 +31,8 @@ class Update
   Future<void> updateSalle(Map<String, dynamic> new_value) async
   {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final docRef = db.collection("salles").doc(current_category.id_category).collection(current_category.id_category).doc(current_salle.id_salle);
+    //final docRef = db.collection("salles").doc(current_category.id_category).collection(current_category.id_category).doc(current_salle.id_salle);
+    final docRef = db.collection("salles").doc(current_salle.id_salle);
     docRef.update(new_value);
   }
 }

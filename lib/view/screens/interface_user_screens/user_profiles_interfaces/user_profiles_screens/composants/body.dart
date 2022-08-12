@@ -84,7 +84,7 @@ class _BodyState extends State<Body>
               Text("PARAMETRE DE L'APPLI"),
               InteractionComponent(title: "Langue", press: (){Navigator.pushNamed(context, Language.routeName);}),
               Divider(color: Colors.white,height: 0,thickness:0.5),
-              InteractionComponent(title: "Notification", press: (){}),
+              //InteractionComponent(title: "Notification", press: (){}),
               SizedBox(height: 50,),
               Container(
                     height: 50,

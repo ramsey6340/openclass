@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/create_category/create_category_page.dart';
+import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
+import '../../../../../CRUD/delete.dart';
 import '../../../../../data/data_current.dart';
 import '../../../../../model/classroom.dart';
+import '../../../../composants/confirmation_alert_dialogue.dart';
 import '../../../../composants/interaction_next_component.dart';
 import '../../../../constante.dart';
 import '../../classroom_setting/setting_page.dart';
@@ -14,6 +17,7 @@ class ClassroomSettingSheetPage extends StatelessWidget
   @override
   build(BuildContext context)
   {
+    Delete delete = Delete();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Container(
@@ -45,7 +49,7 @@ class ClassroomSettingSheetPage extends StatelessWidget
                       radius: 5,
                     ),
                     SizedBox(width: 5,),
-                    Text("12 en lignes"),
+                    Text("0 en lignes"),
                   ],
                 ),
                 SizedBox(width: 20,),
@@ -56,7 +60,7 @@ class ClassroomSettingSheetPage extends StatelessWidget
                       radius: 5,
                     ),
                     SizedBox(width: 5,),
-                    Text('${current_number_of_member} membres'),
+                    Text('${classroom.membres?.length} membres'),
                   ],
                 ),
               ],
@@ -103,15 +107,44 @@ class ClassroomSettingSheetPage extends StatelessWidget
             SizedBox(height: 50,),
             Column(
               children: [
-                InteractionComponent(
+                (current_classroom.responsible_id == current_user.id)?InteractionComponent(
                     title: "Créer une catégorie",
                     press: (){
                       //Navigator.pop(context);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => CreateCategoryPage(), settings: RouteSettings(arguments: classroom)));
                     }
-                ),
+                ):Container(),
               ],
             ),
+            SizedBox(height: 50,),
+            InkWell(
+              child: Container(
+                  height: 50,
+                  color: kColorSearch,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Supprimer la classe", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
+                    ],
+                  )
+              ),
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ConfirmationAlertDialog(
+                      title: 'Supprimer la classe',
+                      message: 'Toutes les catégories seront aussi supprimer',
+                      action: 'Supprimer',
+                      press: () {
+                        delete.deleteClasse(current_classroom.id_classroom);
+                        current_menu_index = 0;
+                        Navigator.pushNamed(context, MainScreen.routeName);
+                        current_classroom = Classroom('','','','');
+                      },
+                    );
+                  }
+              ),
+            )
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/data/data_current.dart';
 import '../../../../../composants/build_list_message.dart';
 import 'send_message_bar.dart';
 
@@ -12,7 +13,7 @@ class Body extends StatelessWidget
         // liste des messages
         BuildListMessage(),
         // la barre d'envoie des messages
-        SendMessageBar(),
+        (current_classroom.responsible_id == current_user.id)?SendMessageBar():Container(),
       ],
     );
   }

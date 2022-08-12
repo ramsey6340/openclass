@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/update.dart';
 import 'package:openclass/data/data_current.dart';
@@ -66,6 +67,7 @@ class _EditUserPasswordPageState extends State<EditUserPasswordPage> {
         String password = entryField.passwordController.text;
         new_value = {"password":password};
         update.updateUserProfile(new_value);
+        FirebaseAuth.instance.currentUser?.updatePassword(password);
         current_user.password = password;
         userCtrl.modifUser(current_user);
         Navigator.push(context, MaterialPageRoute(builder: (context) => BodyAccount()));

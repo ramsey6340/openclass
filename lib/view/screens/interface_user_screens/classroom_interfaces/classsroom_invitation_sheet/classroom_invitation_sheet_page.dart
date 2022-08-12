@@ -23,7 +23,6 @@ class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetP
   build(BuildContext context)
   {
     String action = "Ajouter";
-
     FirebaseFirestore db = FirebaseFirestore.instance;
     final Stream<QuerySnapshot> _usersStream = db.collection('users').where("id", isNotEqualTo: current_user.id).snapshots();
 
