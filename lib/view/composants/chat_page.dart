@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../composants/build_list_message.dart';
-import '../../../../../composants/send_message_bar.dart';
+import 'build_list_message.dart';
+import 'send_message_bar.dart';
 
-class Body extends StatelessWidget
+class ChatPage extends StatelessWidget
 {
   @override
   Widget build(BuildContext context)
@@ -10,9 +10,9 @@ class Body extends StatelessWidget
     return Column(
       children: [
         // liste des messages
-        BuildListMessage(),
+        Expanded(child: BuildListMessage()),
         // la barre d'envoie des messages
-        SendMessageBar(),
+        SendMessageBar()
       ],
     );
   }
