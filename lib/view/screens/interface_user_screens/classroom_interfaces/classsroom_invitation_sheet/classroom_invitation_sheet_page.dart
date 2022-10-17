@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/CRUD/read.dart';
 import 'package:openclass/data/data_current.dart';
 import 'package:openclass/view/constante.dart';
 
+import '../../../../../controller/classroom_ctrl.dart';
 import '../../../../../model/user.dart';
 import '../../../../composants/loading.dart';
 import '../../../../composants/search_bar.dart';
+import '../../../../composants/show_setting_page.dart';
 import '../add_friends/composants/contact.dart';
 import 'composants/button_share_copy.dart';
 import 'composants/header_invitation_sheet.dart';
@@ -18,13 +21,12 @@ class ClassroomInvitationSheetPage extends StatefulWidget
 
 class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetPage>
 {
-
+  Read read = Read();
   @override
-  build(BuildContext context)
-  {
-    String action = "Ajouter";
+  Widget build(BuildContext context)
+   {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final Stream<QuerySnapshot> _usersStream = db.collection('users').where("id", isNotEqualTo: current_user.id).snapshots();
+    final Stream<QuerySnapshot> _usersStream = db.collection('users').where("id", whereNotIn: current_classroom.membres).snapshots();
 
     return StreamBuilder(
       stream: _usersStream,
@@ -32,7 +34,6 @@ class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetP
         if (snapshot.hasError) {
           return const Text("Quelque chose s'est mal passé");
         }
-
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Loading();
         }
@@ -54,19 +55,15 @@ class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetP
                             imgContact: item.imgProfile!,
                             nameContact: item.firstName!+' '+item.lastName!,
                             action: ElevatedButton(
-                              child: Text(action),
+                              child: Text("Ajouter"),
                               onPressed: (){
                                 final classRef = db.collection("classrooms").doc(current_classroom.id_classroom);
                                 classRef.update({
                                   "membres": FieldValue.arrayUnion([item.id]),
                                 });
-
-                                setState(() {
-                                  action  = (action == "Ajouter")?"Ejecter":"Ajouter";
-                                });
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: (action == "Ajouter")?kColorPrimary:Colors.grey,
+                                backgroundColor: kColorPrimary,
                               ),
                             )
                         );

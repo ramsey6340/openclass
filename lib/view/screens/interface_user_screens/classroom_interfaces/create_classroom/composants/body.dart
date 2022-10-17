@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
-import 'package:openclass/model/adhesion.dart';
 import 'package:openclass/model/category_salle.dart';
+import 'package:openclass/view/composants/alert_dialogue.dart';
 import 'package:openclass/view/composants/external_link.dart';
 import 'package:openclass/view/composants/next_button.dart';
 import 'package:openclass/view/constante.dart';
@@ -15,6 +15,7 @@ import '../../add_friends/add_friends_page.dart';
 import 'choose_picture_class.dart';
 import '../../../../../composants/entry_field.dart';
 
+/// le corps de classe qui permet de créer une classe
 class Body extends StatefulWidget
 {
   @override
@@ -93,111 +94,91 @@ class _BodyState extends State<Body>
       String name_classroom = entryField.textController.text;
       String default_profile = 'assets/images/img_default_class.png';
 
-      // l'instance de la classe
-      final classroom = Classroom(
-        '',
-        current_user.id,
-        default_profile,
-        name_classroom,
-        creation_date: DateTime.now().toString(),
-        description_classroom: entryField.multiTextController.text,
-        is_private: _privateClassroom,
-        membres: [],
-      );
+      if(name_classroom.isNotEmpty){
+        // l'instance de la classe
+        final classroom = Classroom(
+          '',
+          current_user.id,
+          default_profile,
+          name_classroom,
+          creation_date: DateTime.now().toString(),
+          description_classroom: entryField.multiTextController.text,
+          is_private: _privateClassroom,
+          membres: [],
+        );
 
-      final docRefClass = db.collection("classrooms").doc();
-      String firebase_id_class = docRefClass.id;
-      classroom.idClassroom = firebase_id_class;
-      classroom.membresClassroom = [current_user.id];
+        final docRefClass = db.collection("classrooms").doc();
+        String firebase_id_class = docRefClass.id;
+        classroom.idClassroom = firebase_id_class;
+        classroom.membresClassroom = [current_user.id];
 
-      // création de la classe dans Firebase
-      create.creationClassroom(classroom);
-
-
-      // les instances des trois catégories de base
-      final categorySalleInfo = CategorySalle('',current_classroom_id, name_category:'SALLES INFORMATION', creation_date:'${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', description_category:'Salle de catégorie information', is_private:false, type_category:EnumCategorySalle.information);
-      final categorySalleDoc = CategorySalle('', current_classroom_id,name_category:'SALLES BIBLIOTHEQUE', creation_date:'${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', description_category:'Salle de catégorie document', is_private:false, type_category:EnumCategorySalle.bibliotheque);
-      final categorySalleDis = CategorySalle('', current_classroom_id,name_category:'SALLES DISCUSSION', creation_date:'${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', description_category:'Salle de catégorie discussion', is_private:false, type_category:EnumCategorySalle.discussion,);
-
-      //final docRefCatInfo = db.collection("categoriesSalles").doc(categorySalleInfo.classroom_id).collection(categorySalleInfo.classroom_id).doc();
-      //final docRefCatDoc = db.collection("categoriesSalles").doc(categorySalleInfo.classroom_id).collection(categorySalleInfo.classroom_id).doc();
-      //final docRefCatDis = db.collection("categoriesSalles").doc(categorySalleInfo.classroom_id).collection(categorySalleInfo.classroom_id).doc();
-
-      current_categories_salle_id = [];
-
-      final docRefCatInfo = db.collection("categoriesSalles").doc();
-      String firebase_id_catInfo = docRefCatInfo.id;
-      categorySalleInfo.idCategory = firebase_id_catInfo;
-      create.creationCategorySalle(categorySalleInfo);
+        // création de la classe dans Firebase
+        create.creationClassroom(classroom);
 
 
-      final docRefCatDoc = db.collection("categoriesSalles").doc();
-      String firebase_id_catDoc = docRefCatDoc.id;
-      categorySalleDoc.idCategory = firebase_id_catDoc;
-      create.creationCategorySalle(categorySalleDoc);
+        // les instances des trois catégories de base
+        final categorySalleInfo = CategorySalle('',current_classroom_id, name_category:'SALLES INFORMATION', creation_date:'${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', description_category:'Salle de catégorie information', is_private:false, type_category:EnumCategorySalle.information);
+        final categorySalleDoc = CategorySalle('', current_classroom_id,name_category:'SALLES BIBLIOTHEQUE', creation_date:'${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', description_category:'Salle de catégorie document', is_private:false, type_category:EnumCategorySalle.bibliotheque);
+        final categorySalleDis = CategorySalle('', current_classroom_id,name_category:'SALLES DISCUSSION', creation_date:'${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', description_category:'Salle de catégorie discussion', is_private:false, type_category:EnumCategorySalle.discussion,);
+
+        current_categories_salle_id = [];
+
+        final docRefCatInfo = db.collection("categoriesSalles").doc();
+        String firebase_id_catInfo = docRefCatInfo.id;
+        categorySalleInfo.idCategory = firebase_id_catInfo;
+        create.creationCategorySalle(categorySalleInfo);
 
 
-      final docRefCatDis = db.collection("categoriesSalles").doc();
-      String firebase_id_catDis = docRefCatDis.id;
-      categorySalleDis.idCategory = firebase_id_catDis;
-      create.creationCategorySalle(categorySalleDis);
+        final docRefCatDoc = db.collection("categoriesSalles").doc();
+        String firebase_id_catDoc = docRefCatDoc.id;
+        categorySalleDoc.idCategory = firebase_id_catDoc;
+        create.creationCategorySalle(categorySalleDoc);
 
 
-      //String firebase_id_catInfo = docRefCatInfo.id;
-      //String firebase_id_catDoc = docRefCatDoc.id;
-      //String firebase_id_catDis = docRefCatDis.id;
-
-      //categorySalleInfo.idCategory = firebase_id_catInfo;
-      //categorySalleDoc.idCategory = firebase_id_catDoc;
-      //categorySalleDis.idCategory = firebase_id_catDis;
-
-      // on rend vide la variable current_categories_salle_id pour s'assurer qu'on aura bien que trois id de catégorie à manipuler
-      //current_categories_salle_id = [];
-
-      // création des trois catégories de base dans Firebase
-      //create.creationCategorySalle(categorySalleInfo);
-      //create.creationCategorySalle(categorySalleDoc);
-      //create.creationCategorySalle(categorySalleDis);
+        final docRefCatDis = db.collection("categoriesSalles").doc();
+        String firebase_id_catDis = docRefCatDis.id;
+        categorySalleDis.idCategory = firebase_id_catDis;
+        create.creationCategorySalle(categorySalleDis);
 
 
-      // les instances des trois salles
-      final salleInfo = Salle('', current_categories_salle_id[0],name_salle: 'génerale', creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', is_private: false,);
-      final salleDoc = Salle('', current_categories_salle_id[1],name_salle: 'génerale', creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', is_private: false,);
-      final salleDis = Salle('', current_categories_salle_id[2],name_salle: 'génerale', creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', is_private: false,);
+        // les instances des trois salles
+        final salleInfo = Salle('', current_categories_salle_id[0],name_salle: 'génerale', creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', is_private: false,);
+        final salleDoc = Salle('', current_categories_salle_id[1],name_salle: 'génerale', creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', is_private: false,);
+        final salleDis = Salle('', current_categories_salle_id[2],name_salle: 'génerale', creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}', is_private: false,);
 
-      //final docRefSalleInfo =db.collection("salles").doc(salleInfo.category_salle_id).collection(salleInfo.category_salle_id).doc();
-      //final docRefSalleDoc = db.collection("salles").doc(salleDoc.category_salle_id).collection(salleDoc.category_salle_id).doc();
-      //final docRefSalleDis = db.collection("salles").doc(salleDis.category_salle_id).collection(salleDis.category_salle_id).doc();
+        final docRefSalleInfo =db.collection("salles").doc();
+        String firebase_id_SalleInfo = docRefSalleInfo.id;
+        salleInfo.idSalle = firebase_id_SalleInfo;
+        create.creationSalle(salleInfo);
 
-      final docRefSalleInfo =db.collection("salles").doc();
-      String firebase_id_SalleInfo = docRefSalleInfo.id;
-      salleInfo.idSalle = firebase_id_SalleInfo;
-      create.creationSalle(salleInfo);
+        final docRefSalleDoc = db.collection("salles").doc();
+        String firebase_id_SalleDoc = docRefSalleDoc.id;
+        salleDoc.idSalle = firebase_id_SalleDoc;
+        create.creationSalle(salleDoc);
 
-      final docRefSalleDoc = db.collection("salles").doc();
-      String firebase_id_SalleDoc = docRefSalleDoc.id;
-      salleDoc.idSalle = firebase_id_SalleDoc;
-      create.creationSalle(salleDoc);
+        final docRefSalleDis = db.collection("salles").doc();
+        String firebase_id_SalleDis = docRefSalleDis.id;
+        salleDis.idSalle = firebase_id_SalleDis;
+        create.creationSalle(salleDis);
 
-      final docRefSalleDis = db.collection("salles").doc();
-      String firebase_id_SalleDis = docRefSalleDis.id;
-      salleDis.idSalle = firebase_id_SalleDis;
-      create.creationSalle(salleDis);
+        // redirection vers la prochaine page en foction de la portée (privée ou public) de la classe
+        (_privateClassroom == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
+      }
 
+      else{
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context){
+            return AlertDialogError(message: "Veuillez renseigner le nom de la classe",);
+        });
+      }
 
-
-
-      // création d'une salle pour chacun des trois catégories dans Firebase
-      //create.creationSalle(salleInfo);
-      //create.creationSalle(salleDoc);
-      //create.creationSalle(salleDis);
-
-      // redirection vers la prochaine page en foction de la portée (privée ou public) de la classe
-      (_privateClassroom == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
     }catch(e){
       print(e);
     }
   }
+
   // ================================= FIN =================================
 
 }

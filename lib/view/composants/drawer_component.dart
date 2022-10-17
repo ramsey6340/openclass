@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:openclass/CRUD/read.dart';
 import 'package:openclass/data/data_current.dart';
 import 'package:openclass/view/composants/drawer_header_tools.dart';
 import 'package:openclass/view/composants/expansion_tile_tools.dart';
 import 'package:openclass/view/composants/loading.dart';
 import 'package:openclass/view/constante.dart';
 import '../../model/category_salle.dart';
-import '../../data/data_current.dart';
 import '../screens/interface_user_screens/classroom_interfaces/create_salle/create_salle_page.dart';
 
 class DrawerComponent extends StatefulWidget
@@ -17,11 +17,17 @@ class DrawerComponent extends StatefulWidget
 }
 class _DrawerComponentState extends State<DrawerComponent>
 {
+  Read read = Read();
+  // inspire toi de ça
+  late String chaine;
  @override
   Widget build(BuildContext context)
   {
+    //inspire toi de ça
+    stringMethod("string");
+
+
     FirebaseFirestore db = FirebaseFirestore.instance;
-    //final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').doc(current_classroom.id_classroom).collection(current_classroom.id_classroom).orderBy('name_category').snapshots();
     final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').where("classroom_id", isEqualTo: current_classroom.id_classroom).snapshots();
 
     return StreamBuilder<QuerySnapshot>(
@@ -61,5 +67,11 @@ class _DrawerComponentState extends State<DrawerComponent>
         );
       }
     );
+  }
+
+  // inspire toi de cet modèle pour convertir un type Future en type primitif
+  void stringMethod(String string) async{
+   Future<String> futureString = read.getText(string) ;
+    chaine = await futureString;
   }
 }

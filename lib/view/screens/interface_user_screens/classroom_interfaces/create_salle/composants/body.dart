@@ -4,6 +4,7 @@ import 'package:openclass/CRUD/create.dart';
 import 'package:openclass/data/data_current.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
 import '../../../../../../model/salle.dart';
+import '../../../../../composants/alert_dialogue.dart';
 import '../../../../../composants/entry_field.dart';
 import '../../../../../constante.dart';
 import '../../../main_screen.dart';
@@ -85,41 +86,42 @@ class _BodyState extends State<Body>
   {
     try{
       FirebaseFirestore db = FirebaseFirestore.instance;
-
-      // creation d'un id pour la salle
-      final salle11 = entryField.textController.text.trim();
-      final lsalle1 = current_user.email.split('@');
-      final salle12 = lsalle1[0];
-      final salle13 = current_user.tel_number;
-      final salle14 = current_user.password;
-      final listsalle1 = [salle11,salle12,salle13,salle14];
-      final id_salle = listsalle1.join();
-
-      // creation d'une instance de la salle
-      final salle = Salle(
-          id_salle,
+      String name_salle = entryField.textController.text;
+      if(name_salle.isNotEmpty){
+        // creation d'une instance de la salle
+        final salle = Salle(
+          '',
           current_category.id_category,
-          name_salle: entryField.textController.text,
+          name_salle: name_salle,
           creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}',
           is_private: _privateSalle,
-      );
+        );
 
-      //final docRefSalle = db.collection("salles").doc(salle.category_salle_id).collection(salle.category_salle_id).doc();
-      final docRefSalle = db.collection("salles").doc();
-      String firebase_id_Salle = docRefSalle.id;
-      salle.idSalle = firebase_id_Salle;
+        //final docRefSalle = db.collection("salles").doc(salle.category_salle_id).collection(salle.category_salle_id).doc();
+        final docRefSalle = db.collection("salles").doc();
+        String firebase_id_Salle = docRefSalle.id;
+        salle.idSalle = firebase_id_Salle;
 
-      // création de la salle dans Firebase
-      create.creationSalle(salle);
+        // création de la salle dans Firebase
+        create.creationSalle(salle);
 
-      // redirection vers la prochaine page en fonction de la portée (privée ou public) de la salle
-      if(_privateSalle == false){
-        Navigator.pushNamed(context, MainScreen.routeName);
-        // le drawer ne souvre pas, cherche une solution
-        Scaffold.of(context).openEndDrawer();
+        // redirection vers la prochaine page en fonction de la portée (privée ou public) de la salle
+        if(_privateSalle == false){
+          Navigator.pushNamed(context, MainScreen.routeName);
+          // le drawer ne souvre pas, cherche une solution
+          Scaffold.of(context).openEndDrawer();
+        }
+        else{
+          Navigator.pushNamed(context, AddFriendsPage.routeName);
+        }
       }
       else{
-        Navigator.pushNamed(context, AddFriendsPage.routeName);
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context){
+              return AlertDialogError(message: "Veuillez renseigner le nom de la salle",);
+            });
       }
 
     }catch(e){

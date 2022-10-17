@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openclass/view/composants/show_setting_page.dart';
 import 'package:openclass/view/screens/interface_user_screens/classroom_interfaces/classsroom_invitation_sheet/classroom_invitation_sheet_page.dart';
 
 import '../constante.dart';
@@ -21,12 +22,12 @@ class InviteButton extends StatelessWidget
           ],
         ),
         onPressed: (){
-          _showClassroomSettingSheet(context);
+          ShowSettingPage.showSettingPage(context, ClassroomInvitationSheetPage());
         },
       ),
     );
   }
-
+/*
   void _showClassroomSettingSheet(BuildContext context)
   {
     Navigator.pop(context);
@@ -43,5 +44,5 @@ class InviteButton extends StatelessWidget
           return ClassroomInvitationSheetPage();
         }
     );
-  }
+  }*/
 }

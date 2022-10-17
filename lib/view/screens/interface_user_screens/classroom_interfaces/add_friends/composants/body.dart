@@ -50,7 +50,7 @@ class _BodyState extends State<Body>
                           child: Text('Ajouter'),
                           onPressed: (){},
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.grey,
+                            backgroundColor: Colors.grey,
                           ),
                         )
                     );

@@ -1,6 +1,5 @@
 import '../model/classroom.dart';
 import 'dart:async';
-import '../model/responsible.dart';
 
 class ClassroomCtrl
 {

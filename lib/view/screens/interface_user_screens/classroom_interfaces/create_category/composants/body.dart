@@ -5,6 +5,7 @@ import 'package:openclass/data/data_current.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/model/classroom.dart';
 import 'package:openclass/view/composants/tools_bar.dart';
+import '../../../../../composants/alert_dialogue.dart';
 import '../../../main_screen.dart';
 import '../../add_friends/add_friends_page.dart';
 import '../../../../../composants/choose_classe_categorie.dart';
@@ -110,38 +111,41 @@ class _BodyState extends State<Body>
   {
     try{
       FirebaseFirestore db = FirebaseFirestore.instance;
-      // creation d'un id pour la categorie
-      final cat11 = entryField.textController.text.trim();
-      final lcat1 = current_user.email.split('@');
-      final cat12 = lcat1[0];
-      final cat13 = current_user.tel_number;
-      final cat14 = current_user.password;
-      final listcat1 = [cat11,cat12,cat13,cat14];
-      final id_categorie = listcat1.join();
+      String name_category = entryField.textController.text;
 
+      if(name_category.isNotEmpty){
+        // creation d'une instance de la categorie
+        final category = CategorySalle(
+          '',
+          current_classroom.id_classroom,
+          name_category: name_category,
+          creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}',
+          description_category: entryField.multiTextController.text,
+          is_private: _privateCategory,
+          type_category: ChooseClasseCategorie.categoryChoose,
+        );
 
-      // creation d'une instance de la categorie
-      final category = CategorySalle(
-        id_categorie,
-        current_classroom.id_classroom,
-        name_category: entryField.textController.text,
-        creation_date: '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}',
-        description_category: entryField.multiTextController.text,
-        is_private: _privateCategory,
-        type_category: ChooseClasseCategorie.categoryChoose,
-      );
+        //final docRefCat = db.collection("categoriesSalles").doc(category.classroom_id).collection(category.classroom_id).doc();
+        final docRefCat = db.collection("categoriesSalles").doc();
 
-      //final docRefCat = db.collection("categoriesSalles").doc(category.classroom_id).collection(category.classroom_id).doc();
-      final docRefCat = db.collection("categoriesSalles").doc();
+        String firebase_id_cat = docRefCat.id;
+        category.idCategory = firebase_id_cat;
 
-      String firebase_id_cat = docRefCat.id;
-      category.idCategory = firebase_id_cat;
+        // création de la catégorie dans Firebase
+        create.creationCategorySalle(category);
 
-      // création de la catégorie dans Firebase
-      create.creationCategorySalle(category);
+        // redirection vers la prochaine page en fonction de la portée (privée ou public) de la catégorie
+        (_privateCategory == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
 
-      // redirection vers la prochaine page en fonction de la portée (privée ou public) de la catégorie
-      (_privateCategory == false)?Navigator.pushNamed(context, MainScreen.routeName):Navigator.pushNamed(context, AddFriendsPage.routeName);
+      }
+      else{
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context){
+              return AlertDialogError(message: "Veuillez renseigner le nom de la catégorie",);
+            });
+      }
 
     }catch(e){
       print(e);

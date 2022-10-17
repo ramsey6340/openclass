@@ -29,10 +29,7 @@ class _BuildListMessageState extends State<BuildListMessage> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Loading();
         }
-        return Expanded(
-          child: Container(
-            color: kColorSecondary,
-            child: ListView.builder(
+        return ListView.builder(
               reverse: true,
               itemCount: snapshot.data?.docs.length,
               itemBuilder: (context, index){
@@ -58,9 +55,8 @@ class _BuildListMessageState extends State<BuildListMessage> {
                   ),
                 );
               },
-            ),
-          ),
-        );
+            )
+        ;
       },
     );
   }

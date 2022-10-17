@@ -26,7 +26,6 @@ String current_peer_id = '';
 int current_number_of_member = 0;
 // la salle courent
 Salle current_salle = Salle('','');
-
 // l'index courent pour la bar de menu en bas
 int current_menu_index = 0;
 
@@ -35,3 +34,5 @@ List<String> current_list_id_classroom = [''];
 
 // list des nom des membres de la classe courente
 List<String> current_list_name_members = [];
+// list des utilisateur de la base de données
+List<String> users_list_of_data_base = [];

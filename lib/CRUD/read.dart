@@ -16,5 +16,24 @@ class Read
     current_user = docSnap.data()!; // Convert to UserModel object
   }
 
+  // List des utilisateurs de OpenClass
+  Future<void> getUsersList() async{
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final refUsersList = db.collection("users").get().then(
+      (value) {
+        int length = value.docs.length;
+
+        for(int i=0; i<length; i++){
+          final data = value.docs[i].data();
+          users_list_of_data_base.add(data['id']);
+        }
+        print(users_list_of_data_base);
+      }
+    );
+  }
+
+  Future<String> getText(String string) async{
+    return  Future.value(string);
+  }
 
 }
