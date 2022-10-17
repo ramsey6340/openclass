@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/constante.dart';
 import '../../../../../data/data_current.dart';
+import '../../../../composants/chat_page.dart';
+import '../../../../composants/show_setting_page.dart';
 import 'composants/chat_page_setting.dart';
 import '../../../../composants/tools_bar.dart';
-import 'composants/body.dart';
 
 class ChatPageUser extends StatefulWidget
 {
@@ -25,27 +26,14 @@ class _ChatPageUserState extends State<ChatPageUser>
             Navigator.pop(context);
           },
           (){
-            _showSettingPage(context);
+            ShowSettingPage.showSettingPage(context, ChatPageSetting());
           }
       ),
-      body: Body(),
+      body: Container(
+        color: kColorSecondary,
+        child: ChatPage(),//Body(),
+      ),
     );
   }
 
-  void _showSettingPage(BuildContext context)
-  {
-    showModalBottomSheet(
-        backgroundColor: kColorDrawer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(10),
-          ),
-        ),
-        isScrollControlled: true,
-        context: context,
-        builder: (context){
-          return ChatPageSetting();
-        }
-    );
-  }
 }

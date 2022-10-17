@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:openclass/view/constante.dart';
 import '../../../../../data/data_current.dart';
+import '../../../../composants/chat_page.dart';
+import '../../../../composants/show_setting_page.dart';
 import '../../../../composants/tools_bar.dart';
-import 'composants/body.dart';
 import 'composants/send_document_setting.dart';
 
 class SendDocumentPage extends StatelessWidget
@@ -15,32 +16,19 @@ class SendDocumentPage extends StatelessWidget
       appBar: ToolsBar.appBar(
           Icon(Icons.navigate_before),
           current_salle.nameSalle,
-          /*Icon(Icons.more_horiz, color: Colors.white,)*/Text(""),
-              (){
+          Icon(Icons.more_horiz, color: Colors.white,),
+          (){
             Navigator.pop(context);
           },
-              (){
-            _showSettingPage(context);
+          (){
+            ShowSettingPage.showSettingPage(context, SendDocumentSetting());
           }
       ),
-      body: Body(),
+      body: Container(
+        color: kColorSecondary,
+        child: ChatPage(),//Body(),
+      ),
     );
   }
 
-  void _showSettingPage(BuildContext context)
-  {
-    showModalBottomSheet(
-        backgroundColor: kColorDrawer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(10),
-          ),
-        ),
-        isScrollControlled: true,
-        context: context,
-        builder: (context){
-          return SendDocumentSetting();
-        }
-    );
-  }
 }
