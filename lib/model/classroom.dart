@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Classroom
 {
   String id_classroom;
+  bool hidden = false;
   String name_classroom;
   String img_profile;
   String? creation_date;
@@ -13,6 +14,7 @@ class Classroom
 
   Classroom(
       this.id_classroom,
+      this.hidden,
       this.responsible_id,
       this.img_profile,
       this.name_classroom,
@@ -24,6 +26,7 @@ class Classroom
 
   //les accesseurs
   String get idClassroom => id_classroom;
+  bool get hiddenClassroom => hidden;
   String get nameClassroom => name_classroom;
   String get imgProfile => img_profile;
   String? get creationDate => creation_date;
@@ -36,7 +39,9 @@ class Classroom
   set idClassroom(String value){
     id_classroom = value;
   }
-  // les mutateurs
+  set hiddenClassroom(bool value){
+    hidden = value;
+  }
   set name(String value){
     name_classroom = value;
   }
@@ -67,6 +72,7 @@ class Classroom
     final data = snapshot.data();
     return Classroom(
       data?['id_classroom'],
+      data?['hidden'],
       data?['responsible_id'],
       data?['img_profile'],
       data?['name_classroom'],
@@ -83,6 +89,7 @@ class Classroom
     final data = snapshot?.data() as Map<String, dynamic>;
     return Classroom(
       data['id_classroom'],
+      data['hidden'],
       data['responsible_id'],
       data['img_profile'],
       data['name_classroom'],
@@ -97,6 +104,7 @@ class Classroom
   Map<String, dynamic> toFirestore() {
     return {
       if (id_classroom != null) "id_classroom": id_classroom,
+      if (hidden != null) "hidden": hidden,
       if (name_classroom != null) "name_classroom": name_classroom,
       if (img_profile != null) "img_profile": img_profile,
       if (creation_date != null) "creation_date": creation_date,

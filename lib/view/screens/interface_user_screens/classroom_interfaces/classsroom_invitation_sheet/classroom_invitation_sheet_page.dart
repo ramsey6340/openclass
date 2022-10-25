@@ -21,7 +21,9 @@ class ClassroomInvitationSheetPage extends StatefulWidget
 
 class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetPage>
 {
+  @override
   Read read = Read();
+  ClassroomCtrl classroomCtrl = ClassroomCtrl();
   @override
   Widget build(BuildContext context)
    {
@@ -60,6 +62,9 @@ class _ClassroomInvitationSheetPageState extends State<ClassroomInvitationSheetP
                                 final classRef = db.collection("classrooms").doc(current_classroom.id_classroom);
                                 classRef.update({
                                   "membres": FieldValue.arrayUnion([item.id]),
+                                });
+                                setState(() {
+                                  current_classroom.membres?.add(item.id);
                                 });
                               },
                               style: ElevatedButton.styleFrom(

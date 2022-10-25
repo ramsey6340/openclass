@@ -62,7 +62,9 @@ class _EditUserFirstNamePageState extends State<EditUserFirstNamePage> {
     if(entryField.firstNameController.text.isNotEmpty){
       String first_name = entryField.firstNameController.text;
       new_value = {"first_name":first_name};
+      // mise à jour au niveau de Firebase
       update.updateUserProfile(new_value);
+      // mise à jour local
       current_user.first_name = first_name;
       userCtrl.modifUser(current_user);
       Navigator.push(context, MaterialPageRoute(builder: (context) => BodyAccount()));

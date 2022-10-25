@@ -13,7 +13,7 @@ String current_classroom_id = '';
 // les id des trois categories de base
 List<String> current_categories_salle_id = [];
 // la classe courent avec un id vide
-Classroom current_classroom = Classroom('','','','');
+Classroom current_classroom = Classroom('',false,'','','');
 // la categorie courent avec un id vide
 CategorySalle current_category = CategorySalle('','');
 // l'ami avec la laquelle l'utilisateur est entrain de discuter

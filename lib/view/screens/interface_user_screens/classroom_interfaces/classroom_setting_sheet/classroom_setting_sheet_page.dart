@@ -139,7 +139,7 @@ class ClassroomSettingSheetPage extends StatelessWidget
                         delete.deleteClasse(current_classroom.id_classroom);
                         current_menu_index = 0;
                         Navigator.pushNamed(context, MainScreen.routeName);
-                        current_classroom = Classroom('','','','');
+                        current_classroom = Classroom('',false,'','','');
                       },
                     );
                   }

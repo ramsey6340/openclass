@@ -1,9 +1,9 @@
-import '../model/classroom.dart';
 import 'dart:async';
+import '../model/classroom.dart';
 
 class ClassroomCtrl
 {
-  Classroom _classroom = Classroom('','','','');
+  Classroom _classroom = Classroom('',false,'','','');
   // stream controller pour la classe Classroom
   final _streamCrtl = StreamController<Classroom>();
 

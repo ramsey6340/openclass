@@ -98,6 +98,7 @@ class _BodyState extends State<Body>
         // l'instance de la classe
         final classroom = Classroom(
           '',
+          false,
           current_user.id,
           default_profile,
           name_classroom,
