@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../constante.dart';
+
+/// La classe qui définit tous les champs de saisie qui existe dans OpenClass
 
 class EntryField
 {
@@ -29,14 +30,15 @@ class EntryField
          return null;
        },
        style: TextStyle(color: Colors.white),
-       decoration: InputDecoration(
+       decoration: const InputDecoration(
          label: Text('Mot de passe', style: TextStyle(color: Colors.white),),
          filled: true,
          fillColor: kColorSecondary,
-         //border: ,
        ),
      );
    }
+
+
    // champ de saisie pour la confirmation de mot de passe
    Widget buildConfirmPasswordField()
    {
@@ -52,8 +54,8 @@ class EntryField
          }
          return null;
        },
-       style: TextStyle(color: Colors.white),
-       decoration: InputDecoration(
+       style: const TextStyle(color: Colors.white),
+       decoration: const InputDecoration(
          label: Text('Confirmation de mot de passe', style: TextStyle(color: Colors.white),),
          filled: true,
          fillColor: kColorSecondary,
@@ -61,6 +63,8 @@ class EntryField
        ),
      );
    }
+
+
  // champ de saisie pour l'email
   Widget buildEmailField()
   {
@@ -77,13 +81,15 @@ class EntryField
         return null;
       },
       style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         label: Text('Email', style: TextStyle(color: Colors.white),),
         filled: true,
         fillColor: kColorSecondary,
       ),
     );
   }
+
+
   // champs de saisie de prenom
   Widget buildPrenomField()
   {
@@ -96,14 +102,16 @@ class EntryField
         }
         return null;
       },
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      style: const TextStyle(color: Colors.white),
+      decoration: const InputDecoration(
         label: Text('Prenom', style: TextStyle(color: Colors.white),),
         filled: true,
         fillColor: kColorSecondary,
       ),
     );
   }
+
+
    // champs de saisie de nom
    Widget buildNomField()
    {
@@ -116,14 +124,16 @@ class EntryField
          }
          return null;
        },
-       style: TextStyle(color: Colors.white),
-       decoration: InputDecoration(
+       style: const TextStyle(color: Colors.white),
+       decoration: const InputDecoration(
          label: Text('Nom', style: TextStyle(color: Colors.white),),
          filled: true,
          fillColor: kColorSecondary,
        ),
      );
    }
+
+
    // champs de saisie de numero
    Widget buildNumberField()
    {
@@ -137,13 +147,14 @@ class EntryField
          return null;
        },
        style: TextStyle(color: Colors.white),
-       decoration: InputDecoration(
+       decoration: const InputDecoration(
          label: Text('Numero', style: TextStyle(color: Colors.white),),
          filled: true,
          fillColor: kColorSecondary,
        ),
      );
    }
+
 
    // champs de saisi de text
     Widget buildTextField()
@@ -152,12 +163,13 @@ class EntryField
         controller: textController,
         keyboardType: TextInputType.text,
         style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           filled: true,
           fillColor: kColorSearch,
         ),
       );
     }
+
 
  // champs de saisi multiligne
   Widget buildMultiTextField()
@@ -167,10 +179,12 @@ class EntryField
       keyboardType: TextInputType.text,
       maxLines: 4,
       style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         filled: true,
         fillColor: kColorSearch,
       ),
     );
   }
+
+
 }

@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/view/constante.dart';
+
+/// Widget pour créer une barre de recherche
 
 class SearchBar extends StatelessWidget
 {
@@ -11,7 +12,7 @@ class SearchBar extends StatelessWidget
     TextEditingController? _controller = TextEditingController();
     return Column(
       children: [
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         Container(
           decoration: BoxDecoration(
             color: kColorSearch,
@@ -20,8 +21,8 @@ class SearchBar extends StatelessWidget
           child: TextFormField(
             controller: _controller,
             keyboardType: TextInputType.text,
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
               hintText: 'Rechercher',
               hintStyle: TextStyle(color: Colors.white),
               prefixIcon: Icon(Icons.search,color: Colors.white,),
@@ -35,8 +36,8 @@ class SearchBar extends StatelessWidget
             },
           ),
         ),
-        SizedBox(height: 10,),
-        Divider(height: 3,color: Colors.white,)
+        const SizedBox(height: 10,),
+        const Divider(height: 3,color: Colors.white,)
       ],
     );
   }

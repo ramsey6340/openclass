@@ -1,7 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+
+/// Widget pour visualiser un document
 
 class ShowDocument extends StatefulWidget {
   const ShowDocument({Key? key, required this.doc_path}) : super(key: key);

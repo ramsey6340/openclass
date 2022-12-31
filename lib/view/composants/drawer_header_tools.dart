@@ -6,9 +6,12 @@ import '../constante.dart';
 import '../screens/interface_user_screens/classroom_interfaces/classroom_setting_sheet/classroom_setting_sheet_page.dart';
 import 'invite_button.dart';
 
+/// Widget qui contient les element qui doivent être mis dans le header du drawer de l'interface des classe
+/// Ces element peuvent être le nom de la classe, un boutton pour inviter d'autre personne, etc
+
 class DrawerHeaderTools extends StatelessWidget
 {
-  DrawerHeaderTools({Key? key, required this.nameClasse, required this.classroom}):super(key: key);
+  const DrawerHeaderTools({Key? key, required this.nameClasse, required this.classroom}):super(key: key);
   final String? nameClasse;
   final Classroom classroom;
   @override
@@ -21,27 +24,27 @@ class DrawerHeaderTools extends StatelessWidget
             children: <Widget>[
               Text(nameClasse!,style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),),
               GestureDetector(
-                child: Icon(Icons.more_horiz,color: Colors.white,),
+                child: const Icon(Icons.more_horiz,color: Colors.white,),
                 onTap: (){
-                  //current_number_of_member = nbOfMembers(data_list_adhesion_classes);
                   _showClassroomSettingSheet(context, classroom);
                 },
               ),
             ],
           ),
-          SizedBox(height: 50,),
+          const SizedBox(height: 50,),
           InviteButton(),
         ],
       ),
     );
   }
 
+  // la methode qui sera appelé lorsqu'on clique sur le boutton réglage d'une classe
   void _showClassroomSettingSheet(BuildContext context, Classroom classroom)
   {
     Navigator.pop(context);
     showModalBottomSheet(
       backgroundColor: kColorBackground,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(10),
           ),

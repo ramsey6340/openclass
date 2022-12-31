@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+/// Widget pour permettre de choisir une catégorie (possedant un tire, une description) grâce à un boutton ratio
+/// Il affiche un seul catégorie avec un boutton ration
+
 class CategoryItem extends StatelessWidget
 {
-  CategoryItem({Key? key, required this.title, required this.description, required this.leading, required this.radio}):super(key: key);
+  const CategoryItem({Key? key, required this.title, required this.description, required this.leading, required this.radio}):super(key: key);
   final String title;
   final String description;
   final Widget? leading;
@@ -15,8 +18,8 @@ class CategoryItem extends StatelessWidget
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-          Text(description, style: TextStyle(color: Colors.white), maxLines: 2,),
+          Text(title,style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+          Text(description, style: const TextStyle(color: Colors.white), maxLines: 2,),
         ],
       ),
       trailing: radio,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Widget que j'ai prie dans pub.dev
+/// C'est un widget de bulle de chat qui va contenir les messages, les photos, etc
+
 ///iMessage's chat bubble type
 ///
 ///chat bubble color can be customized using [color]

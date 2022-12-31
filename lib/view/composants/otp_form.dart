@@ -1,9 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/view/constante.dart';
 
+/// Widget pour crée un formulaire OTP
+
 class OtpForm extends StatefulWidget
 {
+  const OtpForm({Key? key}) : super(key: key);
+
   @override
   State<OtpForm> createState() => _OtpFormState();
 }
@@ -42,11 +45,11 @@ class _OtpFormState extends State<OtpForm>
     return Form(
         child: Container(
           height: MediaQuery.of(context).size.height*0.15,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: kColorSecondary,
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -55,7 +58,7 @@ class _OtpFormState extends State<OtpForm>
                   child: TextFormField(
                     autofocus: true,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
                     textAlign: TextAlign.center,
                     decoration: kOtpInputDecoration,
                     onChanged: (value){
@@ -69,7 +72,7 @@ class _OtpFormState extends State<OtpForm>
                   child: TextFormField(
                     focusNode: pin2,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
                     textAlign: TextAlign.center,
                     decoration: kOtpInputDecoration,
                     onChanged: (value){
@@ -83,7 +86,7 @@ class _OtpFormState extends State<OtpForm>
                   child: TextFormField(
                     focusNode: pin3,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
                     textAlign: TextAlign.center,
                     decoration: kOtpInputDecoration,
                     onChanged: (value){
@@ -97,7 +100,7 @@ class _OtpFormState extends State<OtpForm>
                   child: TextFormField(
                     focusNode: pin4,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
                     textAlign: TextAlign.center,
                     decoration: kOtpInputDecoration,
                     onChanged: (value){

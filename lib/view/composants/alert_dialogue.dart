@@ -8,16 +8,16 @@ class AlertDialogError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Erreur"),
+      title: const Text("Erreur"),
       content: Text(message),
-      contentTextStyle: TextStyle(color: Colors.red),
+      contentTextStyle: const TextStyle(color: Colors.red),
       actions: [
         TextButton(
           style: TextButton.styleFrom(backgroundColor: kColorPrimary),
             onPressed: (){
               Navigator.of(context).pop();
             },
-            child: Text("ok", style: TextStyle(color: Colors.white),)
+            child: const Text("ok", style: TextStyle(color: Colors.white),)
         ),
       ],
     );

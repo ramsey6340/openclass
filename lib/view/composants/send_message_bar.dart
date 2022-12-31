@@ -11,6 +11,8 @@ import 'package:uuid/uuid.dart';
 import '../../data/data_current.dart';
 import '../constante.dart';
 
+/// Widget qui permet la saisie de texte, l'envoie de message, de photo, et de document
+
 class SendMessageBar extends StatelessWidget
 {
   TextEditingController messageController = TextEditingController();
@@ -63,7 +65,7 @@ class SendMessageBar extends StatelessWidget
     );
   }
 
-  // recuperation de l'image
+  // recuperation de l\'image
   Future<void> getImage() async{
     ImagePicker picker = ImagePicker();
     picker.pickImage(source: ImageSource.gallery).then((value) {

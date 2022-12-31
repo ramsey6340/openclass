@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/CRUD/read.dart';
 import 'package:openclass/data/data_current.dart';
@@ -10,8 +9,15 @@ import 'package:openclass/view/constante.dart';
 import '../../model/category_salle.dart';
 import '../screens/interface_user_screens/classroom_interfaces/create_salle/create_salle_page.dart';
 
+
+/// Widget qui contient tout le contenue du drawer dans l'interface des classes
+/// Tous ce qui se touvre dans le drawer comme les salles, les catégorie seront afficher par ce widget
+
+
 class DrawerComponent extends StatefulWidget
 {
+  const DrawerComponent({Key? key}) : super(key: key);
+
   @override
   State<DrawerComponent> createState() => _DrawerComponentState();
 }
@@ -23,9 +29,6 @@ class _DrawerComponentState extends State<DrawerComponent>
  @override
   Widget build(BuildContext context)
   {
-    //inspire toi de ça
-    stringMethod("string");
-
 
     FirebaseFirestore db = FirebaseFirestore.instance;
     final Stream<QuerySnapshot> _categorySalleStream = db.collection('categoriesSalles').where("classroom_id", isEqualTo: current_classroom.id_classroom).snapshots();
@@ -45,7 +48,7 @@ class _DrawerComponentState extends State<DrawerComponent>
           child: Column(
             children: <Widget>[
               DrawerHeaderTools(nameClasse: current_classroom.nameClassroom, classroom: current_classroom,),
-              Divider(color: Colors.white, height: 20,),
+              const Divider(color: Colors.white, height: 20,),
               Expanded(
                 child: ListView.builder(
                   itemCount: snapshot.data!.docs.length,
@@ -69,9 +72,4 @@ class _DrawerComponentState extends State<DrawerComponent>
     );
   }
 
-  // inspire toi de cet modèle pour convertir un type Future en type primitif
-  void stringMethod(String string) async{
-   Future<String> futureString = read.getText(string) ;
-    chaine = await futureString;
-  }
 }

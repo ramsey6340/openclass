@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../constante.dart';
+
+/// La classe qui permet de créer des appBar (la barre d'outils situé en haut de l'application)
 
 class ToolsBar
 {
@@ -12,9 +13,9 @@ class ToolsBar
       centerTitle: true,
       leadingWidth: 100,
       leading: IconButton(icon: action!,onPressed: pressAction as void Function(),),
-      title: Text(title!,style: TextStyle(fontWeight: FontWeight.bold),),
+      title: Text(title!,style: const TextStyle(fontWeight: FontWeight.bold),),
       actions: [
-        Container(
+        SizedBox(
           width: 100,
           child: IconButton(onPressed: pressIcon as void Function(), icon: icon!,color: kColorPrimary,iconSize: 30,),
         ),
@@ -33,7 +34,7 @@ class ToolsBar
           child: action,
           onTap: pressAction as void Function(),
         ),
-        Text(title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+        Text(title,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
         //IconButton(onPressed: pressIcon as void Function(), icon: icon,color: kColorPrimary,iconSize: 30,),
         GestureDetector(
           child: icon,

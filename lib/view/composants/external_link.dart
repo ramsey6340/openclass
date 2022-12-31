@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// Widget pour permettre de créer des liens externe comme par exemple le lien de la "Politique de confidentialité"
+
 class ExternalLink extends StatelessWidget
 {
-  ExternalLink({Key?key, required this.color, required this.text, required this.destination}):super(key: key);
+  const ExternalLink({Key ? key, required this.color, required this.text, required this.destination}):super(key: key);
 
   final Color color;
   final String text;

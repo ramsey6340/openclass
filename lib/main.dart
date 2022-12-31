@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:openclass/routes.dart';
-import 'package:openclass/view/screens/interface_user_screens/main_screen.dart';
-import 'package:openclass/view/screens/login_screens/welcome/welcome_page.dart';
 import 'package:openclass/view/screens/splash_screen/splash_screen.dart';
 
 void main() async{
@@ -26,11 +23,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             color: Colors.white,
             elevation: 0,
           ),
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             bodyText1: TextStyle(color: Colors.white),
             bodyText2: TextStyle(color: Colors.white),
           ),
