@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:openclass/model/category_salle.dart';
 import 'package:openclass/model/classroom.dart';
 import 'package:openclass/model/salle.dart';

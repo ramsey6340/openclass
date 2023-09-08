@@ -15,6 +15,8 @@ import 'composants/header_invitation_sheet.dart';
 
 class ClassroomInvitationSheetPage extends StatefulWidget
 {
+  const ClassroomInvitationSheetPage({Key? key}) : super(key: key);
+
   @override
   State<ClassroomInvitationSheetPage> createState() => _ClassroomInvitationSheetPageState();
 }
